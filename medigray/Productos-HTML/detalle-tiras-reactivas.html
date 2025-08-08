@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIRAS REACTIVAS AL ORTOFTALDEHÍDO - Medigray</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary: #0066cc;
+            --bs-primary-rgb: 0, 102, 204;
+            --bs-secondary: #4d94ff;
+            --medigray-dark-blue: #0055aa;
+            --medigray-light-blue: #f0f7ff;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #495057;
+            line-height: 1.7;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--bs-primary);
+            color: white;
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .top-bar-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        .top-bar-links a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        /* Header - Navbar */
+        header .navbar {
+            transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            background-color: #fff !important;
+        }
+        
+        header .navbar.scrolled {
+            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        header .navbar-brand img {
+            height: 60px;
+        }
+        
+        header .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #343a40;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        header .navbar-nav .nav-link:hover,
+        header .navbar-nav .nav-link.active {
+            color: var(--bs-primary);
+        }
+        
+        /* Hero section */
+        .product-hero {
+            background: linear-gradient(135deg, #0dcaf0, #075985);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+        
+        .product-hero .breadcrumb-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .product-hero .breadcrumb-item a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .product-hero .breadcrumb-item.active {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .product-hero h1 {
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Product Detail */
+        .product-detail-page {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+            background-color: #f8f9fa;
+        }
+        
+        .product-detail-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+        }
+        
+        .product-image-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .product-image-container img {
+            max-height: 400px;
+            max-width: 100%;
+        }
+        
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(13, 202, 240, 0.1), rgba(13, 202, 240, 0.5), rgba(13, 202, 240, 0.1));
+            margin: 1.5rem 0;
+        }
+        
+        .product-detail-section h3 {
+            color: #0dcaf0;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .product-detail-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            height: 70%;
+            width: 5px;
+            background-color: #0dcaf0;
+            border-radius: 3px;
+        }
+        
+        .product-detail-section p, 
+        .product-detail-section ul, 
+        .product-detail-section ol {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.2rem;
+        }
+        
+        .product-detail-section ul,
+        .product-detail-section ol {
+            padding-left: 1.2rem;
+        }
+        
+        .product-detail-section ul li,
+        .product-detail-section ol li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .product-detail-section ul li::marker {
+            color: #0dcaf0;
+        }
+        
+        .info-card {
+            background-color: var(--medigray-light-blue);
+            border-left: 4px solid #0dcaf0;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card-title {
+            color: #0dcaf0;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card-title i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .warning-section {
+            background-color: #fff7f0;
+            border-left: 4px solid #fd7e14;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        
+        .warning-title {
+            color: #fd7e14;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title i {
+            margin-right: 0.5rem;
+        }
+        
+        .step-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            background-color: #0dcaf0;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0A1122 !important;
+            color: white;
+            padding-top: 3rem;
+            padding-bottom: 1.5rem;
+        }
+        
+        footer .text-primary {
+            color: #4d94ff !important;
+        }
+        
+        footer .text-white-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        @media (max-width: 768px) {
+            .product-hero {
+                padding: 2rem 0;
+            }
+            
+            .product-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-detail-container {
+                padding: 1.5rem;
+            }
+            
+            .info-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+
+<style>
+.navbar {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 90px;
+    width: auto;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px;
+}
+</style>
+
+
+<style>
+header, .navbar {
+    height: auto !important;
+    min-height: 120px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 20px !important;
+    box-sizing: border-box;
+}
+
+.navbar-brand img {
+    height: 90px !important;
+    width: auto !important;
+    max-height: 90px !important;
+}
+
+.navbar-nav {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px !important;
+    font-size: 15px !important;
+}
+
+.breadcrumb, .breadcrumb-item {
+    margin-top: 20px !important;
+    font-size: 14px !important;
+    visibility: visible !important;
+}
+</style>
+
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="top-bar-contact d-none d-md-block">
+                    <span class="text-white me-3"><i class="bi bi-telephone-fill me-1"></i> (+506) 2270-7979</span>
+                    <span class="text-white"><i class="bi bi-envelope-fill me-1"></i> ventas@medigray.com</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="../contacto.html" class="ms-3 text-white"><i class="bi bi-chat-dots-fill me-1"></i>Contacto</a>
+                    <a href="#" class="ms-3 text-white"><i class="bi bi-shield-lock-fill me-1"></i>Portal de Clientes</a>
+                    <a href="detalle-tiras-reactivas_en.html" class="ms-3 text-white">EN</a>
+                    <a href="detalle-tiras-reactivas.html" class="ms-3 text-white">ES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación principal -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand me-auto" href="../index.html">
+        <img src="../images/Logo_medigray.png" height="50" alt="Logo Medigray">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Nosotros.html"><i class="bi bi-info-circle me-1"></i>Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Farmacovigilancia.html"><i class="bi bi-shield-check me-1"></i>Farmacovigilancia</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Trabaje-Aqui.html"><i class="bi bi-briefcase me-1"></i>Trabaje Aquí</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Contacto.html"><i class="bi bi-envelope me-1"></i>Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<script>
+// Marca automáticamente la pestaña activa según la URL
+(function markActiveNavLink() {
+  const path = location.pathname.split('/').pop().toLowerCase();
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    const href = link.getAttribute('href').toLowerCase();
+    if (href === path || (href.includes('?') && href.split('?')[0] === path)) {
+      link.classList.add('active');
+    }
+  });
+})();
+</script>
+
+
+    <!-- Hero section con título y breadcrumb -->
+    <section class="product-hero">
+        <div class="container position-relative" style="z-index: 1;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="../index.html"><i class="bi bi-house-door-fill"></i></a></li>
+                    <li class="breadcrumb-item"><a href="../productos.html">Productos</a></li>
+                    <li class="breadcrumb-item"><a href="../productos.html?category=DESINFECCIÓN DE ALTO NIVEL">DESINFECCIÓN DE ALTO NIVEL</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">TIRAS REACTIVAS AL ORTOFTALDEHÍDO</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold text-white mb-0">TIRAS REACTIVAS AL ORTOFTALDEHÍDO</h1>
+        </div>
+    </section>
+
+    <main class="product-detail-page">
+        <div class="container">
+            <!-- Contenido del producto -->
+            <div class="product-detail-container">
+                <div class="row">
+                    <!-- Imagen del producto -->
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <div class="product-image-container">
+                            <img src="../images/Productos/DESINFECCIÓN DE ALTO NIVEL/Tiras_650.jpg" alt="TIRAS REACTIVAS AL ORTOFTALDEHÍDO" class="img-fluid">
+                        </div>
+                    </div>
+                    
+                    <!-- Información del producto -->
+                    <div class="col-lg-7 product-detail-section">
+                        <div class="info-card mb-4">
+                            <div class="info-card-title">
+                                <i class="bi bi-patch-check-fill"></i>
+                                Verificación Efectiva
+                            </div>
+                            <p class="lead mb-0">Indicadores químicos para determinar la concentración efectiva mínima de ortoftaldehído en soluciones desinfectantes de alto nivel.</p>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h3>Presentación</h3>
+                                <p><i class="bi bi-box-seam me-2 text-info"></i>Frasco con 50 tiras reactivas.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Nivel de Detección</h3>
+                                <p><i class="bi bi-percent me-2 text-info"></i>Concentración mínima efectiva (MEC) de 0.35%.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Descripción</h3>
+                        <p>Las tiras reactivas son indicadores químicos que se usan para determinar si la concentración de ortoftalaldehído está por encima o por debajo de la concentración efectiva mínima establecida (MEC) de 0.30%.</p>
+                        <p>Se recomienda probar el desinfectante antes de cada ciclo de desinfección para asegurarse de que el ortoftalaldehído esté por encima del MEC.</p>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="info-card mb-0 h-100">
+                                    <div class="info-card-title">
+                                        <i class="bi bi-clipboard-check"></i>
+                                        Eficacia Verificada
+                                    </div>
+                                    <p class="mb-0">Las tiras han sido ensayadas en distintos lotes y a diferentes concentraciones de ortoftaldehído para garantizar su óptima efectividad en la obtención de resultados.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card mb-0 h-100">
+                                    <div class="info-card-title">
+                                        <i class="bi bi-droplet-half"></i>
+                                        Uso Exclusivo
+                                    </div>
+                                    <p class="mb-0">Son de uso exclusivo para la verificación de la concentración mínima efectiva durante el periodo de reutilización del producto.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p><i class="bi bi-info-circle-fill text-info me-2"></i>Cada galón de desinfectante viene acompañado de un frasco con 50 tiras reactivas.</p>
+                        
+                        <div class="warning-section">
+                            <div class="warning-title">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                Advertencia Importante
+                            </div>
+                            <p>Las tiras reactivas son indicadores químicos y no pueden usarse para verificar la eficacia o la integridad del proceso de desinfección. Las tiras reactivas no están destinadas a reemplazar las determinaciones microbiológicas.</p>
+                            <p class="mb-0">No use la solución de ortoftaldehído al 0.55% más allá de la vida útil recomendada por el fabricante de 14 días, independientemente de los resultados de la tira de prueba.</p>
+                        </div>
+                        
+                        <h3>Instrucciones de Uso</h3>
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                                <div class="step-card">
+                                    <div class="step-number">1</div>
+                                    <div>Sumerja toda la almohadilla indicadora en la solución desinfectante y retire inmediatamente.</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="step-card">
+                                    <div class="step-number">2</div>
+                                    <div>No retire de la tira el exceso de solución de OPA.</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="step-card">
+                                    <div class="step-number">3</div>
+                                    <div>Sujete la tira sin tocar la almohadilla. No coloque sobre una toalla de papel.</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="step-card">
+                                    <div class="step-number">4</div>
+                                    <div>Espere 20 segundos y compare el color con los bloques en la etiqueta.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Interpretación de Resultados</h3>
+                        <div class="info-card mt-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="info-card-title">
+                                        <i class="bi bi-x-circle"></i>
+                                        No Apto para Uso
+                                    </div>
+                                    <p class="mb-0">Si la almohadilla marca cualquiera de los primeros tres colores (0%, 0.1% y 0.2%), el desinfectante no está a una concentración óptima. <span class="text-danger fw-bold">No lo utilice, descártelo.</span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="info-card-title">
+                                        <i class="bi bi-check-circle"></i>
+                                        Apto para Uso
+                                    </div>
+                                    <p class="mb-0">Si la almohadilla indica cualquiera de los últimos tres colores (0.35%, 0.4% y 0.55%), el desinfectante tiene una concentración adecuada para su uso.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Cuidados para el Uso y Almacenamiento</h3>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <ul>
+                                    <li>Las tiras reactivas deben guardarse en el frasco original con la tapa bien cerrada.</li>
+                                    <li>No retire las tiras reactivas del frasco hasta inmediatamente antes de usarlas.</li>
+                                    <li>Vuelva a colocar la tapa inmediatamente después de quitar una tira.</li>
+                                    <li>No use una tira reactiva después de la fecha de vencimiento.</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul>
+                                    <li>No toque la almohadilla indicadora.</li>
+                                    <li>No permita que la almohadilla entre en contacto con líquidos o superficies contaminadas.</li>
+                                    <li>Dispositivo de un solo uso. Deseche la tira según la normativa vigente.</li>
+                                    <li>No utilice ningún indicador que ya no sea blanco.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4">
+        <div class="container text-center text-md-start">
+            <div class="row gy-4">
+                <div class="col-md-4 col-lg-4 col-xl-4 mx-auto">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">
+                        <img src="../images/Logo_medigray.png" alt="Medigray Footer Logo" style="height: 30px; filter: brightness(0) invert(1); margin-right: 8px;">
+                        Medigray
+                    </h5>
+                    <p class="small text-white-50">Cuidando de su salud con innovación y calidad.</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Enlaces</h5>
+                    <p><a href="../index.html" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>Inicio</a></p>
+                    <p><a href="../nosotros.html" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>Nosotros</a></p>
+                    <p><a href="../farmacovigilancia.html" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>Farmacovigilancia</a></p>
+                    <p><a href="../productos.html" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>Productos</a></p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Soporte</h5>
+                    <p><a href="../contacto.html" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>Contacto</a></p>
+                    <p><a href="#" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>FAQs</a></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Legal</h5>
+                    <p><a href="#" class="text-decoration-none text-white-50"><i class="bi bi-chevron-right me-1 small"></i>Términos y condiciones</a></p>
+                    <p><a href="#" class="text-decoration-none text-white-50"><i class

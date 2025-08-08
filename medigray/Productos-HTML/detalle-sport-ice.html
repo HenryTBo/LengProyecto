@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORT ICE - Medigray</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colores específicos para DOLOR */
+            --bs-primary: #6a4a9e;
+            --bs-primary-rgb: 106, 74, 158;
+            --bs-secondary: #8566b8;
+            --medigray-dark-purple: #5a3a8e;
+            --medigray-light-purple: #ded7e9;
+            --medigray-warning: #fdebeb;
+            --medigray-warning-border: #dc3545;
+            
+            /* Mantener colores originales para navegación */
+            --navbar-primary: #0066cc;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #495057;
+            line-height: 1.7;
+        }
+        
+        /* Header - Navbar - mantener azul original */
+        header .navbar {
+            transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            background-color: #fff !important;
+            min-height: 120px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 10px 20px !important;
+            box-sizing: border-box;
+        }
+        
+        header .navbar.scrolled {
+            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        header .navbar-brand img {
+            height: 90px !important;
+            width: auto !important;
+            max-height: 90px !important;
+        }
+        
+        header .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #343a40;
+            padding: 10px 15px !important;
+            text-transform: uppercase;
+            font-size: 15px !important;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        header .navbar-nav .nav-link:hover,
+        header .navbar-nav .nav-link.active {
+            color: var(--navbar-primary);
+        }
+        
+        /* Hero section - COLORES DOLOR */
+        .product-hero {
+            background: linear-gradient(135deg, var(--bs-primary), var(--medigray-dark-purple));
+            padding: 3rem 0;
+            padding-top: 8rem; /* Espacio para navbar fijo */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+        
+        .product-hero .breadcrumb-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .product-hero .breadcrumb-item a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .product-hero .breadcrumb-item.active {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .product-hero h1 {
+            position: relative;
+            margin-bottom: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .breadcrumb, .breadcrumb-item {
+            margin-top: 20px !important;
+            font-size: 14px !important;
+            visibility: visible !important;
+        }
+        
+        /* Product Detail */
+        .product-detail-page {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+            background-color: #f8f9fa;
+        }
+        
+        .product-detail-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+        }
+        
+        .product-image-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .product-image-container:hover {
+            transform: scale(1.67);
+            z-index: 10; /* La imagen queda AL FRENTE cuando crece */
+        }
+        
+        .product-image-container img {
+            max-height: 400px;
+            max-width: 100%;
+        }
+        
+        .product-detail-section {
+            position: relative;
+            z-index: 1; /* Las letras quedan ATRÁS de la imagen cuando crece */
+        }
+        
+        .product-detail-section h3 {
+            color: var(--bs-primary);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .product-detail-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            height: 70%;
+            width: 5px;
+            background-color: var(--bs-primary);
+            border-radius: 3px;
+        }
+        
+        .product-detail-section h4 {
+            color: #444;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-detail-section p, 
+        .product-detail-section ul {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.2rem;
+        }
+        
+        .product-detail-section ul {
+            padding-left: 1.2rem;
+        }
+        
+        .product-detail-section ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .product-detail-section ul li::marker {
+            color: var(--bs-primary);
+        }
+        
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(106, 74, 158, 0.1), rgba(106, 74, 158, 0.5), rgba(106, 74, 158, 0.1));
+            margin: 1.5rem 0;
+        }
+        
+        .info-card {
+            background-color: var(--medigray-light-purple);
+            border-left: 4px solid var(--bs-primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card-title {
+            color: var(--bs-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card-title i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .warning-section {
+            background-color: var(--medigray-warning);
+            border-left: 4px solid var(--medigray-warning-border);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+        }
+        
+        .warning-title {
+            color: var(--medigray-warning-border);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title i {
+            margin-right: 0.5rem;
+        }
+        
+        .warning-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .warning-section ul li::marker {
+            color: var(--medigray-warning-border);
+        }
+        
+        .warning-section p {
+            margin-bottom: 0;
+        }
+        
+       .feature-card {
+     border-radius: 5px;
+     padding: 1.2rem;
+     -height: 100%;
+     transition: all 0.3s ease;
+     background-color: #fff;
+     border: 1px solid rgba(106, 74, 158, 0.2);
+ }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--bs-primary);
+        }
+        
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--medigray-light-purple);
+            color: var(--bs-primary);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Iconos con color primario */
+        .text-primary {
+            color: var(--bs-primary) !important;
+        }
+        
+        /* Footer - mantener azul original */
+        footer {
+            background-color: #0A1122 !important;
+            color: white;
+            padding-top: 3rem;
+            padding-bottom: 1.5rem;
+        }
+        
+        footer .text-primary {
+            color: #4d94ff !important;
+        }
+        
+        footer .text-white-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        .hover-link:hover {
+            color: #fff !important;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info {
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .product-hero {
+                padding: 2rem 0;
+                padding-top: 6rem;
+            }
+            
+            .product-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-detail-container {
+                padding: 1.5rem;
+            }
+            
+            .info-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación principal -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand me-auto" href="../index.html">
+                    <img src="../images/Logo_medigray.png" height="50" alt="Logo Medigray">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../productos.html"><i class="bi bi-capsule me-1"></i>Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Nosotros.html"><i class="bi bi-info-circle me-1"></i>Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Trabaje-Aqui.html"><i class="bi bi-briefcase me-1"></i>Trabaje Aquí</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Farmacovigilancia.html"><i class="bi bi-shield-check me-1"></i>Farmacovigilancia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Contacto.html"><i class="bi bi-envelope me-1"></i>Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+    // Marca automáticamente la pestaña activa según la URL
+    (function markActiveNavLink() {
+        const path = location.pathname.split('/').pop().toLowerCase();
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            const href = link.getAttribute('href').toLowerCase();
+            if (href === path || (href.includes('?') && href.split('?')[0] === path)) {
+                link.classList.add('active');
+            }
+        });
+    })();
+    </script>
+
+    <!-- Hero section con título y breadcrumb -->
+    <section class="product-hero">
+        <div class="container position-relative" style="z-index: 1;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="../index.html"><i class="bi bi-house-door-fill"></i></a></li>
+                    <li class="breadcrumb-item"><a href="../productos.html">Productos</a></li>
+                    <li class="breadcrumb-item"><a href="../productos.html?category=DOLOR">Dolor</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">SPORT ICE</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold text-white mb-0">SPORT ICE</h1>
+        </div>
+    </section>
+
+    <main class="product-detail-page">
+        <div class="container">
+            <!-- Contenido del producto -->
+            <div class="product-detail-container">
+                <div class="row">
+                    <!-- Imagen del producto -->
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <div class="product-image-container">
+                            <img src="../images/Productos/DOLOR/SportIce.png" alt="SPORT ICE" class="img-fluid">
+                        </div>
+                    </div>
+                    
+                    <!-- Información del producto -->
+                    <div class="col-lg-7 product-detail-section">
+                        <div class="info-card mb-4">
+                            <div class="info-card-title">
+                                <i class="bi bi-snow3"></i>
+                                Alivio Inmediato por Enfriamiento
+                            </div>
+                            <p class="lead mb-0">Proporciona alivio inmediato del dolor por enfriamiento de la piel.</p>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <h3>Presentación</h3>
+                                <p><i class="bi bi-box-seam me-2 text-primary"></i>Frasco 115 mL</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Uso</h3>
+                        <div class="feature-card mb-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-thermometer-snow"></i>
+                            </div>
+                            <h5 class="feature-title">Enfriamiento Terapéutico</h5>
+                            <p class="mb-0">Proporciona alivio inmediato del dolor por enfriamiento de la piel, ideal para lesiones deportivas y dolores musculares.</p>
+                        </div>
+                        
+                        <div class="info-card mt-4">
+                            <div class="info-card-title">
+                                <i class="bi bi-clipboard2-pulse"></i>
+                                Instrucciones de Uso
+                            </div>
+                            <p class="mb-0">Coloque el frasco a una distancia aproximada de 10 cm de la piel y rocíe.</p>
+                        </div>
+                        
+                        <div class="warning-section">
+                            <div class="warning-title">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                Contraindicaciones
+                            </div>
+                            <p>No aplicar sobre área dañada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row gy-4 align-items-start">
+                <!-- Columna del Logo - Izquierda -->
+                <div class="col-lg-3 col-md-12 text-center text-lg-start">
+                    <div class="mb-3">
+                        <img src="../images/Logo_medigray.png" alt="Medigray Footer Logo" height="200">
+                    </div>
+                </div>
+
+                <!-- Columna principal - Información de la empresa -->
+                <div class="col-lg-5 col-md-6">
+                    <h5 class="text-uppercase mb-3 fw-bold text-primary">MEDIGRAY</h5>
+                    <p class="text-white-50 mb-4">En MEDIGRAY nos dedicamos a desarrollar, producir y comercializar productos de la más alta calidad, que contribuyen a mejorar la salud y bienestar de las personas.</p>
+
+                    <!-- Información de contacto -->
+                    <div class="contact-info">
+                        <p class="text-white-50 mb-2">
+                            <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                            Desamparados, San José, Costa Rica
+                        </p>
+                        <p class="text-white-50 mb-2">
+                            <i class="bi bi-telephone-fill me-2 text-primary"></i>
+                            (+506) 2270-7979
+                        </p>
+                        <p class="text-white-50 mb-0">
+                            <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                            ventas@medigray.com
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Columna de enlaces rápidos -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Navegación</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="../index.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Inicio</a></li>
+                        <li class="mb-2"><a href="../productos.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Productos</a></li>
+                        <li class="mb-2"><a href="../Nosotros.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Nosotros</a></li>
+                        <li class="mb-2"><a href="../Trabaje-Aqui.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Trabaje Aquí</a></li>
+                        <li class="mb-2"><a href="../Farmacovigilancia.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Farmacovigilancia</a></li>
+                        <li class="mb-2"><a href="../Contacto.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna de categorías de productos -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Productos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="../productos.html?cat=RESPIRATORIA" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</a></li>
+                        <li class="mb-2"><a href="../productos.html?cat=DOLOR" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Dolor</a></li>
+                        <li class="mb-2"><a href="../productos.html?cat=DERMATOLÓGICO" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>DERMATOLÓGICO</a></li>
+                        <li class="mb-2"><a href="../productos.html?cat=GASTRICO" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</a></li>
+                        <li class="mb-2"><a href="../productos.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Ver todas</a></li>
+                    </ul>
+                </div>
+            </div>
+                
+            <!-- Línea divisoria -->
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+
+           <!-- Copyright -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white-50 mb-0">© <span id="currentYear"></span> Medigray. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Efecto de scroll en navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Año actual en el footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Animación de entrada para cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar animación a cards cuando se cargan
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.info-card, .warning-section, .feature-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

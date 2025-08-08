@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - Medigray</title>
+    <meta name="description" content="Conozca más sobre Medigray, nuestros valores, misión y compromiso con la salud y bienestar de las personas.">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- CSS Bootstrap y propios -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #0066cc, #4d94ff);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.15);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+            width: 15px;
+            height: 15px;
+            background: #0066cc;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #0066cc;
+        }
+        
+        .timeline-year {
+            color: #0066cc;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mission-vision-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .mission-vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.15);
+        }
+        
+        .card-icon-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066cc, #4d94ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+        
+        .card-icon-large i {
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .values-container {
+            margin-top: 2rem;
+        }
+        
+        .value-card {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            height: 100%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.15);
+            border-color: #0066cc;
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066cc, #4d94ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+        
+        .value-icon i {
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .value-title {
+            color: #0066cc;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        
+        .stats-highlight {
+            background: linear-gradient(135deg, #0066cc, #004c99);
+            color: white !important;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+        
+        .stats-highlight h3,
+        .stats-highlight p,
+        .stats-highlight small {
+            color: white !important;
+        }
+        
+        .hover-link:hover {
+            color: #fff !important;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info {
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Navegación principal -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/Logo_medigray.png" alt="Medigray Logo" style="height: 90px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="bi bi-house-door me-1"></i>Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">
+                                <i class="bi bi-capsule me-1"></i>Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="nosotros.html">
+                                <i class="bi bi-info-circle me-1"></i>Nosotros
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Trabaje-Aquí.html">
+                                <i class="bi bi-briefcase me-1"></i>Trabaje Aquí
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="farmacovigilancia.html">
+                                <i class="bi bi-shield-check me-1"></i>Farmacovigilancia
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">
+                                <i class="bi bi-envelope me-1"></i>Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section de Nosotros -->
+    <section class="about-hero bg-primary text-white py-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Sobre Nosotros</h1>
+                    <p class="lead">Somos una empresa familiar que desde 1988 se dedica a desarrollar, producir y comercializar medicamentos y cosméticos de la más alta calidad, construyendo vínculos de amistad y confianza con nuestros clientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas destacadas -->
+    <section class="py-5" style="background: white;">
+        <div class="container">
+            <div class="stats-highlight">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h3 class="display-4 fw-bold mb-2">36+</h3>
+                        <p class="h5 mb-0">Años de experiencia</p>
+                        <small class="opacity-75">Desde 1988</small>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h3 class="display-4 fw-bold mb-2">50+</h3>
+                        <p class="h5 mb-0">Productos farmacéuticos</p>
+                        <small class="opacity-75">Medicamentos y cosméticos</small>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="display-4 fw-bold mb-2">5+</h3>
+                        <p class="h5 mb-0">Países atendidos</p>
+                        <small class="opacity-75">Expansión internacional</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestra Historia - Timeline -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="fw-bold mb-3" style="color: #0066cc;">Nuestra Historia</h2>
+                    <p class="lead text-muted">Un recorrido a través de los momentos más importantes de nuestra empresa familiar</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="timeline">
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">1988 - Los Inicios</div>
+                            <p class="mb-0">Los señores Gassán y Jorge Nasralah, siendo muy jóvenes, decidieron iniciar operaciones fabricando cosmético bajo la marca Dorothy Gray. Posteriormente nace la idea de la marca Medigray para medicamentos, formando así la compañía Inversiones Oridama S.A.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">1999 - Enfoque en Manufactura</div>
+                            <p class="mb-0">Tomamos la decisión estratégica de entregar la distribución de los productos y concentrarnos en la manufactura, especializándonos en lo que mejor sabemos hacer.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2000-2002 - Desarrollo OTC</div>
+                            <p class="mb-0">Se inicia el desarrollo de medicamentos OTC. Una de las primeras marcas comercializadas fue el Piofín Solución. En el 2002 iniciamos las ventas a la CCSS, expandiendo nuestro alcance al sector público.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2004 - Nueva Planta</div>
+                            <p class="mb-0">Se adquiere la propiedad donde se construyó nuestra nueva planta farmacéutica, consolidando nuestras capacidades de producción y asegurando el cumplimiento de los más altos estándares de calidad.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2010 - Expansión Internacional</div>
+                            <p class="mb-0">La empresa dio el salto a la primera exportación, la cual se realizó a República Dominicana. Así iniciamos nuestro camino expandiéndonos a otros países como Panamá, Perú y El Salvador.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">Actualidad - Consolidación</div>
+                            <p class="mb-0">Medigray busca fortalecer la empresa y consolidar relaciones día con día con nuestros socios nacionales e internacionales para seguir avanzando hacia el futuro como una empresa transnacional de primer mundo.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Misión, Visión y Valores -->
+    <section class="mission-vision py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="fw-bold mb-3" style="color: #0066cc;">Nuestra Misión, Visión y Valores</h2>
+                    <p class="lead text-muted">Los pilares fundamentales que guían nuestro trabajo diario y definen quiénes somos.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Misión -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card mission-vision-card shadow-sm">
+                        <div class="card-body p-4 text-center">
+                            <div class="card-icon-large">
+                                <i class="bi bi-bullseye"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-3" style="color: #0066cc;">Nuestra Misión</h3>
+                            <p class="text-muted">Desarrollar, producir y comercializar medicamentos y cosméticos diferenciados con valor mediante un vínculo de amistad y confianza, para lograr la satisfacción y crecimiento de nuestros clientes, colaboradores y accionistas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visión -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card mission-vision-card shadow-sm">
+                        <div class="card-body p-4 text-center">
+                            <div class="card-icon-large">
+                                <i class="bi bi-eye"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-3" style="color: #0066cc;">Nuestra Visión</h3>
+                            <p class="text-muted">Ser una empresa transnacional y de primer mundo con mercado local e institucional consolidados, con negocio de exportación en el Continente Americano, siendo serios, luchadores, constantes, eficientes, planos y ágiles.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Valores -->
+                <div class="col-lg-12">
+                    <div class="card mission-vision-card shadow-sm">
+                        <div class="card-body p-4 text-center">
+                            <div class="card-icon-large">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-3" style="color: #0066cc;">Nuestros Valores</h3>
+                            <p class="text-muted mb-4">Los principios que guían cada una de nuestras acciones y decisiones empresariales</p>
+                            
+                            <div class="values-container">
+                                <div class="row g-3">
+                                    <div class="col-lg-2 col-md-4 col-6">
+                                        <div class="value-card">
+                                            <div class="value-icon">
+                                                <i class="bi bi-heart-fill"></i>
+                                            </div>
+                                            <h5 class="value-title">Compromiso</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6">
+                                        <div class="value-card">
+                                            <div class="value-icon">
+                                                <i class="bi bi-lightning"></i>
+                                            </div>
+                                            <h5 class="value-title">Actitud</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6">
+                                        <div class="value-card">
+                                            <div class="value-icon">
+                                                <i class="bi bi-shield-check"></i>
+                                            </div>
+                                            <h5 class="value-title">Honestidad</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6">
+                                        <div class="value-card">
+                                            <div class="value-icon">
+                                                <i class="bi bi-person-check"></i>
+                                            </div>
+                                            <h5 class="value-title">Responsabilidad</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6">
+                                        <div class="value-card">
+                                            <div class="value-icon">
+                                                <i class="bi bi-people"></i>
+                                            </div>
+                                            <h5 class="value-title">Cooperación</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6">
+                                        <div class="value-card">
+                                            <div class="value-icon">
+                                                <i class="bi bi-award"></i>
+                                            </div>
+                                            <h5 class="value-title">Esfuerzo</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta py-5 bg-primary text-white">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-md-8">
+                    <h2 class="fw-bold mb-3" style="color: white;">¿Quiere conocer más sobre nuestros productos?</h2>
+                    <p class="lead mb-0">Descubra nuestra amplia gama de soluciones farmacéuticas y cosméticas diseñadas pensando en la salud y bienestar de las personas.</p>
+                </div>
+                <div class="col-lg-4 col-md-4 text-md-end mt-4 mt-md-0">
+                    <a href="productos.html" class="btn btn-light btn-lg rounded-pill px-5">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row gy-4 align-items-start">
+                <!-- Columna del Logo - Izquierda -->
+                <div class="col-lg-3 col-md-12 text-center text-lg-start">
+                    <div class="mb-3">
+                        <img src="images/Logo_medigray.png" alt="Medigray Logo" style="height: 300px;">
+                    </div>
+                </div>
+
+                <!-- Columna principal - Información de la empresa -->
+                <div class="col-lg-5 col-md-6">
+                    <h5 class="text-uppercase mb-3 fw-bold text-primary">MEDIGRAY</h5>
+                    <p class="text-white-50 mb-4">En MEDIGRAY nos dedicamos a desarrollar, producir y comercializar productos de la más alta calidad, que contribuyen a mejorar la salud y bienestar de las personas.</p>
+
+                    <!-- Información de contacto -->
+                    <div class="contact-info">
+                        <p class="text-white-50 mb-2">
+                            <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                            Desamparados, San José, Costa Rica
+                        </p>
+                        <p class="text-white-50 mb-2">
+                            <i class="bi bi-telephone-fill me-2 text-primary"></i>
+                            (+506) 2270-7979
+                        </p>
+                        <p class="text-white-50 mb-0">
+                            <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                            ventas@medigray.com
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Columna de enlaces rápidos -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Navegación</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Inicio</a></li>
+                        <li class="mb-2"><a href="productos.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Productos</a></li>
+                        <li class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Nosotros</a></li>
+                        <li class="mb-2"><a href="Trabaje-Aquí.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Trabaje Aquí</a></li>
+                        <li class="mb-2"><a href="farmacovigilancia.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Farmacovigilancia</a></li>
+                        <li class="mb-2"><a href="contacto.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna de categorías de productos -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Productos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="productos.html?cat=RESPIRATORIA" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=DOLOR" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Dolor</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=DERMATOLÓGICO" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>DERMATOLÓGICO</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=GASTRICO" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</a></li>
+                        <li class="mb-2"><a href="productos.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Ver todas</a></li>
+                    </ul>
+                </div>
+            </div>
+                
+            <!-- Línea divisoria -->
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+
+            <!-- Copyright -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white-50 mb-0">© <span id="currentYear"></span> Medigray. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de Bootstrap y personalizados -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JS/script.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
