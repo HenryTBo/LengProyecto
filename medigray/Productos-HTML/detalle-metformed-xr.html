@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIGRAY METFORMED XR - Medigray</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary: #0066cc;
+            --bs-primary-rgb: 0, 102, 204;
+            --bs-secondary: #4d94ff;
+            --medigray-dark-blue: #0055aa;
+            --medigray-light-blue: #f0f7ff;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #495057;
+            line-height: 1.7;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--bs-primary);
+            color: white;
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .top-bar-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        .top-bar-links a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        /* Header - Navbar */
+        header .navbar {
+            transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            background-color: #fff !important;
+        }
+        
+        header .navbar.scrolled {
+            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        header .navbar-brand img {
+            height: 60px;
+        }
+        
+        header .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #343a40;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        header .navbar-nav .nav-link:hover,
+        header .navbar-nav .nav-link.active {
+            color: var(--bs-primary);
+        }
+        
+        /* Hero section */
+        .product-hero {
+            background: linear-gradient(135deg, var(--bs-primary), var(--medigray-dark-blue));
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+        
+        .product-hero .breadcrumb-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .product-hero .breadcrumb-item a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .product-hero .breadcrumb-item.active {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .product-hero h1 {
+            position: relative;
+            margin-bottom: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Product Detail */
+        .product-detail-page {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+            background-color: #f8f9fa;
+        }
+        
+        .product-detail-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+        }
+        
+        .product-image-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .product-image-container img {
+            max-height: 400px;
+            max-width: 100%;
+        }
+        
+        .product-lead {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(0, 102, 204, 0.1), rgba(0, 102, 204, 0.5), rgba(0, 102, 204, 0.1));
+            margin: 1.5rem 0;
+        }
+        
+        .product-detail-section h3 {
+            color: var(--bs-primary);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .product-detail-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            height: 70%;
+            width: 5px;
+            background-color: var(--bs-primary);
+            border-radius: 3px;
+        }
+        
+        .product-detail-section p, 
+        .product-detail-section ul {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.2rem;
+        }
+        
+        .product-detail-section ul {
+            padding-left: 1.2rem;
+        }
+        
+        .product-detail-section ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .product-detail-section ul li::marker {
+            color: var(--bs-primary);
+        }
+        
+        .info-card {
+            background-color: var(--medigray-light-blue);
+            border-left: 4px solid var(--bs-primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card-title {
+            color: var(--bs-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card-title i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .warning-section {
+            background-color: #fff0f0;
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        
+        .warning-title {
+            color: #dc3545;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-title i {
+            margin-right: 0.5rem;
+        }
+        
+        .warning-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .warning-section ul li::marker {
+            color: #dc3545;
+        }
+        
+        .storage-section {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0dcaf0;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .storage-icon {
+            font-size: 2rem;
+            color: #0dcaf0;
+            margin-right: 1rem;
+        }
+        
+        .dosage-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dosage-card h4 {
+            color: var(--bs-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0A1122 !important;
+            color: white;
+            padding-top: 3rem;
+            padding-bottom: 1.5rem;
+        }
+        
+        footer .text-primary {
+            color: #4d94ff !important;
+        }
+        
+        footer .text-white-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        @media (max-width: 768px) {
+            .product-hero {
+                padding: 2rem 0;
+            }
+            
+            .product-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-detail-container {
+                padding: 1.5rem;
+            }
+            
+            .info-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+
+<style>
+.navbar {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 90px;
+    width: auto;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px;
+}
+</style>
+
+
+<style>
+header, .navbar {
+    height: auto !important;
+    min-height: 120px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 20px !important;
+    box-sizing: border-box;
+}
+
+.navbar-brand img {
+    height: 90px !important;
+    width: auto !important;
+    max-height: 90px !important;
+}
+
+.navbar-nav {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px !important;
+    font-size: 15px !important;
+}
+
+.breadcrumb, .breadcrumb-item {
+    margin-top: 20px !important;
+    font-size: 14px !important;
+    visibility: visible !important;
+}
+</style>
+
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="top-bar-contact d-none d-md-block">
+                    <span class="text-white me-3"><i class="bi bi-telephone-fill me-1"></i> (+506) 2270-7979</span>
+                    <span class="text-white"><i class="bi bi-envelope-fill me-1"></i> ventas@medigray.com</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="../contacto.html" class="ms-3 text-white"><i class="bi bi-chat-dots-fill me-1"></i>Contacto</a>
+                    <a href="#" class="ms-3 text-white"><i class="bi bi-shield-lock-fill me-1"></i>Portal de Clientes</a>
+                    <a href="detalle-metformed-xr_en.html" class="ms-3 text-white">EN</a>
+                    <a href="detalle-metformed-xr.html" class="ms-3 text-white">ES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación principal -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand me-auto" href="../index.html">
+        <img src="../images/Logo_medigray.png" height="50" alt="Logo Medigray">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Nosotros.html"><i class="bi bi-info-circle me-1"></i>Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Farmacovigilancia.html"><i class="bi bi-shield-check me-1"></i>Farmacovigilancia</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Trabaje-Aqui.html"><i class="bi bi-briefcase me-1"></i>Trabaje Aquí</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Contacto.html"><i class="bi bi-envelope me-1"></i>Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<script>
+// Marca automáticamente la pestaña activa según la URL
+(function markActiveNavLink() {
+  const path = location.pathname.split('/').pop().toLowerCase();
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    const href = link.getAttribute('href').toLowerCase();
+    if (href === path || (href.includes('?') && href.split('?')[0] === path)) {
+      link.classList.add('active');
+    }
+  });
+})();
+</script>
+
+
+    <!-- Hero section con título y breadcrumb -->
+    <section class="product-hero">
+        <div class="container position-relative" style="z-index: 1;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="../index.html"><i class="bi bi-house-door-fill"></i></a></li>
+                    <li class="breadcrumb-item"><a href="../productos.html">Productos</a></li>
+                    <li class="breadcrumb-item"><a href="../productos.html?category=OTROS">Otros</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">METFORMED XR</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold text-white mb-0">MEDIGRAY METFORMED XR</h1>
+        </div>
+    </section>
+
+    <main class="product-detail-page">
+        <div class="container">
+            <!-- Contenido del producto -->
+            <div class="product-detail-container">
+                <div class="row">
+                    <!-- Imagen del producto -->
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <div class="product-image-container">
+                            <img src="../images/Productos/OTROS/Metformed.png" alt="MEDIGRAY METFORMED XR" class="img-fluid">
+                        </div>
+                    </div>
+                    
+                    <!-- Información del producto -->
+                    <div class="col-lg-7 product-detail-section">
+                        <div class="info-card mb-4">
+                            <div class="info-card-title">
+                                <i class="bi bi-patch-check-fill"></i>
+                                Diabetes Mellitus Tipo II
+                            </div>
+                            <p class="lead mb-0">Tabletas de liberación prolongada con Metformina para el control glucémico en pacientes con Diabetes Mellitus Tipo II y reducción del riesgo en pacientes con prediabetes.</p>
+                        </div>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h3>Presentación</h3>
+                                <p><i class="bi bi-box-seam me-2 text-primary"></i>Tabletas de liberación prolongada: 500 mg, 750 mg y 1000 mg.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Composición</h3>
+                                <p><i class="bi bi-flask me-2 text-primary"></i>Metformina Clorhidrato en dosis según presentación (500 mg, 750 mg o 1000 mg).</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Indicaciones</h3>
+                        <p>MEDIGRAY METFORMED XR está indicado para:</p>
+                        <ul>
+                            <li>Reducción del riesgo o retraso de la aparición de diabetes mellitus tipo II en pacientes adultos con sobrepeso con intolerancia a la glucosa (IGT) y/o glucosa en ayunas alterada (IFG).</li>
+                            <li>Tratamiento de la diabetes mellitus tipo II en adultos, particularmente en pacientes con sobrepeso, cuando el manejo de dieta y ejercicio no logran un control glucémico adecuado.</li>
+                        </ul>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="dosage-card h-100">
+                                    <h4><i class="bi bi-capsule me-2"></i>Dosis Inicial</h4>
+                                    <p>Una tableta de 500 mg una vez al día con la cena. El ajuste gradual de la dosis mejora la tolerabilidad gastrointestinal.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dosage-card h-100">
+                                    <h4><i class="bi bi-clipboard-pulse me-2"></i>Dosis Máxima</h4>
+                                    <p>Máximo 2000 mg diarios (500 mg x4, 750 mg x2 o 1000 mg x2), tomados con la cena.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-section">
+                            <div class="warning-title">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                Contraindicaciones
+                            </div>
+                            <ul>
+                                <li>Hipersensibilidad a la Metformina o a cualquiera de los excipientes.</li>
+                                <li>Acidosis metabólica aguda (láctica, cetoacidosis diabética).</li>
+                                <li>Pre-coma diabético.</li>
+                                <li>Insuficiencia renal grave (TFG < 30 ml/min).</li>
+                                <li>Condiciones agudas que alteren la función renal.</li>
+                                <li>Enfermedad que cause hipoxia tisular.</li>
+                                <li>Insuficiencia hepática, intoxicación alcohólica, alcoholismo.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="info-card mt-4">
+                            <div class="info-card-title">
+                                <i class="bi bi-shield-plus"></i>
+                                Precauciones Especiales
+                            </div>
+                            <ul class="mb-0">
+                                <li><strong>Acidosis láctica:</strong> Complicación rara pero seria. Mayor riesgo con deterioro de función renal, ayuno prolongado o alcoholismo.</li>
+                                <li><strong>Función renal:</strong> Evaluar TFG antes del tratamiento y regularmente después.</li>
+                                <li><strong>Suspender temporalmente:</strong> En procedimientos con contraste yodado, cirugías bajo anestesia general/espinal/epidural.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="info-card mt-3">
+                            <div class="info-card-title">
+                                <i class="bi bi-heart-pulse"></i>
+                                Embarazo y Lactancia
+                            </div>
+                            <p class="mb-0"><strong>Embarazo:</strong> No usar Metformina, se recomienda insulina para controlar la glucemia. <br><strong>Lactancia:</strong> La Metformina se excreta en la leche materna. No se recomienda durante la lactancia.</p>
+                        </div>
+                        
+                        <div class="storage-section">
+                            <div class="storage-icon">
+                                <i class="bi bi-thermometer-half"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Almacenamiento</h5>
+                                <p class="mb-0">Conservar en lugar seco a temperatura no mayor de 30°C y protegido de la luz.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5 class="mb-3">
+          <img src="../images/Logo_medigray.png" alt="Medigray Footer Logo" height="30" style="filter: brightness(0) invert(1); margin-right:8px;">
+          Medigray
+        </h5>
+        <p class="small text-white-50">Cuidando de su salud con innovación y calidad.</p>
+        <div class="social-links mt-3">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5 class="mb-3">Enlaces</h5>
+        <ul class="list-unstyled small">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="../Nosotros.html">Nosotros</a></li>
+          <li><a href="../Farmacovigilancia.html">Farmacovigilancia</a></li>
+          <li><a href="../Trabaje-Aqui.html">Trabaje Aquí</a></li>
+          <li><a href="../Contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5 class="mb-3">Legal</h5>
+        <ul class="list-unstyled small">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="text-center small text-white-50">
+      &copy; <span id="currentYear"></span> Medigray. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../JS/script.js"></script>
+<script>
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
