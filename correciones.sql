@@ -28,6 +28,7 @@ INNER JOIN FIDE_PRESENTACIONES_TB pr
     ON p.PRESENTACIONES_ID_PRESENTACION_FK = pr.PRESENTACIONES_ID_PRESENTACION_PK;
 
 SELECT * FROM VW_LISTAR_PRODUCTOS
+-- HACER ALTER 
 ALTER TABLE FIDE_PRODUCTOS_TB
 ADD IMAGEN VARCHAR2(255);
 -- ========================
@@ -35,9 +36,9 @@ ADD IMAGEN VARCHAR2(255);
 -- ========================
 INSERT INTO FIDE_ESTADOS_TB VALUES (1, 'Activo', 'Estado habilitado para uso');
 INSERT INTO FIDE_ESTADOS_TB VALUES (2, 'Inactivo', 'Estado deshabilitado temporalmente');
-INSERT INTO FIDE_ESTADOS_TB VALUES (3, 'Pendiente', 'En espera de aprobaciÛn');
+INSERT INTO FIDE_ESTADOS_TB VALUES (3, 'Pendiente', 'En espera de aprobaci√≥n');
 INSERT INTO FIDE_ESTADOS_TB VALUES (4, 'Suspendido', 'Suspendido por incumplimiento');
-INSERT INTO FIDE_ESTADOS_TB VALUES (5, 'En Proceso', 'En proceso de validaciÛn');
+INSERT INTO FIDE_ESTADOS_TB VALUES (5, 'En Proceso', 'En proceso de validaci√≥n');
 INSERT INTO FIDE_ESTADOS_TB VALUES (6, 'Aprobado', 'Aprobado para uso');
 INSERT INTO FIDE_ESTADOS_TB VALUES (7, 'Rechazado', 'Solicitud denegada');
 INSERT INTO FIDE_ESTADOS_TB VALUES (8, 'Bloqueado', 'Acceso bloqueado');
@@ -48,12 +49,12 @@ INSERT INTO FIDE_ESTADOS_TB VALUES (10, 'Eliminado', 'Registro borrado del siste
 -- INSERTS PARA FIDE_PAISES_TB
 -- ========================
 INSERT INTO FIDE_PAISES_TB VALUES (1, 'Costa Rica');
-INSERT INTO FIDE_PAISES_TB VALUES (2, 'Panam·');
+INSERT INTO FIDE_PAISES_TB VALUES (2, 'Panam√°');
 INSERT INTO FIDE_PAISES_TB VALUES (3, 'Nicaragua');
 INSERT INTO FIDE_PAISES_TB VALUES (4, 'Honduras');
 INSERT INTO FIDE_PAISES_TB VALUES (5, 'El Salvador');
 INSERT INTO FIDE_PAISES_TB VALUES (6, 'Guatemala');
-INSERT INTO FIDE_PAISES_TB VALUES (7, 'MÈxico');
+INSERT INTO FIDE_PAISES_TB VALUES (7, 'M√©xico');
 INSERT INTO FIDE_PAISES_TB VALUES (8, 'Colombia');
 INSERT INTO FIDE_PAISES_TB VALUES (9, 'Chile');
 INSERT INTO FIDE_PAISES_TB VALUES (10, 'Argentina');
@@ -61,29 +62,29 @@ INSERT INTO FIDE_PAISES_TB VALUES (10, 'Argentina');
 -- ========================
 -- INSERTS PARA FIDE_PROVINCIAS_TB
 -- ========================
-INSERT INTO FIDE_PROVINCIAS_TB VALUES (1, 1, 'San JosÈ');
+INSERT INTO FIDE_PROVINCIAS_TB VALUES (1, 1, 'San Jos√©');
 INSERT INTO FIDE_PROVINCIAS_TB VALUES (2, 1, 'Alajuela');
 INSERT INTO FIDE_PROVINCIAS_TB VALUES (3, 1, 'Cartago');
 INSERT INTO FIDE_PROVINCIAS_TB VALUES (4, 1, 'Heredia');
 INSERT INTO FIDE_PROVINCIAS_TB VALUES (5, 1, 'Guanacaste');
 INSERT INTO FIDE_PROVINCIAS_TB VALUES (6, 1, 'Puntarenas');
-INSERT INTO FIDE_PROVINCIAS_TB VALUES (7, 1, 'LimÛn');
-INSERT INTO FIDE_PROVINCIAS_TB VALUES (8, 2, 'Provincia Panam·');
-INSERT INTO FIDE_PROVINCIAS_TB VALUES (9, 2, 'Provincia ColÛn');
-INSERT INTO FIDE_PROVINCIAS_TB VALUES (10, 2, 'Provincia ChiriquÌ');
+INSERT INTO FIDE_PROVINCIAS_TB VALUES (7, 1, 'Lim√≥n');
+INSERT INTO FIDE_PROVINCIAS_TB VALUES (8, 2, 'Provincia Panam√°');
+INSERT INTO FIDE_PROVINCIAS_TB VALUES (9, 2, 'Provincia Col√≥n');
+INSERT INTO FIDE_PROVINCIAS_TB VALUES (10, 2, 'Provincia Chiriqu√≠');
 
 -- ========================
 -- INSERTS PARA FIDE_CANTONES_TB
 -- ========================
 INSERT INTO FIDE_CANTONES_TB VALUES (1, 1, 'Central');
-INSERT INTO FIDE_CANTONES_TB VALUES (2, 1, 'Escaz˙');
+INSERT INTO FIDE_CANTONES_TB VALUES (2, 1, 'Escaz√∫');
 INSERT INTO FIDE_CANTONES_TB VALUES (3, 1, 'Desamparados');
 INSERT INTO FIDE_CANTONES_TB VALUES (4, 1, 'Puriscal');
-INSERT INTO FIDE_CANTONES_TB VALUES (5, 1, 'Tarraz˙');
-INSERT INTO FIDE_CANTONES_TB VALUES (6, 1, 'AserrÌ');
+INSERT INTO FIDE_CANTONES_TB VALUES (5, 1, 'Tarraz√∫');
+INSERT INTO FIDE_CANTONES_TB VALUES (6, 1, 'Aserr√≠');
 INSERT INTO FIDE_CANTONES_TB VALUES (7, 1, 'Mora');
 INSERT INTO FIDE_CANTONES_TB VALUES (8, 2, 'Central Alajuela');
-INSERT INTO FIDE_CANTONES_TB VALUES (9, 2, 'San RamÛn');
+INSERT INTO FIDE_CANTONES_TB VALUES (9, 2, 'San Ram√≥n');
 INSERT INTO FIDE_CANTONES_TB VALUES (10, 2, 'Grecia');
 
 -- ========================
@@ -94,7 +95,7 @@ INSERT INTO FIDE_DISTRITOS_TB VALUES (2, 1, 'Merced');
 INSERT INTO FIDE_DISTRITOS_TB VALUES (3, 1, 'Hospital');
 INSERT INTO FIDE_DISTRITOS_TB VALUES (4, 1, 'Catedral');
 INSERT INTO FIDE_DISTRITOS_TB VALUES (5, 1, 'Zapote');
-INSERT INTO FIDE_DISTRITOS_TB VALUES (6, 1, 'San Francisco de Dos RÌos');
+INSERT INTO FIDE_DISTRITOS_TB VALUES (6, 1, 'San Francisco de Dos R√≠os');
 INSERT INTO FIDE_DISTRITOS_TB VALUES (7, 1, 'Uruca');
 INSERT INTO FIDE_DISTRITOS_TB VALUES (8, 1, 'Mata Redonda');
 INSERT INTO FIDE_DISTRITOS_TB VALUES (9, 1, 'Pavas');
@@ -103,26 +104,26 @@ INSERT INTO FIDE_DISTRITOS_TB VALUES (10, 1, 'Hatillo');
 -- ========================
 -- INSERTS PARA FIDE_CARGOS_TB
 -- ========================
-INSERT INTO FIDE_CARGOS_TB VALUES (1, 1, 'Gerente General', 'Encargado de la administraciÛn global de la farmacia');
-INSERT INTO FIDE_CARGOS_TB VALUES (2, 1, 'FarmacÈutico', 'Dispensa medicamentos y asesora a los clientes');
-INSERT INTO FIDE_CARGOS_TB VALUES (3, 1, 'Asistente de Farmacia', 'Ayuda en la atenciÛn al cliente y organizaciÛn');
-INSERT INTO FIDE_CARGOS_TB VALUES (4, 1, 'Cajero', 'Procesa pagos y facturaciÛn');
+INSERT INTO FIDE_CARGOS_TB VALUES (1, 1, 'Gerente General', 'Encargado de la administraci√≥n global de la farmacia');
+INSERT INTO FIDE_CARGOS_TB VALUES (2, 1, 'Farmac√©utico', 'Dispensa medicamentos y asesora a los clientes');
+INSERT INTO FIDE_CARGOS_TB VALUES (3, 1, 'Asistente de Farmacia', 'Ayuda en la atenci√≥n al cliente y organizaci√≥n');
+INSERT INTO FIDE_CARGOS_TB VALUES (4, 1, 'Cajero', 'Procesa pagos y facturaci√≥n');
 INSERT INTO FIDE_CARGOS_TB VALUES (5, 1, 'Encargado de Inventario', 'Controla el stock de medicamentos');
 INSERT INTO FIDE_CARGOS_TB VALUES (6, 1, 'Repartidor', 'Entrega pedidos a domicilio');
 INSERT INTO FIDE_CARGOS_TB VALUES (7, 1, 'Supervisor de Turno', 'Gestiona operaciones diarias en su turno');
-INSERT INTO FIDE_CARGOS_TB VALUES (8, 1, 'Administrador de Sistemas', 'Mantiene el sistema inform·tico de la farmacia');
+INSERT INTO FIDE_CARGOS_TB VALUES (8, 1, 'Administrador de Sistemas', 'Mantiene el sistema inform√°tico de la farmacia');
 INSERT INTO FIDE_CARGOS_TB VALUES (9, 1, 'Limpieza', 'Mantiene la higiene del local');
-INSERT INTO FIDE_CARGOS_TB VALUES (10, 1, 'Marketing y Ventas', 'Promueve productos y gestiona campaÒas');
+INSERT INTO FIDE_CARGOS_TB VALUES (10, 1, 'Marketing y Ventas', 'Promueve productos y gestiona campa√±as');
 
 -- ========================
 -- INSERTS PARA FIDE_TIPO_USUARIO_TB
 -- ========================
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (1, 1, 1, 'Administrador General', 'Tiene acceso total al sistema');
-INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (2, 1, 2, 'FarmacÈutico Titular', 'Encargado principal de la farmacia');
+INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (2, 1, 2, 'Farmac√©utico Titular', 'Encargado principal de la farmacia');
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (3, 1, 3, 'Asistente de Ventas', 'Atiende clientes y organiza productos');
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (4, 1, 4, 'Cajero Principal', 'Atiende en caja y procesa pagos');
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (5, 1, 5, 'Gestor de Inventario', 'Controla entradas y salidas de productos');
-INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (6, 1, 6, 'Repartidor Express', 'Realiza entregas r·pidas a clientes');
+INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (6, 1, 6, 'Repartidor Express', 'Realiza entregas r√°pidas a clientes');
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (7, 1, 7, 'Supervisor de Operaciones', 'Coordina el trabajo del personal');
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (8, 1, 8, 'Administrador de Base de Datos', 'Administra y respalda datos del sistema');
 INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (9, 1, 9, 'Personal de Limpieza', 'Mantiene la farmacia limpia y ordenada');
@@ -131,56 +132,56 @@ INSERT INTO FIDE_TIPO_USUARIO_TB VALUES (10, 1, 10, 'Ejecutivo de Marketing', 'P
 -- ========================
 -- INSERTS PARA FIDE_USUARIOS_TB
 -- ========================
-INSERT INTO FIDE_USUARIOS_TB VALUES (1, 1, 1, 'Carlos GÛmez', 'carlos.gomez@farmacia.com', '8888-1111', 'clave123');
-INSERT INTO FIDE_USUARIOS_TB VALUES (2, 2, 1, 'MarÌa LÛpez', 'maria.lopez@farmacia.com', '8888-2222', 'clave123');
-INSERT INTO FIDE_USUARIOS_TB VALUES (3, 3, 1, 'Luis RodrÌguez', 'luis.rodriguez@farmacia.com', '8888-3333', 'clave123');
-INSERT INTO FIDE_USUARIOS_TB VALUES (4, 4, 1, 'Ana Fern·ndez', 'ana.fernandez@farmacia.com', '8888-4444', 'clave123');
+INSERT INTO FIDE_USUARIOS_TB VALUES (1, 1, 1, 'Carlos G√≥mez', 'carlos.gomez@farmacia.com', '8888-1111', 'clave123');
+INSERT INTO FIDE_USUARIOS_TB VALUES (2, 2, 1, 'Mar√≠a L√≥pez', 'maria.lopez@farmacia.com', '8888-2222', 'clave123');
+INSERT INTO FIDE_USUARIOS_TB VALUES (3, 3, 1, 'Luis Rodr√≠guez', 'luis.rodriguez@farmacia.com', '8888-3333', 'clave123');
+INSERT INTO FIDE_USUARIOS_TB VALUES (4, 4, 1, 'Ana Fern√°ndez', 'ana.fernandez@farmacia.com', '8888-4444', 'clave123');
 INSERT INTO FIDE_USUARIOS_TB VALUES (5, 5, 1, 'Jorge Castro', 'jorge.castro@farmacia.com', '8888-5555', 'clave123');
-INSERT INTO FIDE_USUARIOS_TB VALUES (6, 6, 1, 'SofÌa MartÌnez', 'sofia.martinez@farmacia.com', '8888-6666', 'clave123');
+INSERT INTO FIDE_USUARIOS_TB VALUES (6, 6, 1, 'Sof√≠a Mart√≠nez', 'sofia.martinez@farmacia.com', '8888-6666', 'clave123');
 INSERT INTO FIDE_USUARIOS_TB VALUES (7, 7, 1, 'Ricardo Vega', 'ricardo.vega@farmacia.com', '8888-7777', 'clave123');
 INSERT INTO FIDE_USUARIOS_TB VALUES (8, 8, 1, 'Daniela Morales', 'daniela.morales@farmacia.com', '8888-8888', 'clave123');
 INSERT INTO FIDE_USUARIOS_TB VALUES (9, 9, 1, 'Esteban Quesada', 'esteban.quesada@farmacia.com', '8888-9999', 'clave123');
-INSERT INTO FIDE_USUARIOS_TB VALUES (10, 10, 1, 'Patricia RamÌrez', 'patricia.ramirez@farmacia.com', '8888-0000', 'clave123');
+INSERT INTO FIDE_USUARIOS_TB VALUES (10, 10, 1, 'Patricia Ram√≠rez', 'patricia.ramirez@farmacia.com', '8888-0000', 'clave123');
 
 -- ========================
 -- INSERTS PARA FIDE_DIRECCIONES_TB
 -- ========================
 INSERT INTO FIDE_DIRECCIONES_TB VALUES (1, 1, 1, 1, 1, 1, 'Calle 1, Avenida Central, frente a la farmacia',1);
-INSERT INTO FIDE_DIRECCIONES_TB VALUES (2, 2, 1, 2, 2, 2, 'Barrio Escaz˙, 200m norte del parque central',1);
-INSERT INTO FIDE_DIRECCIONES_TB VALUES (3, 3, 1, 3, 3, 3, 'Cartago centro, diagonal a la BasÌlica',1);
+INSERT INTO FIDE_DIRECCIONES_TB VALUES (2, 2, 1, 2, 2, 2, 'Barrio Escaz√∫, 200m norte del parque central',1);
+INSERT INTO FIDE_DIRECCIONES_TB VALUES (3, 3, 1, 3, 3, 3, 'Cartago centro, diagonal a la Bas√≠lica',1);
 INSERT INTO FIDE_DIRECCIONES_TB VALUES (4, 4, 1, 4, 4, 4, 'Heredia centro, costado oeste del mercado',1);
 INSERT INTO FIDE_DIRECCIONES_TB VALUES (5, 5, 1, 5, 5, 5, 'Liberia, 100m sur de la terminal de buses',1);
 INSERT INTO FIDE_DIRECCIONES_TB VALUES (6, 6, 1, 6, 6, 6, 'Puntarenas centro, frente al muelle',1);
-INSERT INTO FIDE_DIRECCIONES_TB VALUES (7, 7, 1, 7, 7, 7, 'LimÛn, 300m este del hospital Tony Facio',1);
-INSERT INTO FIDE_DIRECCIONES_TB VALUES (8, 8, 1, 8, 8, 8, 'Panam· ciudad, VÌa EspaÒa, edificio Torre Azul',1);
-INSERT INTO FIDE_DIRECCIONES_TB VALUES (9, 9, 1, 9, 9, 9, 'ColÛn, avenida BolÌvar, cerca del puerto',1);
-INSERT INTO FIDE_DIRECCIONES_TB VALUES (10, 10, 1, 10, 10, 10, 'ChiriquÌ, calle central, frente a la plaza',1);
+INSERT INTO FIDE_DIRECCIONES_TB VALUES (7, 7, 1, 7, 7, 7, 'Lim√≥n, 300m este del hospital Tony Facio',1);
+INSERT INTO FIDE_DIRECCIONES_TB VALUES (8, 8, 1, 8, 8, 8, 'Panam√° ciudad, V√≠a Espa√±a, edificio Torre Azul',1);
+INSERT INTO FIDE_DIRECCIONES_TB VALUES (9, 9, 1, 9, 9, 9, 'Col√≥n, avenida Bol√≠var, cerca del puerto',1);
+INSERT INTO FIDE_DIRECCIONES_TB VALUES (10, 10, 1, 10, 10, 10, 'Chiriqu√≠, calle central, frente a la plaza',1);
 -- ========================
 -- INSERTS PARA FIDE_CONTACTO_TB
 -- ========================
 INSERT INTO FIDE_CONTACTO_TB VALUES (1, 1, 1, 'Consulta sobre medicamento', 'Hola, quisiera saber si tienen disponible Ibuprofeno 600mg.', TO_DATE('2025-01-15','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (2, 2, 1, 'Pedido a domicilio', 'Solicito un pedido de acetaminofÈn y vitamina C para entrega hoy.', TO_DATE('2025-01-18','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (3, 3, 1, 'Horario de atenciÛn', 'Quisiera confirmar si abren los domingos por la maÒana.', TO_DATE('2025-01-20','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (4, 4, 1, 'Problema con facturaciÛn', 'En mi ˙ltima compra, la factura no incluyÛ un medicamento.', TO_DATE('2025-01-22','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (5, 5, 1, 'Solicitud de cotizaciÛn', 'Necesito precio por caja de 100 guantes de l·tex.', TO_DATE('2025-01-25','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (6, 6, 1, 'RecomendaciÛn de producto', 'øQuÈ suplemento recomiendan para aumentar defensas?', TO_DATE('2025-01-28','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (7, 7, 1, 'Queja por retraso', 'El pedido que solicitÈ ayer llegÛ con 3 horas de retraso.', TO_DATE('2025-01-30','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (8, 8, 1, 'Solicitud de cita', 'Quisiera agendar una cita con el farmacÈutico para asesorÌa.', TO_DATE('2025-02-01','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (9, 9, 1, 'Producto agotado', 'øCu·ndo tendr·n nuevamente disponible la insulina Lantus?', TO_DATE('2025-02-03','YYYY-MM-DD'));
-INSERT INTO FIDE_CONTACTO_TB VALUES (10, 10, 1, 'FelicitaciÛn', 'Quiero felicitarlos por la excelente atenciÛn recibida ayer.', TO_DATE('2025-02-05','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (2, 2, 1, 'Pedido a domicilio', 'Solicito un pedido de acetaminof√©n y vitamina C para entrega hoy.', TO_DATE('2025-01-18','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (3, 3, 1, 'Horario de atenci√≥n', 'Quisiera confirmar si abren los domingos por la ma√±ana.', TO_DATE('2025-01-20','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (4, 4, 1, 'Problema con facturaci√≥n', 'En mi √∫ltima compra, la factura no incluy√≥ un medicamento.', TO_DATE('2025-01-22','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (5, 5, 1, 'Solicitud de cotizaci√≥n', 'Necesito precio por caja de 100 guantes de l√°tex.', TO_DATE('2025-01-25','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (6, 6, 1, 'Recomendaci√≥n de producto', '¬øQu√© suplemento recomiendan para aumentar defensas?', TO_DATE('2025-01-28','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (7, 7, 1, 'Queja por retraso', 'El pedido que solicit√© ayer lleg√≥ con 3 horas de retraso.', TO_DATE('2025-01-30','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (8, 8, 1, 'Solicitud de cita', 'Quisiera agendar una cita con el farmac√©utico para asesor√≠a.', TO_DATE('2025-02-01','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (9, 9, 1, 'Producto agotado', '¬øCu√°ndo tendr√°n nuevamente disponible la insulina Lantus?', TO_DATE('2025-02-03','YYYY-MM-DD'));
+INSERT INTO FIDE_CONTACTO_TB VALUES (10, 10, 1, 'Felicitaci√≥n', 'Quiero felicitarlos por la excelente atenci√≥n recibida ayer.', TO_DATE('2025-02-05','YYYY-MM-DD'));
 
 -- ========================
--- CATEGORÕAS
+-- CATEGOR√çAS
 -- ========================
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (1, 1, 'RESPIRATORIA', 'Medicamentos y tratamientos enfocados en el sistema respiratorio, incluyendo padecimientos como asma, bronquitis, y otras afecciones de los pulmones y vÌas aÈreas.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (2, 1, 'DESINFECCI”N DE ALTO NIVEL', 'Productos y procedimientos utilizados para eliminar microorganismos de alto riesgo en equipos y superficies, garantizando un ambiente estÈril.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (3, 1, 'ANTIPARASITARIO', 'F·rmacos diseÒados para combatir y eliminar par·sitos que pueden infectar a humanos y animales, como gusanos, piojos o ·caros.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (4, 1, 'CARDIOMETABOLICO', 'Tratamientos dirigidos a enfermedades del corazÛn y del metabolismo, como la hipertensiÛn arterial, la diabetes y el colesterol alto.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (5, 1, 'DERMATOL”GICO', 'Productos y medicamentos para el cuidado y tratamiento de la piel, cabello y uÒas, incluyendo afecciones como acnÈ, dermatitis o infecciones f˙ngicas.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (6, 1, 'DOLOR', 'AnalgÈsicos y terapias para el manejo de diferentes tipos de dolor, ya sea agudo o crÛnico, muscular, de cabeza o inflamatorio.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (7, 1, 'GASTRICO', 'Medicamentos para tratar problemas del sistema digestivo, como acidez, ˙lceras, reflujo y otros trastornos del estÛmago e intestinos.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (8, 1, 'OTC', 'Productos de venta libre que no requieren prescripciÛn mÈdica, como analgÈsicos suaves, vitaminas o jarabes para la tos.');
-INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (9, 1, 'UROL”GICO', 'Tratamientos y medicamentos para las enfermedades del sistema urinario en hombres y mujeres, y del sistema reproductor masculino.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (1, 1, 'RESPIRATORIA', 'Medicamentos y tratamientos enfocados en el sistema respiratorio, incluyendo padecimientos como asma, bronquitis, y otras afecciones de los pulmones y v√≠as a√©reas.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (2, 1, 'DESINFECCI√ìN DE ALTO NIVEL', 'Productos y procedimientos utilizados para eliminar microorganismos de alto riesgo en equipos y superficies, garantizando un ambiente est√©ril.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (3, 1, 'ANTIPARASITARIO', 'F√°rmacos dise√±ados para combatir y eliminar par√°sitos que pueden infectar a humanos y animales, como gusanos, piojos o √°caros.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (4, 1, 'CARDIOMETABOLICO', 'Tratamientos dirigidos a enfermedades del coraz√≥n y del metabolismo, como la hipertensi√≥n arterial, la diabetes y el colesterol alto.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (5, 1, 'DERMATOL√ìGICO', 'Productos y medicamentos para el cuidado y tratamiento de la piel, cabello y u√±as, incluyendo afecciones como acn√©, dermatitis o infecciones f√∫ngicas.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (6, 1, 'DOLOR', 'Analg√©sicos y terapias para el manejo de diferentes tipos de dolor, ya sea agudo o cr√≥nico, muscular, de cabeza o inflamatorio.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (7, 1, 'GASTRICO', 'Medicamentos para tratar problemas del sistema digestivo, como acidez, √∫lceras, reflujo y otros trastornos del est√≥mago e intestinos.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (8, 1, 'OTC', 'Productos de venta libre que no requieren prescripci√≥n m√©dica, como analg√©sicos suaves, vitaminas o jarabes para la tos.');
+INSERT INTO FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK, ESTADOS_ID_ESTADO_FK, NOMBRE_CATEGORIA, DESCRIPCION) VALUES (9, 1, 'UROL√ìGICO', 'Tratamientos y medicamentos para las enfermedades del sistema urinario en hombres y mujeres, y del sistema reproductor masculino.');
 
 CREATE TABLE FIDE_PRESENTACIONES_TB (
     PRESENTACIONES_ID_PRESENTACION_PK NUMBER CONSTRAINT FIDE_PRESENTACIONES_ID_PRESENTACION_PK PRIMARY KEY,
@@ -205,80 +206,92 @@ CREATE TABLE FIDE_PRODUCTOS_TB (
 -- ========================
 -- PRESENTACIONES
 -- ========================
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (1, 1, 'Aerosol', 'Un producto envasado que se libera como una fina niebla o rocÌo, generalmente usado para inhalaciÛn o aplicaciÛn tÛpica.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (2, 1, 'SoluciÛn', 'Una mezcla lÌquida homogÈnea de uno o m·s componentes, a menudo utilizada para beber, inyectar o aplicar sobre la piel.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (3, 1, 'Crema', 'Una preparaciÛn semisÛlida y suave, generalmente para uso externo en la piel.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (4, 1, 'Spray', 'Similar al aerosol, pero libera el lÌquido en partÌculas m·s grandes, a menudo para uso tÛpico en la nariz o garganta.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (5, 1, 'Tabletas', 'Medicamentos sÛlidos en forma de pastilla, destinados a ser tragados enteros.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (6, 1, 'Jarabe', 'Una soluciÛn dulce y espesa, principalmente para el consumo oral, com˙n en medicamentos para la tos.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (7, 1, 'Gel', 'Una preparaciÛn semisÛlida con una consistencia gelatinosa, aplicada sobre la piel o mucosas.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (8, 1, 'Sachet', 'Un pequeÒo sobre sellado que contiene una dosis ˙nica de polvo o lÌquido, listo para ser disuelto o consumido.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (9, 1, 'Champ˙', 'Un producto lÌquido o cremoso utilizado para lavar el cabello y el cuero cabelludo, a veces con fines medicinales.');
-INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (10,1, 'Otros', 'Esta categorÌa se usa para presentaciones que no encajan en las opciones anteriores, como supositorios, parches transdÈrmicos, o inyecciones.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (1, 1, 'Aerosol', 'Un producto envasado que se libera como una fina niebla o roc√≠o, generalmente usado para inhalaci√≥n o aplicaci√≥n t√≥pica.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (2, 1, 'Soluci√≥n', 'Una mezcla l√≠quida homog√©nea de uno o m√°s componentes, a menudo utilizada para beber, inyectar o aplicar sobre la piel.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (3, 1, 'Crema', 'Una preparaci√≥n semis√≥lida y suave, generalmente para uso externo en la piel.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (4, 1, 'Spray', 'Similar al aerosol, pero libera el l√≠quido en part√≠culas m√°s grandes, a menudo para uso t√≥pico en la nariz o garganta.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (5, 1, 'Tabletas', 'Medicamentos s√≥lidos en forma de pastilla, destinados a ser tragados enteros.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (6, 1, 'Jarabe', 'Una soluci√≥n dulce y espesa, principalmente para el consumo oral, com√∫n en medicamentos para la tos.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (7, 1, 'Gel', 'Una preparaci√≥n semis√≥lida con una consistencia gelatinosa, aplicada sobre la piel o mucosas.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (8, 1, 'Sachet', 'Un peque√±o sobre sellado que contiene una dosis √∫nica de polvo o l√≠quido, listo para ser disuelto o consumido.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (9, 1, 'Champ√∫', 'Un producto l√≠quido o cremoso utilizado para lavar el cabello y el cuero cabelludo, a veces con fines medicinales.');
+INSERT INTO FIDE_PRESENTACIONES_TB (PRESENTACIONES_ID_PRESENTACION_PK, ESTADOS_ID_ESTADO_FK, TIPO_PRESENTACION, DESCRIPCION) VALUES (10,1, 'Otros', 'Esta categor√≠a se usa para presentaciones que no encajan en las opciones anteriores, como supositorios, parches transd√©rmicos, o inyecciones.');
 
+-- ========================
+-- Categorias
+-- ========================
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('1','1','RESPIRATORIA','Medicamentos y tratamientos enfocados en el sistema respiratorio, incluyendo padecimientos como asma, bronquitis, y otras afecciones de los pulmones y v√≠as a√©reas.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('2','1','DESINFECCI√ìN DE ALTO NIVEL','Productos y procedimientos utilizados para eliminar microorganismos de alto riesgo en equipos y superficies, garantizando un ambiente est√©ril.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('3','1','ANTIPARASITARIO','F√°rmacos dise√±ados para combatir y eliminar par√°sitos que pueden infectar a humanos y animales, como gusanos, piojos o √°caros.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('4','1','CARDIOMETABOLICO','Tratamientos dirigidos a enfermedades del coraz√≥n y del metabolismo, como la hipertensi√≥n arterial, la diabetes y el colesterol alto.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('5','1','DERMATOL√ìGICO','Productos y medicamentos para el cuidado y tratamiento de la piel, cabello y u√±as, incluyendo afecciones como acn√©, dermatitis o infecciones f√∫ngicas.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('6','1','DOLOR','Analg√©sicos y terapias para el manejo de diferentes tipos de dolor, ya sea agudo o cr√≥nico, muscular, de cabeza o inflamatorio.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('7','1','GASTRICO','Medicamentos para tratar problemas del sistema digestivo, como acidez, √∫lceras, reflujo y otros trastornos del est√≥mago e intestinos.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('8','1','OTC','Productos de venta libre que no requieren prescripci√≥n m√©dica, como analg√©sicos suaves, vitaminas o jarabes para la tos.');
+Insert into FIDE_CATEGORIA_TB (CATEGORIA_ID_CATEGORIA_PK,ESTADOS_ID_ESTADO_FK,NOMBRE_CATEGORIA,DESCRIPCION) values ('9','1','UROL√ìGICO','Tratamientos y medicamentos para las enfermedades del sistema urinario en hombres y mujeres, y del sistema reproductor masculino.');
 
 -- ========================
 -- PRODUCTOS
 -- ========================
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (1, 1, 1, 1, 'SALBUTÕN', 'SuspensiÛn en aerosol para inhalaciÛn oral. Herramienta terapÈutica para asma y EPOC. 200 dosis.', 9500.00, 'images/Productos/RESPIRATORIA/Salbutin.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (2, 1, 2, 1, 'AFTOTEX', 'SoluciÛn y spray para infecciones menores de la cavidad bucal (estomatitis, faringitis, aftas). Triple acciÛn.', 5800.00, 'images/Productos/RESPIRATORIA/AFTOTEX.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (3, 1, 2, 1, 'OTOCERUM', 'SoluciÛn Ûtica en gotas para suavizar y remover el cerumen del oÌdo.', 4250.00, 'images/Productos/RESPIRATORIA/otocerum650.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (4, 1, 6, 1, 'HERBATOS', 'Expectorante, mucolÌtico y antitusÌgeno (Hedera Helix). Coadyuvante en procesos respiratorios.', 6100.00, 'images/Productos/RESPIRATORIA/Herbatos Jarabe.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (6, 1, 6, 1, 'HERBATOS JENGIBRE', 'Expectorante, mucolÌtico y antitusÌgeno con jengibre. Antiinflamatorio natural, evita congestiÛn.', 6500.00, 'images/Productos/RESPIRATORIA/herbatos_jengibre.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (7, 1, 4, 1, 'AQUA NASAL', 'SoluciÛn en spray de Cloruro de Sodio al 0.9% para descongestiÛn y limpieza de fosas nasales.', 5300.00, 'images/Productos/RESPIRATORIA/aqua_nasal_producto.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (8, 1, 4, 1, 'AQUA NASAL PEDI¡TRICO', 'SoluciÛn en spray de Cloruro de Sodio al 0.9% para descongestiÛn y limpieza de fosas nasales en niÒos.', 5100.00, 'images/Productos/RESPIRATORIA/AQUA_NASAL PEDIATRICO.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (9, 2, 2, 1, 'ORTOFTALDEHÕDO SOLUCI”N', 'SoluciÛn desinfectante al 0.55% para aparatos mÈdicos sensibles al calor. InmersiÛn de 5 minutos.', 25000.00, 'images/Productos/opa2.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (10, 2, 10, 1, 'TIRAS REACTIVAS AL ORTOFTALDEHÕDO', 'Indicadores quÌmicos para determinar si la concentraciÛn de ortoftaldehÌdo est· por encima de la MEC de 0.30%.', 15000.00, 'images/Productos/DESINFECCI”N DE ALTO NIVEL/Tiras_650.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (1, 1, 1, 1, 'SALBUT√çN', 'Suspensi√≥n en aerosol para inhalaci√≥n oral. Herramienta terap√©utica para asma y EPOC. 200 dosis.', 9500.00, 'images/Productos/RESPIRATORIA/Salbutin.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (2, 1, 2, 1, 'AFTOTEX', 'Soluci√≥n y spray para infecciones menores de la cavidad bucal (estomatitis, faringitis, aftas). Triple acci√≥n.', 5800.00, 'images/Productos/RESPIRATORIA/AFTOTEX.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (3, 1, 2, 1, 'OTOCERUM', 'Soluci√≥n √≥tica en gotas para suavizar y remover el cerumen del o√≠do.', 4250.00, 'images/Productos/RESPIRATORIA/otocerum650.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (4, 1, 6, 1, 'HERBATOS', 'Expectorante, mucol√≠tico y antitus√≠geno (Hedera Helix). Coadyuvante en procesos respiratorios.', 6100.00, 'images/Productos/RESPIRATORIA/Herbatos Jarabe.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (6, 1, 6, 1, 'HERBATOS JENGIBRE', 'Expectorante, mucol√≠tico y antitus√≠geno con jengibre. Antiinflamatorio natural, evita congesti√≥n.', 6500.00, 'images/Productos/RESPIRATORIA/herbatos_jengibre.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (7, 1, 4, 1, 'AQUA NASAL', 'Soluci√≥n en spray de Cloruro de Sodio al 0.9% para descongesti√≥n y limpieza de fosas nasales.', 5300.00, 'images/Productos/RESPIRATORIA/aqua_nasal_producto.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (8, 1, 4, 1, 'AQUA NASAL PEDI√ÅTRICO', 'Soluci√≥n en spray de Cloruro de Sodio al 0.9% para descongesti√≥n y limpieza de fosas nasales en ni√±os.', 5100.00, 'images/Productos/RESPIRATORIA/AQUA_NASAL PEDIATRICO.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (9, 2, 2, 1, 'ORTOFTALDEH√çDO SOLUCI√ìN', 'Soluci√≥n desinfectante al 0.55% para aparatos m√©dicos sensibles al calor. Inmersi√≥n de 5 minutos.', 25000.00, 'images/Productos/opa2.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (10, 2, 10, 1, 'TIRAS REACTIVAS AL ORTOFTALDEH√çDO', 'Indicadores qu√≠micos para determinar si la concentraci√≥n de ortoftaldeh√≠do est√° por encima de la MEC de 0.30%.', 15000.00, 'images/Productos/DESINFECCI√ìN DE ALTO NIVEL/Tiras_650.jpg');
 INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (11, 3, 8, 1, 'DELIX', 'Antiparasitario de amplio espectro con sabor a vainilla. Para lombrices y Giardia Lamblia. Sachet caja x12.', 9800.00, 'images/Productos/ANTIPARASITARIO/delix.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (12, 3, 9, 1, 'PIOFÕN CHAMP⁄', 'Altamente eficaz contra piojos y liendres, inofensivo para el ser humano. Uso externo. Frasco 100 ml.', 8500.00, 'images/Productos/ANTIPARASITARIO/piofin.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (13, 3, 2, 1, 'PIOFÕN PLUS SOLUCI”N', 'Elimina en minutos piojos del cabello, cuerpo y pubis, y sus liendres. Incluye peine. Frasco 60 ml.', 10500.00, 'images/Productos/ANTIPARASITARIO/Piofin solucion.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (14, 3, 5, 1, 'IVERPIOFÕN', 'Altamente eficaz contra piojos y liendres. Ivermectina 6mg tabletas, antihelmÌntico y ectoparasiticida oral.', 12000.00, 'images/Productos/ANTIPARASITARIO/iverpiofin.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (15, 4, 5, 1, 'DIABECONTROL', 'Dapagliflozina 10 mg. Tabletas para diabetes mellitus tipo 2 e insuficiencia cardÌaca crÛnica.', 18000.00, 'images/Productos/CARDIOMETABOLICO/Diabecontrol.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (16, 5, 4, 1, 'TROFODERMAX SPRAY', 'Spray antiinfeccioso cicatrizante para ˙lceras cut·neas, infecciones, quemaduras y heridas.', 7800.00, 'images/Productos/DERMATOL”GICO/TROFODERMAX SPRAY.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (17, 5, 3, 1, 'FUSIBIOTIC', 'Crema antibiÛtica para infecciones de la piel como heridas infectadas, granos y acnÈ. Uso externo.', 6500.00, 'images/Productos/DERMATOL”GICO/fusibiotic.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (18, 5, 7, 1, 'ALERGEL', 'Gel para alergias, picaduras, quemaduras solares e irritaciones. Transparente, sin olor, no grasoso.', 4500.00, 'images/Productos/DERMATOL”GICO/ALERGEL_nueva.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (19, 5, 3, 1, 'TERMINAFÕN CREMA', 'Alivia picazÛn, ardor y descamaciÛn por hongos. AntimicÛtico para pie de atleta, tiÒa, candidiasis.', 7200.00, 'images/Productos/DERMATOL”GICO/Terminafin crema.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (20, 5, 4, 1, 'SECARIDE SPRAY', 'FormulaciÛn para curaciÛn de heridas y lesiones exudativas con riesgo de infecciÛn. Con Zeolita de plata.', 9100.00, 'images/Productos/DERMATOL”GICO/Secaride Spray.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (21, 5, 3, 1, 'DERMETIQUE DESODORANTE EN CREMA', 'Desodorante y antitranspirante en crema. Disminuye transpiraciÛn y olor por 24 horas. No irritante.', 5800.00, 'images/Productos/DERMATOL”GICO/Dermetique50ml_desodorante_crema.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (22, 5, 4, 1, 'TERMINAFÕN SPRAY 30ml.', 'Alivia picazÛn y sÌntomas de hongos. Terbinafina, antimicÛtico de amplio espectro.', 6500.00, 'images/Productos/DERMATOL”GICO/Terminafin 30 ml.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (23, 5, 4, 1, 'TERMINAFIN SPRAY 125 ML', 'Alivia picazÛn y sÌntomas de hongos. Terbinafina, antimicÛtico. PresentaciÛn grande.', 12500.00, 'images/Productos/DERMATOL”GICO/Terminafin 125 ml.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (24, 5, 10, 1, 'SECARIDE JABON NEUTRO', 'JabÛn en espuma efectivo para limpieza de heridas y lesiones sin irritaciÛn. Con Lauril Sulfato de Sodio.', 8900.00, 'images/Productos/DERMATOL”GICO/Secaride Jabon.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (25, 5, 3, 1, 'TROFODERMAX CREMA', 'Crema Clostebol-Neomicina para ˙lceras cut·neas, infecciones, quemaduras y heridas. Cicatrizante.', 7500.00, 'images/Productos/DERMATOL”GICO/Trofodermax Crema.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (26, 5, 3, 1, 'MEDIGLOSS', 'Ung¸ento para humectar la piel del bebÈ en la zona del paÒal. Enriquecido con D-Pantenol.', 6800.00, 'images/Productos/DERMATOL”GICO/medigloss_producto.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (28, 5, 3, 1, 'BIOPANTENOL UNG‹ENTO', 'Ung¸ento hipoalergÈnico enriquecido con D-Pantenol para el cuidado de la piel.', 7200.00, 'images/Productos/DERMATOL”GICO/BioPantenol_unguento_productoycaja.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (50, 5, 3, 1, 'BIOPANTENOL CREMA', 'Crema hipoalergÈnica enriquecida con D-Pantenol para humectar la piel del bebÈ en la zona del paÒal. PresentaciÛn: tubo de 50g. Uso tÛpico.', 6900.00, 'images/Productos/DERMATOL”GICO/BioPantenol_crema_productoycaja.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (29, 6, 2, 1, 'AZ MINOF…N', 'AnalgÈsico y antipirÈtico con sabor a fresa-cereza. Tratamiento de fiebre y dolores leves. SoluciÛn.', 5500.00, 'images/Productos/DOLOR/az.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (30, 6, 4, 1, 'LIDOCAÕNA SPRAY PRESURIZADA', 'AnestÈsico local tÛpico al 10% para piel, cirugÌa menor, y alivio de quemaduras o picaduras.', 8500.00, 'images/Productos/DOLOR/Lidocana_650.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (31, 6, 4, 1, 'SPORT ICE', 'Spray para alivio inmediato del dolor por enfriamiento (terapia en frÌo). Efecto analgÈsico y antiinflamatorio.', 6000.00, 'images/Productos/DOLOR/sportice.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (32, 6, 10, 1, 'GOLPAR…N', 'Diclofenaco dietilamina 1.16%. Reduce inflamaciÛn y alivia dolor en golpes, torceduras, dolores musculares.', 7800.00, 'images/Productos/DOLOR/golparen.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (12, 3, 9, 1, 'PIOF√çN CHAMP√ö', 'Altamente eficaz contra piojos y liendres, inofensivo para el ser humano. Uso externo. Frasco 100 ml.', 8500.00, 'images/Productos/ANTIPARASITARIO/piofin.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (13, 3, 2, 1, 'PIOF√çN PLUS SOLUCI√ìN', 'Elimina en minutos piojos del cabello, cuerpo y pubis, y sus liendres. Incluye peine. Frasco 60 ml.', 10500.00, 'images/Productos/ANTIPARASITARIO/Piofin solucion.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (14, 3, 5, 1, 'IVERPIOF√çN', 'Altamente eficaz contra piojos y liendres. Ivermectina 6mg tabletas, antihelm√≠ntico y ectoparasiticida oral.', 12000.00, 'images/Productos/ANTIPARASITARIO/iverpiofin.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (15, 4, 5, 1, 'DIABECONTROL', 'Dapagliflozina 10 mg. Tabletas para diabetes mellitus tipo 2 e insuficiencia card√≠aca cr√≥nica.', 18000.00, 'images/Productos/CARDIOMETABOLICO/Diabecontrol.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (16, 5, 4, 1, 'TROFODERMAX SPRAY', 'Spray antiinfeccioso cicatrizante para √∫lceras cut√°neas, infecciones, quemaduras y heridas.', 7800.00, 'images/Productos/DERMATOL√ìGICO/TROFODERMAX SPRAY.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (17, 5, 3, 1, 'FUSIBIOTIC', 'Crema antibi√≥tica para infecciones de la piel como heridas infectadas, granos y acn√©. Uso externo.', 6500.00, 'images/Productos/DERMATOL√ìGICO/fusibiotic.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (18, 5, 7, 1, 'ALERGEL', 'Gel para alergias, picaduras, quemaduras solares e irritaciones. Transparente, sin olor, no grasoso.', 4500.00, 'images/Productos/DERMATOL√ìGICO/ALERGEL_nueva.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (19, 5, 3, 1, 'TERMINAF√çN CREMA', 'Alivia picaz√≥n, ardor y descamaci√≥n por hongos. Antimic√≥tico para pie de atleta, ti√±a, candidiasis.', 7200.00, 'images/Productos/DERMATOL√ìGICO/Terminafin crema.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (20, 5, 4, 1, 'SECARIDE SPRAY', 'Formulaci√≥n para curaci√≥n de heridas y lesiones exudativas con riesgo de infecci√≥n. Con Zeolita de plata.', 9100.00, 'images/Productos/DERMATOL√ìGICO/Secaride Spray.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (21, 5, 3, 1, 'DERMETIQUE DESODORANTE EN CREMA', 'Desodorante y antitranspirante en crema. Disminuye transpiraci√≥n y olor por 24 horas. No irritante.', 5800.00, 'images/Productos/DERMATOL√ìGICO/Dermetique50ml_desodorante_crema.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (22, 5, 4, 1, 'TERMINAF√çN SPRAY 30ml.', 'Alivia picaz√≥n y s√≠ntomas de hongos. Terbinafina, antimic√≥tico de amplio espectro.', 6500.00, 'images/Productos/DERMATOL√ìGICO/Terminafin 30 ml.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (23, 5, 4, 1, 'TERMINAFIN SPRAY 125 ML', 'Alivia picaz√≥n y s√≠ntomas de hongos. Terbinafina, antimic√≥tico. Presentaci√≥n grande.', 12500.00, 'images/Productos/DERMATOL√ìGICO/Terminafin 125 ml.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (24, 5, 10, 1, 'SECARIDE JABON NEUTRO', 'Jab√≥n en espuma efectivo para limpieza de heridas y lesiones sin irritaci√≥n. Con Lauril Sulfato de Sodio.', 8900.00, 'images/Productos/DERMATOL√ìGICO/Secaride Jabon.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (25, 5, 3, 1, 'TROFODERMAX CREMA', 'Crema Clostebol-Neomicina para √∫lceras cut√°neas, infecciones, quemaduras y heridas. Cicatrizante.', 7500.00, 'images/Productos/DERMATOL√ìGICO/Trofodermax Crema.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (26, 5, 3, 1, 'MEDIGLOSS', 'Ung√ºento para humectar la piel del beb√© en la zona del pa√±al. Enriquecido con D-Pantenol.', 6800.00, 'images/Productos/DERMATOL√ìGICO/medigloss_producto.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (28, 5, 3, 1, 'BIOPANTENOL UNG√úENTO', 'Ung√ºento hipoalerg√©nico enriquecido con D-Pantenol para el cuidado de la piel.', 7200.00, 'images/Productos/DERMATOL√ìGICO/BioPantenol_unguento_productoycaja.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (50, 5, 3, 1, 'BIOPANTENOL CREMA', 'Crema hipoalerg√©nica enriquecida con D-Pantenol para humectar la piel del beb√© en la zona del pa√±al. Presentaci√≥n: tubo de 50g. Uso t√≥pico.', 6900.00, 'images/Productos/DERMATOL√ìGICO/BioPantenol_crema_productoycaja.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (29, 6, 2, 1, 'AZ MINOF√âN', 'Analg√©sico y antipir√©tico con sabor a fresa-cereza. Tratamiento de fiebre y dolores leves. Soluci√≥n.', 5500.00, 'images/Productos/DOLOR/az.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (30, 6, 4, 1, 'LIDOCA√çNA SPRAY PRESURIZADA', 'Anest√©sico local t√≥pico al 10% para piel, cirug√≠a menor, y alivio de quemaduras o picaduras.', 8500.00, 'images/Productos/DOLOR/Lidocana_650.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (31, 6, 4, 1, 'SPORT ICE', 'Spray para alivio inmediato del dolor por enfriamiento (terapia en fr√≠o). Efecto analg√©sico y antiinflamatorio.', 6000.00, 'images/Productos/DOLOR/sportice.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (32, 6, 10, 1, 'GOLPAR√âN', 'Diclofenaco dietilamina 1.16%. Reduce inflamaci√≥n y alivia dolor en golpes, torceduras, dolores musculares.', 7800.00, 'images/Productos/DOLOR/golparen.png');
 INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (33, 6, 5, 1, 'FLEXITAB', 'Ciclobenzaprina Clorhidrato 10 mg. Tabletas para alivio del espasmo muscular y dolor agudo.', 9500.00, 'images/Productos/DOLOR/Flexitab.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (34, 6, 7, 1, 'ROLOMED', 'Ibuprofeno 50 mg/g gel. AnalgÈsico y antiinflamatorio local para dolor leve a moderado en tejidos blandos.', 6500.00, 'images/Productos/DOLOR/rolomed.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (35, 6, 2, 1, 'MEGALIVIA', 'Dexketoprofeno 25 mg. SoluciÛn oral en sachet para tratamiento sintom·tico del dolor agudo leve o moderado.', 11000.00, 'images/Productos/DOLOR/Megalivia.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (51, 6, 5, 1, 'MEGALIVIA TABLETAS', 'Dexketoprofeno 25 mg. Tabletas recubiertas para tratamiento sintom·tico del dolor leve a moderado..', 10500.00, 'images/Productos/DOLOR/megalivia_01.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (36, 7, 2, 1, 'FRUTADEX ADULTO Y NI—OS', 'Suero de rehidrataciÛn oral, "el suero que sÌ sabe bien". Para recuperar electrolitos en diarrea, vÛmito, calor.', 4500.00, 'images/Productos/GASTRICO/Frutadex Familia.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (37, 7, 2, 1, 'DIABEDEX', 'Bebida hidratante hipotÛnica sin calorÌas con electrolitos para evitar sÌntomas de deshidrataciÛn.', 5100.00, 'images/Productos/GASTRICO/Diabedex.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (38, 7, 8, 1, 'BUCO VAC', 'Sobres dispersables con probiÛticos para mejorar el balance de la flora intestinal.', 15000.00, 'images/Productos/GASTRICO/Buco Vac.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (39, 7, 2, 1, 'YDRAT', 'YDRATÆ Zn 60. Bebida hidratante con Zinc y electrolitos. Sabores: Ar·ndano, Frutos Rojos, Kiwi, Maracuy·.', 5000.00, 'images/Productos/GASTRICO/ydrat familia.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (40, 7, 2, 1, 'LIVIOSAN', 'Tratamiento integral para SÌndrome de Intestino Irritable. Bromuro de Pinaverio y Simeticona.', 8500.00, 'images/Productos/GASTRICO/liviosanlateral.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (41, 8, 3, 1, 'LUBRISEX', 'Lubricante Ìntimo a base de agua. Seguro, discreto, no grasoso, transparente. Tubo 50g y Sachet 10g.', 6000.00, 'images/Productos/OTC/LubriSex Gel.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (42, 8, 3, 1, 'SPIN DESODORANTE', 'Antitranspirante roll-on sin perfume, con bactericida. Ideal para sudoraciÛn fuerte y pieles sensibles. 90ml.', 5500.00, 'images/Productos/OTC/Spin_MyH.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (43, 8, 4, 1, 'DURASEX', 'Spray con LidocaÌna al 10% para controlar la sensibilidad del pene y retardar la eyaculaciÛn. Spray 9ml.', 8500.00, 'images/Productos/OTC/Dura Sex Spray.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (45, 8, 2, 1, 'CICLOPIROX', 'SoluciÛn tÛpica al 8% para el tratamiento de infecciones de las uÒas causadas por hongos. Frasco 5g.', 9200.00, 'images/Productos/OTC/Ciclo-P.jpg');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (48, 9, 8, 1, 'MEDIGRAY UROBLU', 'Extracto de ar·ndano rojo (cranberry) para profilaxis y coadyuvante en tratamiento de infecciones del tracto urinario inferior.', 14000.00, 'images/Productos/UROL”GICO/Uroblu650.png');
-INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (49, 9, 8, 1, 'Medigray Vigor', 'Suplemento nutricional en sachets bebibles con Aspartato de Arginina 5g/10 mL.', 18000.00, 'images/Productos/UROL”GICO/Vigor 650.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (34, 6, 7, 1, 'ROLOMED', 'Ibuprofeno 50 mg/g gel. Analg√©sico y antiinflamatorio local para dolor leve a moderado en tejidos blandos.', 6500.00, 'images/Productos/DOLOR/rolomed.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (35, 6, 2, 1, 'MEGALIVIA', 'Dexketoprofeno 25 mg. Soluci√≥n oral en sachet para tratamiento sintom√°tico del dolor agudo leve o moderado.', 11000.00, 'images/Productos/DOLOR/Megalivia.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (51, 6, 5, 1, 'MEGALIVIA TABLETAS', 'Dexketoprofeno 25 mg. Tabletas recubiertas para tratamiento sintom√°tico del dolor leve a moderado..', 10500.00, 'images/Productos/DOLOR/megalivia_01.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (36, 7, 2, 1, 'FRUTADEX ADULTO Y NI√ëOS', 'Suero de rehidrataci√≥n oral, "el suero que s√≠ sabe bien". Para recuperar electrolitos en diarrea, v√≥mito, calor.', 4500.00, 'images/Productos/GASTRICO/Frutadex Familia.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (37, 7, 2, 1, 'DIABEDEX', 'Bebida hidratante hipot√≥nica sin calor√≠as con electrolitos para evitar s√≠ntomas de deshidrataci√≥n.', 5100.00, 'images/Productos/GASTRICO/Diabedex.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (38, 7, 8, 1, 'BUCO VAC', 'Sobres dispersables con probi√≥ticos para mejorar el balance de la flora intestinal.', 15000.00, 'images/Productos/GASTRICO/Buco Vac.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (39, 7, 2, 1, 'YDRAT', 'YDRAT¬Æ Zn 60. Bebida hidratante con Zinc y electrolitos. Sabores: Ar√°ndano, Frutos Rojos, Kiwi, Maracuy√°.', 5000.00, 'images/Productos/GASTRICO/ydrat familia.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (40, 7, 2, 1, 'LIVIOSAN', 'Tratamiento integral para S√≠ndrome de Intestino Irritable. Bromuro de Pinaverio y Simeticona.', 8500.00, 'images/Productos/GASTRICO/liviosanlateral.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (41, 8, 3, 1, 'LUBRISEX', 'Lubricante √≠ntimo a base de agua. Seguro, discreto, no grasoso, transparente. Tubo 50g y Sachet 10g.', 6000.00, 'images/Productos/OTC/LubriSex Gel.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (42, 8, 3, 1, 'SPIN DESODORANTE', 'Antitranspirante roll-on sin perfume, con bactericida. Ideal para sudoraci√≥n fuerte y pieles sensibles. 90ml.', 5500.00, 'images/Productos/OTC/Spin_MyH.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (43, 8, 4, 1, 'DURASEX', 'Spray con Lidoca√≠na al 10% para controlar la sensibilidad del pene y retardar la eyaculaci√≥n. Spray 9ml.', 8500.00, 'images/Productos/OTC/Dura Sex Spray.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (45, 8, 2, 1, 'CICLOPIROX', 'Soluci√≥n t√≥pica al 8% para el tratamiento de infecciones de las u√±as causadas por hongos. Frasco 5g.', 9200.00, 'images/Productos/OTC/Ciclo-P.jpg');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (48, 9, 8, 1, 'MEDIGRAY UROBLU', 'Extracto de ar√°ndano rojo (cranberry) para profilaxis y coadyuvante en tratamiento de infecciones del tracto urinario inferior.', 14000.00, 'images/Productos/UROL√ìGICO/Uroblu650.png');
+INSERT INTO FIDE_PRODUCTOS_TB (PRODUCTO_ID_PRODUCTO_PK, CATEGORIA_ID_CATEGORIA_FK, PRESENTACIONES_ID_PRESENTACION_FK, ESTADOS_ID_ESTADO_FK, NOMBRE, DESCRIPCION, PRECIO_UNITARIO, IMAGEN) VALUES (49, 9, 8, 1, 'Medigray Vigor', 'Suplemento nutricional en sachets bebibles con Aspartato de Arginina 5g/10 mL.', 18000.00, 'images/Productos/UROL√ìGICO/Vigor 650.png');
 
 -- ========================
 -- ALMACENADO
 -- ========================
-INSERT INTO FIDE_ALMACENADO_TB VALUES (1, 1, 'EstanterÌa A - Nivel 1');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (2, 1, 'EstanterÌa A - Nivel 2');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (3, 1, 'EstanterÌa B - Nivel 1');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (4, 1, 'EstanterÌa B - Nivel 2');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (5, 1, 'EstanterÌa C - Refrigerado');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (6, 1, 'EstanterÌa D - Zona Alta');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (7, 1, 'EstanterÌa D - Zona Baja');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (8, 1, 'AlmacÈn de Control Especial');
-INSERT INTO FIDE_ALMACENADO_TB VALUES (9, 1, 'Cuarto de RefrigeraciÛn 2∞C-8∞C');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (1, 1, 'Estanter√≠a A - Nivel 1');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (2, 1, 'Estanter√≠a A - Nivel 2');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (3, 1, 'Estanter√≠a B - Nivel 1');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (4, 1, 'Estanter√≠a B - Nivel 2');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (5, 1, 'Estanter√≠a C - Refrigerado');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (6, 1, 'Estanter√≠a D - Zona Alta');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (7, 1, 'Estanter√≠a D - Zona Baja');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (8, 1, 'Almac√©n de Control Especial');
+INSERT INTO FIDE_ALMACENADO_TB VALUES (9, 1, 'Cuarto de Refrigeraci√≥n 2¬∞C-8¬∞C');
 INSERT INTO FIDE_ALMACENADO_TB VALUES (10, 1, 'Zona de Cuarentena');
 
 -- ========================
@@ -287,7 +300,7 @@ INSERT INTO FIDE_ALMACENADO_TB VALUES (10, 1, 'Zona de Cuarentena');
 INSERT INTO FIDE_INVENTARIO_TB VALUES (1, 1, 1, 1, 150, TO_DATE('2025-08-01','YYYY-MM-DD'), 'Lote reciente');
 INSERT INTO FIDE_INVENTARIO_TB VALUES (2, 2, 1, 1, 200, TO_DATE('2025-08-01','YYYY-MM-DD'), NULL);
 INSERT INTO FIDE_INVENTARIO_TB VALUES (3, 3, 1, 5, 80, TO_DATE('2025-07-28','YYYY-MM-DD'), 'Refrigerado');
-INSERT INTO FIDE_INVENTARIO_TB VALUES (4, 4, 1, 5, 60, TO_DATE('2025-07-20','YYYY-MM-DD'), 'Requiere cadena de frÌo');
+INSERT INTO FIDE_INVENTARIO_TB VALUES (4, 4, 1, 5, 60, TO_DATE('2025-07-20','YYYY-MM-DD'), 'Requiere cadena de fr√≠o');
 INSERT INTO FIDE_INVENTARIO_TB VALUES (5, 5, 1, 2, 100, TO_DATE('2025-08-03','YYYY-MM-DD'), NULL);
 INSERT INTO FIDE_INVENTARIO_TB VALUES (6, 6, 1, 3, 120, TO_DATE('2025-08-04','YYYY-MM-DD'), NULL);
 INSERT INTO FIDE_INVENTARIO_TB VALUES (7, 7, 1, 4, 90, TO_DATE('2025-08-02','YYYY-MM-DD'), NULL);
@@ -507,11 +520,11 @@ INSERT INTO FIDE_DETALLE_PEDIDO_TB (PEDIDOS_ID_PEDIDO_FK, PRODUCTOS_ID_PRODUCTO_
 -- ========================
 -- METODO PAGO
 -- ========================
-INSERT INTO FIDE_METODOS_PAGO_TB VALUES (1, 1, 'Efectivo', 'Pago en moneda fÌsica');
-INSERT INTO FIDE_METODOS_PAGO_TB VALUES (2, 1, 'Tarjeta CrÈdito', 'Pago con tarjeta de crÈdito');
-INSERT INTO FIDE_METODOS_PAGO_TB VALUES (3, 1, 'Tarjeta DÈbito', 'Pago con tarjeta de dÈbito');
-INSERT INTO FIDE_METODOS_PAGO_TB VALUES (4, 1, 'Transferencia Bancaria', 'Pago vÌa transferencia electrÛnica');
-INSERT INTO FIDE_METODOS_PAGO_TB VALUES (5, 1, 'Pago MÛvil', 'Pago a travÈs de aplicaciones mÛviles');
+INSERT INTO FIDE_METODOS_PAGO_TB VALUES (1, 1, 'Efectivo', 'Pago en moneda f√≠sica');
+INSERT INTO FIDE_METODOS_PAGO_TB VALUES (2, 1, 'Tarjeta Cr√©dito', 'Pago con tarjeta de cr√©dito');
+INSERT INTO FIDE_METODOS_PAGO_TB VALUES (3, 1, 'Tarjeta D√©bito', 'Pago con tarjeta de d√©bito');
+INSERT INTO FIDE_METODOS_PAGO_TB VALUES (4, 1, 'Transferencia Bancaria', 'Pago v√≠a transferencia electr√≥nica');
+INSERT INTO FIDE_METODOS_PAGO_TB VALUES (5, 1, 'Pago M√≥vil', 'Pago a trav√©s de aplicaciones m√≥viles');
 
 
 -- ========================
@@ -668,4 +681,5 @@ INSERT INTO FIDE_FACTURACION_TB (FACTURACION_ID_FACTURA_PK, PEDIDOS_ID_PEDIDO_FK
 INSERT INTO FIDE_FACTURACION_TB (FACTURACION_ID_FACTURA_PK, PEDIDOS_ID_PEDIDO_FK, METODOS_PAGO_ID_PAGO_FK, FECHA_EMISION, DESCUENTOS, SUBTOTAL, IVA, TOTAL_FACTURADO, ESTADOS_ID_ESTADO_FK) VALUES (148, 48, 1, TO_DATE('2025-10-19', 'YYYY-MM-DD'), 0.00, 36540.70, 4750.29, 41290.99, 1);
 INSERT INTO FIDE_FACTURACION_TB (FACTURACION_ID_FACTURA_PK, PEDIDOS_ID_PEDIDO_FK, METODOS_PAGO_ID_PAGO_FK, FECHA_EMISION, DESCUENTOS, SUBTOTAL, IVA, TOTAL_FACTURADO, ESTADOS_ID_ESTADO_FK) VALUES (149, 49, 2, TO_DATE('2025-10-20', 'YYYY-MM-DD'), 0.00, 23456.95, 3049.40, 26506.35, 2);
 INSERT INTO FIDE_FACTURACION_TB (FACTURACION_ID_FACTURA_PK, PEDIDOS_ID_PEDIDO_FK, METODOS_PAGO_ID_PAGO_FK, FECHA_EMISION, DESCUENTOS, SUBTOTAL, IVA, TOTAL_FACTURADO, ESTADOS_ID_ESTADO_FK) VALUES (150, 50, 3, TO_DATE('2025-10-21', 'YYYY-MM-DD'), 4987.01, 49870.12, 5834.70, 50717.81, 3);
+
 
