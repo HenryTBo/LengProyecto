@@ -41,7 +41,7 @@ $productos = ConsultarProductosModel();
                         </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="productos.html">
+                            <a class="nav-link" href="Productos.php">
                                 <i class="bi bi-capsule me-1"></i>Productos
                             </a>
                         </li>
@@ -131,32 +131,29 @@ $productos = ConsultarProductosModel();
                                     <div class="card product-card shadow-sm h-100">
                                         <div class="product-img-container d-flex align-items-center justify-content-center bg-light"
                                             style="height: 150px;">
-                                            <img src="<?php echo htmlspecialchars($row['IMAGEN']); ?>" alt=""
+                                            <img src="<?php echo $row['IMAGEN']; ?>" alt=""
                                                 style="display: block; margin-left: auto; margin-right: auto;" width="150"
                                                 height="125">
                                         </div>
                                         <div class="card-body p-4 d-flex flex-column">
                                             <span class="product-category text-secondary fst-italic mb-1">
-                                                <?php echo htmlspecialchars(str_replace('_', ' ', $row["NOMBRE_CATEGORIA"])); ?>
+                                                <?php echo str_replace('_', ' ', $row["NOMBRE_CATEGORIA"]); ?>
                                             </span>
                                             <h3 class="product-title mt-1">
-                                                <?php echo htmlspecialchars($row["NOMBRE_PRODUCTO"]); ?>
+                                                <?php echo $row["NOMBRE_PRODUCTO"]; ?>
                                             </h3>
                                             <p class="product-description flex-grow-1 mb-2">
-                                                <?php
-                                                $desc = $row["DESCRIPCION_PRODUCTO"];
-                                                echo strlen($desc) > 70 ? htmlspecialchars(substr($desc, 0, 70)) . "..." : htmlspecialchars($desc);
-                                                ?>
+                                                <?php echo $row["DESCRIPCION_PRODUCTO"]; ?>
                                             </p>
                                             <ul class="list-unstyled mb-3">
                                                 <li><strong>Precio:</strong>
                                                     $<?php echo number_format($row["PRECIO_UNITARIO"], 2); ?></li>
                                                 <li><strong>Presentación:</strong>
-                                                    <?php echo htmlspecialchars($row["TIPO_PRESENTACION"]); ?></li>
-                                                <li><strong>Desc. Presentación:</strong>
-                                                    <?php echo htmlspecialchars($row["DESCRIPCION_PRESENTACION"]); ?></li>
+                                                    <?php echo $row["TIPO_PRESENTACION"]; ?></li>
+                                                <li><strong>Presentación:</strong>
+                                                    <?php echo $row["DESCRIPCION_PRESENTACION"]; ?></li>
                                             </ul>
-                                            <a href="detalle_producto.php?id=<?php echo urlencode($row["ID_PRODUCTO"]); ?>"
+                                            <a href="detalle_producto.php?id=<?php echo $row["ID_PRODUCTO"]; ?>"
                                                 class="btn btn-product-detail mt-auto align-self-center">
                                                 <i class="bi bi-cart"></i> Agregar al Carrito
                                             </a>
@@ -165,21 +162,13 @@ $productos = ConsultarProductosModel();
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
-                            <div class="col-12 text-center py-5">
-                                <i class="bi bi-search display-1 text-primary opacity-50"></i>
                                 <h3 class="h4 mt-3">No se encontraron productos</h3>
-                                <p class="text-muted">Intente ajustar su búsqueda o filtros.</p>
-                                <button class="btn btn-outline-primary category-button mt-3" data-category="">Ver todos los
-                                    productos</button>
-                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4">
