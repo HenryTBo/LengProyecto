@@ -153,16 +153,18 @@ $productos = ConsultarProductosModel();
                                                 <li><strong>Presentación:</strong>
                                                     <?php echo $row["DESCRIPCION_PRESENTACION"]; ?></li>
                                             </ul>
-                                            <a href="detalle_producto.php?id=<?php echo $row["ID_PRODUCTO"]; ?>"
-                                                class="btn btn-product-detail mt-auto align-self-center">
-                                                <i class="bi bi-cart"></i> Agregar al Carrito
-                                            </a>
+                                            <div class="mt-auto text-center">
+                                                <button class="btn btn-primary"
+                                                    onclick="AgregarCarrito(<?php echo $row['ID_PRODUCTO']; ?>)">
+                                                    <i class="bi bi-cart"></i> Agregar al carrito
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
-                                <h3 class="h4 mt-3">No se encontraron productos</h3>
+                            <h3 class="h4 mt-3">No se encontraron productos</h3>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -284,10 +286,29 @@ $productos = ConsultarProductosModel();
 
     <!-- Scripts de Bootstrap y personalizados -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="JS/script.js"></script>
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+    <script>
+        function AgregarCarrito(idProducto) {
+            $.ajax({
+                url: "modulos/consultarProductos.php",
+                type: "POST",
+                dataType: 'text',
+                data: {
+                    Accion: "AgregarCarrito",
+                    idProducto: idProducto
+                },
+                success: function (response) {
+                if (response === 'ok'){
+                        window.location.reload();
+                } else 
+                    alert(response);
+                }
+            });
+        }
+    </script>
 </body>
-
 </html>

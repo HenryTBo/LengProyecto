@@ -199,7 +199,7 @@ function ConsultarInfoProductoModel($idProducto)
         oci_free_statement($stid);
         oci_close($conn);
 
-            return $producto;
+        return $producto;
 
     } catch (Exception $error) {
         return null;
@@ -257,5 +257,90 @@ if (isset($_POST["btnActualizarProducto"])) {
         $_POST["txtMensaje"] = "Error: " . $e->getMessage();
     }
 }
+
+if (isset($_POST["Accion"]) && $_POST["Accion"] === "AgregarCarrito" && isset($_POST["idProducto"])) {
+    $respuesta = AgregarCarritoModel($_POST["idProducto"]);
+    if ($respuesta) {
+        echo "ok";
+    } else {
+        echo "El producto no fue agregado a su carrito.";
+    }
+}
+
+
+function AgregarCarritoModel($idProducto)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $idUsuario = 1;     
+
+        $sql = 'BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_CARRITO_INSERTAR_SP(:pIdUsuario, :pIdProducto); END;';
+        $stid = oci_parse($conn, $sql);
+
+        oci_bind_by_name($stid, ":pIdUsuario", $idUsuario);
+        oci_bind_by_name($stid, ":pIdProducto", $idProducto);
+
+        $resultado = oci_execute($stid);
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $resultado;
+
+    } catch (Exception $error) {
+        return false;
+    }
+}
+
+if (isset($_POST["Accion"]) && $_POST["Accion"] == "EliminarProductoCarrito") {
+    EliminarProductoCarrito($_POST["idProducto"]);
+}
+
+function EliminarProductoCarrito($idProducto)
+{
+    $idUsuario = $_SESSION["idUsuario"];
+    $IdProducto = $idProducto;
+
+    $respuesta = EliminarProductoCarritoModel($idUsuario, $IdProducto);
+
+    if ($respuesta) {
+        ConsultarResumenCarrito();
+        echo "OK";
+    } else {
+        echo "El producto no fue eliminado de su carrito.";
+    }
+}
+
+function ConsultarCarrito()
+{
+    return ConsultarCarritoModel();
+}
+
+function ConsultarCarritoModel() {
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+        $idUsuario = 1;
+
+        $sql = "SELECT * FROM VW_CARRITO_DETALLE WHERE IDUSUARIO = :idUsuario";
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":idUsuario", $idUsuario);
+        oci_execute($stid);
+
+        $carrito = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $carrito[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $carrito;
+
+    } catch (Exception $e) {
+        return [];
+    }
+}
+
 
 ?>
