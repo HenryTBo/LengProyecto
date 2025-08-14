@@ -55,6 +55,7 @@ function ConsultarProductosAdminModel()
     }
 }
 
+
 if (isset($_POST["btnEliminarProducto"])) {
     $idProducto = $_POST["IdProducto"];
     $estadoInactivo = 2; // ID del estado inactivo
@@ -273,7 +274,7 @@ function AgregarCarritoModel($idProducto)
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
-        $idUsuario = 1;     
+        $idUsuario = 1;
 
         $sql = 'BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_CARRITO_INSERTAR_SP(:pIdUsuario, :pIdProducto); END;';
         $stid = oci_parse($conn, $sql);
@@ -294,30 +295,47 @@ function AgregarCarritoModel($idProducto)
 }
 
 if (isset($_POST["Accion"]) && $_POST["Accion"] == "EliminarProductoCarrito") {
-    EliminarProductoCarrito($_POST["idProducto"]);
-}
-
-function EliminarProductoCarrito($idProducto)
-{
-    $idUsuario = $_SESSION["idUsuario"];
-    $IdProducto = $idProducto;
-
-    $respuesta = EliminarProductoCarritoModel($idUsuario, $IdProducto);
-
-    if ($respuesta) {
-        ConsultarResumenCarrito();
+    $resultado = EliminarProductoCarritoModel($_POST["idCarrito"], $_POST["idProducto"]);
+    if ($resultado) {
         echo "OK";
     } else {
-        echo "El producto no fue eliminado de su carrito.";
+        echo "No se pudo eliminar el producto del carrito.";
     }
 }
+
+
+
+function EliminarProductoCarritoModel($idCarrito, $idProducto)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_CARRITO_ELIMINAR_SP(:idCarrito, :idProducto); END;";
+        $stid = oci_parse($conn, $sql);
+
+        oci_bind_by_name($stid, ":idCarrito", $idCarrito);
+        oci_bind_by_name($stid, ":idProducto", $idProducto);
+
+        $resultado = oci_execute($stid);
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $resultado;
+
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
 
 function ConsultarCarrito()
 {
     return ConsultarCarritoModel();
 }
 
-function ConsultarCarritoModel() {
+function ConsultarCarritoModel()
+{
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
         $idUsuario = 1;
@@ -339,6 +357,116 @@ function ConsultarCarritoModel() {
 
     } catch (Exception $e) {
         return [];
+    }
+}
+
+function ConsultarPedidosAdminModel()
+{
+    try {
+        // Incluimos la conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Consulta a la vista
+        $sql = "SELECT * FROM VW_PEDIDOS_LISTAR";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        // Pasar resultados a un array
+        $pedidos = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $pedidos[] = $row;
+        }
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $pedidos;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+if (isset($_POST["btnEliminarPedido"])) {
+    $idPedido = $_POST["idPedidoEliminar"];
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_PEDIDOS_ELIMINAR_SP(:idPedido); END;";
+    $stid = oci_parse($conn, $sql);
+
+    oci_bind_by_name($stid, ":idPedido", $idPedido);
+
+    $respuesta = oci_execute($stid);
+
+    if ($respuesta) {
+        header("Location: ../medigray/PedidosAdmin.php");
+        exit;
+    } else {
+        $_POST["txtMensaje"] = "El pedido no fue eliminado   correctamente.";
+    }
+}
+
+function ConsultarInfoPedidoModel($idPedido)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM VW_PEDIDOS_LISTAR WHERE IDPEDIDO = :id";
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":id", $idPedido);
+        oci_execute($stid);
+
+        $pedido = oci_fetch_assoc($stid);
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $pedido;
+
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+if (isset($_POST["btnActualizarPedido"])) {
+
+    // Obtener datos del formulario
+    $idPedido = $_POST["txtId"];
+    $estado = $_POST["listaEstados"];
+    $total = $_POST["txtTotal"];
+
+    try {
+        // Incluir conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Llamada al SP de Oracle
+        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_PEDIDOS_MODIFICAR_SP(
+                    :p_id, :p_estado, :p_total); END;";
+
+        $stid = oci_parse($conn, $sql);
+
+        // Vincular parámetros
+        oci_bind_by_name($stid, ":p_id", $idPedido);
+        oci_bind_by_name($stid, ":p_estado", $estado);
+        oci_bind_by_name($stid, ":p_total", $total);
+
+        // Ejecutar
+        $respuesta = oci_execute($stid);
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        // Redirigir o mostrar mensaje
+        if ($respuesta) {
+            header("Location: ../medigray/PedidosAdmin.php");
+            exit;
+        } else {
+            $_POST["txtMensaje"] = "El pedido no fue eliminado   correctamente.";
+        }
+
+    } catch (Exception $e) {
+        $_POST["txtMensaje"] = "Error: " . $e->getMessage();
     }
 }
 

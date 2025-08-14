@@ -116,7 +116,7 @@ $carrito = ConsultarCarrito();
                                                         </div>
                                                         <div>
                                                             <button type="button" class="btn btn-outline-danger btn-sm"
-                                                                onclick="EliminarProducto(<?php echo $item['IDCARRITO']; ?>)">
+                                                                onclick="EliminarProductoCarrito(<?php echo $item['IDCARRITO']; ?>, <?php echo $item['IDPRODUCTO']; ?>)">
                                                                 <i class="bi bi-trash"></i>
                                                             </button>
                                                         </div>
@@ -199,13 +199,14 @@ $carrito = ConsultarCarrito();
             });
         });
 
-        function EliminarProductoCarrito(idProducto) {
+        function EliminarProductoCarrito(idCarrito, idProducto) {
             $.ajax({
-                url: "../../Controllers/carritoController.php",
+                url: "modulos/consultarProductos.php",
                 type: "POST",
                 dataType: 'text',
                 data: {
                     Accion: "EliminarProductoCarrito",
+                    idCarrito: idCarrito,
                     idProducto: idProducto
                 },
                 success: function (response) {
@@ -217,6 +218,7 @@ $carrito = ConsultarCarrito();
                 }
             });
         }
+
     </script>
 
 </body>
