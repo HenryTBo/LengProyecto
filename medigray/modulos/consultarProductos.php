@@ -303,8 +303,6 @@ if (isset($_POST["Accion"]) && $_POST["Accion"] == "EliminarProductoCarrito") {
     }
 }
 
-
-
 function EliminarProductoCarritoModel($idCarrito, $idProducto)
 {
     try {
@@ -644,4 +642,199 @@ function ConsultarInventarioAdminModel()
         return null;
     }
 }
+
+function ConsultarInfoInventarioModel($idMovimiento)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_INVENTARIO_ADMIN_V WHERE ID_MOVIMIENTO = :id";
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":id", $idMovimiento);
+        oci_execute($stid);
+
+        $inventario = oci_fetch_assoc($stid);
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $inventario;
+
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+function ConsultarAlmacenamientosModel()
+{
+    try {
+        // Incluimos la conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Consulta a la vista
+        $sql = "SELECT * FROM VW_ALMACENAMIENTO_LISTAR";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        // Pasar resultados a un array
+        $almacenados = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $almacenados[] = $row;
+        }
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $almacenados;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+if (isset($_POST["btnActualizarInventario"])) {
+    $idMovimiento = $_POST["txtId"];
+    $cantidadStock = $_POST["txtStock"];
+    $idAlmacenado = $_POST["listaAlmacenado"];
+    $idEstado = $_POST["listaEstados"];
+    $observaciones = $_POST["txtObservaciones"];
+
+    // Conexión a Oracle
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    // Preparar el llamado al procedimiento
+    $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_INVENTARIO_MODIFICAR_SP(:idMovimiento,:cantidadStock,:idAlmacenado,:idEstado,:observaciones); END;";
+
+    $stid = oci_parse($conn, $sql);
+
+    // Vincular parámetros
+    oci_bind_by_name($stid, ":idMovimiento", $idMovimiento);
+    oci_bind_by_name($stid, ":cantidadStock", $cantidadStock);
+    oci_bind_by_name($stid, ":idAlmacenado", $idAlmacenado);
+    oci_bind_by_name($stid, ":idEstado", $idEstado);
+    oci_bind_by_name($stid, ":observaciones", $observaciones);
+
+    // Ejecutar
+    $respuesta = oci_execute($stid);
+
+    if ($respuesta) {
+        // Redirigir a la lista o página de inventario
+        header("Location: ../medigray/InventarioAdmin.php");
+        exit;
+    } else {
+        $_POST["txtMensaje"] = "El inventario no fue actualizado correctamente.";
+    }
+
+    oci_free_statement($stid);
+    oci_close($conn);
+}
+
+if (isset($_POST["btnEliminarMovimiento"])) {
+    $resultado = EliminarInventarioModel($_POST["idMovimientoEliminar"]);
+    if ($resultado) {
+        header("Location: ../medigray/InventarioAdmin.php");
+        exit();
+    } else {
+        echo "No se pudo eliminar el producto del inventario.";
+    }
+}
+
+function EliminarInventarioModel($idMovimiento)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_INVENTARIO_ELIMINAR_SP(:id); END;";
+        $stid = oci_parse($conn, $sql);
+
+        oci_bind_by_name($stid, ":id", $idMovimiento);
+
+        $resultado = oci_execute($stid);
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $resultado;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
+function ConsultarProductosInventarioModel()
+{
+    try {
+        // Incluimos la conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Consulta a la vista
+        $sql = "SELECT * FROM VW_PRODUCTOS_SIN_INVENTARIO";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        // Pasar resultados a un array
+        $productos = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $productos[] = $row;
+        }
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $productos;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+if (isset($_POST["btnAgregarInventario"])) {
+
+    // Datos del formulario
+    $idProducto      = $_POST["listaProductos"];
+    $cantidadStock   = $_POST["txtStock"];
+    $idAlmacen       = $_POST["listaAlmacenado"];
+    $idEstado        = $_POST["listaEstados"];
+    $observaciones   = $_POST["txtObservaciones"];
+
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Llamada al SP
+        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_INVENTARIO_INSERTAR_SP(
+                    :p_producto,
+                    :p_estado,
+                    :p_almacen,
+                    :p_cantidad,
+                    :p_observaciones
+                ); END;";
+
+        $stid = oci_parse($conn, $sql);
+
+        // Vincular parámetros
+        oci_bind_by_name($stid, ":p_producto", $idProducto);
+        oci_bind_by_name($stid, ":p_estado", $idEstado);
+        oci_bind_by_name($stid, ":p_almacen", $idAlmacen);
+        oci_bind_by_name($stid, ":p_cantidad", $cantidadStock);
+        oci_bind_by_name($stid, ":p_observaciones", $observaciones);
+
+        // Ejecutar
+        $r = oci_execute($stid);
+
+        if ($r) {
+            // Redirigir si se inserta correctamente
+            header("Location: ../medigray/InventarioAdmin.php");
+            exit;
+        } else {
+            $_POST["txtMensaje"] = "Error al registrar el inventario en la base de datos.";
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+    } catch (Exception $e) {
+        $_POST["txtMensaje"] = "Error: " . $e->getMessage();
+    }
+}
+
+
 ?>

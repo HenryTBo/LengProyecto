@@ -77,7 +77,7 @@ $productos = ConsultarInventarioAdminModel();
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="d-flex justify-content-end mb-3">
-                                <a href="registrarProducto.php" class="btn btn-info">
+                                <a href="registrarInventario.php" class="btn btn-info">
                                     <i class="fa fa-plus me-1"></i> Agregar
                                 </a>
                             </div>
@@ -144,20 +144,27 @@ $productos = ConsultarInventarioAdminModel();
 
 
         <!-- Modal Cambiar Estado Producto -->
-        <div class="modal fade" id="EliminarPedido" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+        <!-- Modal Eliminar Inventario -->
+        <div class="modal fade" id="EliminarMovimiento" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content border-0 shadow">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Confirmación</h5>
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="tituloModal">Confirmación</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Cerrar"></button>
                     </div>
                     <form action="" method="POST">
                         <div class="modal-body text-center">
-                            <input type="hidden" id="idPedidoEliminar" name="idPedidoEliminar">
-                            <p id="lblNombre" class="mb-0 font-weight-bold text-secondary"></p>
+                            <input type="hidden" id="idMovimientoEliminar" name="idMovimientoEliminar">
+                            <p class="mb-3">¿Estás seguro que deseas eliminar este registro de inventario?</p>
+                            <p id="lblNombreProducto" class="fw-bold text-secondary"></p>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button type="submit" name="btnEliminarPedido" class="btn btn-primary px-4">
-                                <i class="fa fa-check mr-1"></i> Procesar
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa fa-times me-1"></i> Cancelar
+                            </button>
+                            <button type="submit" name="btnEliminarMovimiento" class="btn btn-danger px-4">
+                                <i class="fa fa-trash me-1"></i> Eliminar
                             </button>
                         </div>
                     </form>
@@ -184,10 +191,11 @@ $productos = ConsultarInventarioAdminModel();
             });
 
             $('.btnAbrirModal').on('click', function () {
-                const id = $(this).data('id');
-                const nombre = $(this).data('nombre');
-                $('#idPedidoEliminar').val(id);
-                $('#lblNombre').text("¿Desea eliminar el pedido del usuario " + nombre + "?");
+                const idMovimiento = $(this).data('id');       // ID_MOVIMIENTO
+                const nombreProducto = $(this).data('nombre'); // Nombre del producto
+
+                $('#idMovimientoEliminar').val(idMovimiento);
+                $('#lblNombreProducto').text("¿Deseas eliminar el registro de inventario de: " + nombreProducto + "?");
             });
         });
     </script>
