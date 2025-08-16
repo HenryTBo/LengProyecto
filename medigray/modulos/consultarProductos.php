@@ -470,5 +470,178 @@ if (isset($_POST["btnActualizarPedido"])) {
     }
 }
 
+function ConsultarDetallePedidoModel($idPedido)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
+        $sql = "SELECT * FROM FIDE_DETALLE_PEDIDO_V WHERE ID_PEDIDO = :id";
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":id", $idPedido);
+        oci_execute($stid);
+
+        $pedidos = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $pedidos[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $pedidos;
+
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+if (isset($_POST["btnEliminarDetallePedido"])) {
+    $idPedido = $_POST["idPedidoEliminar"];
+    $idProducto = $_POST["idProductoEliminar"];
+
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_DETALLE_PEDIDO_ELIMINAR_SP(:idPedido, :idProducto); END;";
+    $stid = oci_parse($conn, $sql);
+
+    oci_bind_by_name($stid, ":idPedido", $idPedido);
+    oci_bind_by_name($stid, ":idProducto", $idProducto);
+
+    $respuesta = oci_execute($stid);
+
+    if ($respuesta) {
+        header("Location: ../medigray/PedidosAdmin.php");
+        exit;
+    } else {
+        $_POST["txtMensaje"] = "El pedido no fue eliminado   correctamente.";
+    }
+}
+
+if (isset($_POST["btnActualizarEstadoDetalle"])) {
+    $idPedido = $_POST["idPedidoEstado"];
+    $idProducto = $_POST["idProductoEstado"];
+    $nuevoEstado = $_POST["nuevoEstado"];
+
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_DETALLE_PEDIDO_MODIFICAR_SP(:idPedido, :idProducto, :nuevoEstado); END;";
+    $stid = oci_parse($conn, $sql);
+
+    oci_bind_by_name($stid, ":idPedido", $idPedido);
+    oci_bind_by_name($stid, ":idProducto", $idProducto);
+    oci_bind_by_name($stid, ":nuevoEstado", $nuevoEstado);
+
+    $respuesta = oci_execute($stid);
+
+    if ($respuesta) {
+        header("Location: ../medigray/PedidosAdmin.php");
+        exit;
+    } else {
+        $_POST["txtMensaje"] = "El estado del detalle del pedido no fue actualizado correctamente.";
+    }
+
+    oci_free_statement($stid);
+    oci_close($conn);
+}
+
+
+function ConsultarEstadosModel()
+{
+    try {
+        // Incluimos la conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Consulta a la vista
+        $sql = "SELECT * FROM FIDE_LISTAR_ESTADOS_V";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        // Pasar resultados a un array
+        $productos = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $productos[] = $row;
+        }
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $productos;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+if (isset($_POST["Accion"]) && $_POST["Accion"] == "ProcesarPagoCarrito") {
+    RealizarPagoCarrito();
+}
+
+function RealizarPagoCarrito()
+{
+    $idUsuario = 1;
+
+    $respuesta = RealizarPagoCarritoModel($idUsuario);
+
+    if ($respuesta) {
+        echo "OK";
+    } else {
+        echo "El carrito no fue cancelado correctamente.";
+    }
+}
+
+
+
+function RealizarPagoCarritoModel($idUsuario)
+{
+    try {
+        // Incluir conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Procedimiento PL/SQL
+        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_PEDIDOS_INSERTAR_LOCAL_SP(:idUsuario); END;";
+        $stid = oci_parse($conn, $sql);
+
+        // Enlazar parámetros
+        oci_bind_by_name($stid, ":idUsuario", $idUsuario);
+
+        // Ejecutar procedimiento
+        $respuesta = oci_execute($stid);
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        // Retornar resultado booleano
+        return $respuesta;
+    } catch (Exception $error) {
+        return false;
+    }
+}
+
+function ConsultarInventarioAdminModel()
+{
+    try {
+        // Incluimos la conexión
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        // Consulta a la vista
+        $sql = "SELECT * FROM FIDE_VISTA_INVENTARIO_ADMIN_V";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        // Pasar resultados a un array
+        $invetario = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $invetario[] = $row;
+        }
+
+        // Liberar recursos
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $invetario;
+    } catch (Exception $error) {
+        return null;
+    }
+}
 ?>

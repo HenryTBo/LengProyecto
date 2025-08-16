@@ -155,23 +155,49 @@ $carrito = ConsultarCarrito();
                                                 <p class="mb-2 fw-bold">₡<?php echo $total; ?></p>
                                             </div>
 
-                                            <button type="button" class="btn btn-info btn-block btn-lg">
+                                            <button type="button" class="btn btn-info btn-block btn-lg"
+                                                data-bs-toggle="modal" data-bs-target="#modalPedido">
                                                 <div class="d-flex justify-content-between">
-                                                    <span>$<?php echo $total; ?></span>
-                                                    <span> Pagar <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    <span> Realizar Pedido <i
+                                                            class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="modalPedidoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPedidoLabel">Selecciona el tipo de pedido</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>Deseas recoger tu pedido en el local o prefieres el servicio rápido a domicilio?</p>
+                        <form method="POST" action="">
+                            <div class="d-flex justify-content-center gap-3">
+                                <input type="hidden" id="txtUsuarioId" value="<?php echo 1; ?>">
+                                <button type="button" onclick="ProcesarPago('local')" class="btn btn-primary">
+                                    Recoger en el local
+                                </button>
+                                <button type="button" onclick="ProcesarPago('domicilio')" class="btn btn-success">
+                                    Servicio rápido a domicilio
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- Scripts de Bootstrap y personalizados -->
@@ -219,6 +245,29 @@ $carrito = ConsultarCarrito();
             });
         }
 
+        function ProcesarPago(tipoPedido) {
+            $.ajax({
+                url: "modulos/consultarProductos.php",
+                type: "POST",
+                dataType: 'text',
+                data: {
+                    Accion: "ProcesarPagoCarrito",
+                    TipoPedido: tipoPedido // "local" o "domicilio"
+                },
+                success: function (response) {
+                    if (response == "OK") {
+                        // Redirigir solo si es domicilio, por ejemplo
+                        if (tipoPedido === 'domicilio') {
+                            window.location.href = 'pagar.php';
+                        } else {
+                            window.location.reload();
+                        }
+                    } else {
+                        alert(response);
+                    }
+                }
+            });
+        }
     </script>
 
 </body>
