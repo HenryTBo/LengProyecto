@@ -94,7 +94,6 @@ $estados = ConsultarEstadosModel();
                                             <th>Producto</th>
                                             <th>Cantidad</th>
                                             <th>Precio</th>
-                                            <th>Subtotal</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -107,7 +106,6 @@ $estados = ConsultarEstadosModel();
                                                     <td><?= $row["NOMBRE_PRODUCTO"]; ?></td>
                                                     <td><?= $row["CANTIDAD"]; ?></td>
                                                     <td>₡<?= number_format($row["PRECIO"], 2); ?></td>
-                                                    <td>₡<?= number_format($row["SUBTOTAL"], 2); ?></td>
                                                     <td class="text-center">
                                                         <a class="btn btnAbrirModal" data-bs-toggle="modal"
                                                             data-bs-target="#EliminarPedido" data-id="<?= $row["ID_PEDIDO"]; ?>"

@@ -135,7 +135,6 @@ function ConsultarPresentacionesModel()
 if (isset($_POST["btnRegistrarProducto"])) {
 
     // Datos del formulario
-    $id = $_POST["txtId"]; // O puedes calcular el siguiente ID si lo deseas
     $nombre = $_POST["txtNombre"];
     $descripcion = $_POST["txtDescripcion"];
     $precio = $_POST["txtPrecio"];
@@ -151,14 +150,12 @@ if (isset($_POST["btnRegistrarProducto"])) {
 
     try {
         // Llamada al SP
-        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_PRODUCTOS_INSERTAR_SP(
-                    :p_id, :p_categoria, :p_presentacion, :p_estado, :p_nombre, :p_descripcion, :p_precio, :p_imagen
+        $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_PRODUCTOS_INSERTAR_SP(:p_categoria, :p_presentacion, :p_estado, :p_nombre, :p_descripcion, :p_precio, :p_imagen
                 ); END;";
 
         $stid = oci_parse($conn, $sql);
 
         // Vincular parámetros
-        oci_bind_by_name($stid, ":p_id", $id);
         oci_bind_by_name($stid, ":p_categoria", $categoria);
         oci_bind_by_name($stid, ":p_presentacion", $presentacion);
         oci_bind_by_name($stid, ":p_estado", $estado);

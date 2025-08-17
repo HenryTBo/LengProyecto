@@ -81,14 +81,6 @@ $Presentaciones = ConsultarPresentacionesModel();
         <?php endif; ?>
 
         <form action="" method="POST" enctype="multipart/form-data">
-            <div class="form-group row mb-3">
-                <label class="col-sm-3 text-end col-form-label">ID</label>
-                <div class="col-md-7">
-                    <input type="number" name="txtId" class="form-control" required>
-                </div>
-            </div>
-
-        
             <!-- Nombre del producto -->
             <div class="form-group row mb-3">
                 <label class="col-sm-3 text-end col-form-label">Nombre</label>

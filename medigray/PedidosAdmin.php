@@ -105,7 +105,7 @@ $productos = ConsultarPedidosAdminModel();
                                                     <td><?= $row["NOMBREUSUARIO"]; ?></td>
                                                     <td><?= $row["NOMBREESTADO"]; ?></td>
                                                     <td><?= $row["FECHAPEDIDO"]; ?></td>
-                                                    <td>₡<?= number_format($row["TOTAL"], 2); ?></td>
+                                                    <td>₡<?= $row["TOTAL"]; ?></td>
                                                     <td class="text-center">
                                                         <a class="btn btnAbrirModal" data-bs-toggle="modal"
                                                             data-bs-target="#EliminarPedido" data-id="<?= $row["IDPEDIDO"]; ?>"
@@ -116,7 +116,7 @@ $productos = ConsultarPedidosAdminModel();
                                                             href="actualizarPedidos.php?q=<?= $row["IDPEDIDO"]; ?>">
                                                             <i class="fa fa-edit fs-4"></i>
                                                         </a>
-                                                        <a class="btn" href="detallesPedido.php?q=<?= $row["IDPEDIDO"]; ?>">
+                                                        <a class="btn" href="detallePedido.php?q=<?= $row["IDPEDIDO"]; ?>">
                                                             <i class="bi bi-eye-fill"></i>
                                                         </a>
                                                     </td>
