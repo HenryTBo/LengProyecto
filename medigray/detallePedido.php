@@ -4,6 +4,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
 $idPedido = $_GET["q"];
 $resultado = ConsultarDetallePedidoModel($idPedido);
 $estados = ConsultarEstadosModel();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 ?>
 
 <!DOCTYPE html>

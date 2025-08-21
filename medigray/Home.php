@@ -1,12 +1,21 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarProductos.php';
+
+?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medigray - Innovación en Salud y Bienestar</title>
-    <meta name="description" content="Medigray desarrolla, produce y comercializa productos farmacéuticos de la más alta calidad que contribuyen a mejorar la salud y bienestar de las personas.">
+    <meta name="description"
+        content="Medigray desarrolla, produce y comercializa productos farmacéuticos de la más alta calidad que contribuyen a mejorar la salud y bienestar de las personas.">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    
+
     <!-- CSS Bootstrap y propios -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -18,23 +27,23 @@
             min-height: 80vh;
             position: relative;
         }
-        
+
         .hero-overlay {
             background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
         }
-        
+
         .feature-card {
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
             height: 100%;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .feature-icon {
             width: 70px;
             height: 70px;
@@ -45,24 +54,24 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
         }
-        
+
         .feature-icon i {
             font-size: 30px;
             color: #0066cc;
         }
-        
+
         .product-highlight {
             background-color: #f0f5ff;
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .product-highlight:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .news-date {
             font-size: 0.85rem;
             color: #0066cc;
@@ -70,24 +79,24 @@
             margin-bottom: 0.5rem;
             display: block;
         }
-        
+
         .news-card {
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
             height: 100%;
         }
-        
+
         .news-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
         }
-        
+
         .stats-item {
             text-align: center;
             padding: 2rem;
         }
-        
+
         .stats-number {
             font-size: 3rem;
             font-weight: 700;
@@ -95,45 +104,46 @@
             margin-bottom: 0.5rem;
             display: block;
         }
-        
+
         .stats-text {
             font-size: 1.1rem;
             color: #444;
         }
-        
+
         .cta-section {
             background: linear-gradient(135deg, #0056b3, #0088ff);
             border-radius: 10px;
             overflow: hidden;
         }
-        
+
         .hover-link:hover {
             color: #fff !important;
             transition: color 0.3s ease;
         }
-        
+
         .contact-info {
             font-size: 0.95rem;
         }
     </style>
 </head>
+
 <body>
-    
-<!-- Navegación principal -->
+
+    <!-- Navegación principal -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="Home.php">
                     <img src="images/Logo_medigray.png" alt="Medigray Logo" style="height: 90px;">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
+                            <a class="nav-link active" aria-current="page" href="Home.php">
                                 <i class="bi bi-house-door me-1"></i>Inicio
                             </a>
                         </li>
@@ -149,20 +159,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Trabaje-Aquí.html">
-                                <i class="bi bi-briefcase me-1"></i>Trabaje Aquí
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="farmacovigilancia.html">
-                                <i class="bi bi-shield-check me-1"></i>Farmacovigilancia
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">
+                            <a class="nav-link" href="contacto.php">
                                 <i class="bi bi-envelope me-1"></i>Contacto
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="carrito.php">
+                                <i class="bi bi-cart me-1"></i>Carrito
+                            </a>
+                        </li>
+                        <form method="POST" action="" class="d-inline">
+                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </button>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -173,26 +183,34 @@
     <section class="hero position-relative" id="heroWithBackgroundCarousel">
         <div id="heroBackgroundCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100" data-bs-interval="6000">
-                    <img src="images/slide32.jpg" class="d-block w-100 hero-bg-carousel-image" alt="Avance Científico Medigray">
+                    <img src="images/slide32.jpg" class="d-block w-100 hero-bg-carousel-image"
+                        alt="Avance Científico Medigray">
                 </div>
                 <div class="carousel-item h-100" data-bs-interval="6000">
-                    <img src="images/slide1b1.jpg" class="d-block w-100 hero-bg-carousel-image" alt="Investigación y Desarrollo Medigray">
+                    <img src="images/slide1b1.jpg" class="d-block w-100 hero-bg-carousel-image"
+                        alt="Investigación y Desarrollo Medigray">
                 </div>
                 <div class="carousel-item h-100" data-bs-interval="6000">
-                    <img src="images/slide21.jpg" class="d-block w-100 hero-bg-carousel-image" alt="Calidad y Precisión Medigray">
+                    <img src="images/slide21.jpg" class="d-block w-100 hero-bg-carousel-image"
+                        alt="Calidad y Precisión Medigray">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroBackgroundCarousel"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Anterior</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroBackgroundCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#heroBackgroundCarousel"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Siguiente</span>
             </button>
@@ -201,7 +219,7 @@
         <div class="container text-white position-relative" style="z-index: 2;">
             <div class="row align-items-center justify-content-start hero-content-row">
                 <div class="col-lg-7 text-start hero-text-column">
-                    <h1 class="display-3 fw-bolder mb-4 hero-title">Innovación para la salud y bienestar</h1> 
+                    <h1 class="display-3 fw-bolder mb-4 hero-title">Innovación para la salud y bienestar</h1>
                     <div class="mt-5">
                         <a href="Productos.php" class="btn btn-primary btn-lg rounded-pill px-5 py-3 me-3 hero-button">
                             <i class="bi bi-search me-2"></i>Descubra Nuestros Productos
@@ -229,20 +247,23 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="row g-4 mt-2">
                 <!-- Producto 1 -->
                 <div class="col-md-4">
                     <div class="card product-highlight shadow-sm h-100">
                         <div class="row g-0 h-100">
                             <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
-                                <img src="images/Productos/RESPIRATORIA/Salbutin_650_2.png" class="img-fluid" alt="Salbutín Aerosol">
+                                <img src="images/Productos/RESPIRATORIA/Salbutin_650_2.png" class="img-fluid"
+                                    alt="Salbutín Aerosol">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h3 class="h5 fw-bold text-primary">Salbutín Aerosol</h3>
-                                    <p class="card-text small text-muted">Tratamiento para asma y EPOC. Suspensión en aerosol para inhalación oral.</p>
-                                    <a href="Productos-HTML/detalle-salbutin-aerosol.html" class="btn btn-sm btn-primary rounded-pill mt-2">
+                                    <p class="card-text small text-muted">Tratamiento para asma y EPOC. Suspensión en
+                                        aerosol para inhalación oral.</p>
+                                    <a href="Productos-HTML/detalle-salbutin-aerosol.html"
+                                        class="btn btn-sm btn-primary rounded-pill mt-2">
                                         Detalles <i class="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
@@ -250,7 +271,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Producto 2 -->
                 <div class="col-md-4">
                     <div class="card product-highlight shadow-sm h-100">
@@ -261,8 +282,10 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h3 class="h5 fw-bold text-primary">Golparén</h3>
-                                    <p class="card-text small text-muted">Diclofenaco dietilamina 1.16%. Reduce inflamación y alivia dolor en golpes y dolores musculares.</p>
-                                    <a href="Productos-HTML/detalle-golparen.html" class="btn btn-sm btn-primary rounded-pill mt-2">
+                                    <p class="card-text small text-muted">Diclofenaco dietilamina 1.16%. Reduce
+                                        inflamación y alivia dolor en golpes y dolores musculares.</p>
+                                    <a href="Productos-HTML/detalle-golparen.html"
+                                        class="btn btn-sm btn-primary rounded-pill mt-2">
                                         Detalles <i class="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
@@ -270,19 +293,22 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Producto 3 -->
                 <div class="col-md-4">
                     <div class="card product-highlight shadow-sm h-100">
                         <div class="row g-0 h-100">
                             <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
-                                <img src="images/Productos/GASTRICO/Frutadex_Familia_650.png" class="img-fluid" alt="Frutadex">
+                                <img src="images/Productos/GASTRICO/Frutadex_Familia_650.png" class="img-fluid"
+                                    alt="Frutadex">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h3 class="h5 fw-bold text-primary">Frutadex</h3>
-                                    <p class="card-text small text-muted">Suero de rehidratación oral. Para recuperar electrolitos en casos de diarrea, vómito o calor.</p>
-                                    <a href="Productos-HTML/detalle-frutadex.html" class="btn btn-sm btn-primary rounded-pill mt-2">
+                                    <p class="card-text small text-muted">Suero de rehidratación oral. Para recuperar
+                                        electrolitos en casos de diarrea, vómito o calor.</p>
+                                    <a href="Productos-HTML/detalle-frutadex.html"
+                                        class="btn btn-sm btn-primary rounded-pill mt-2">
                                         Detalles <i class="bi bi-arrow-right ms-1"></i>
                                     </a>
                                 </div>
@@ -294,7 +320,7 @@
         </div>
     </section>
 
-   
+
 
     <!-- CTA Section -->
     <section class="py-5">
@@ -303,7 +329,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-8">
                         <h2 class="fw-bold mb-3" style="color: white;">¿Tienes preguntas sobre nuestros productos?</h2>
-                        <p class="lead mb-0">Nuestro equipo está listo para ayudarte. Contáctanos para obtener más información.</p>
+                        <p class="lead mb-0">Nuestro equipo está listo para ayudarte. Contáctanos para obtener más
+                            información.</p>
                     </div>
                     <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
                         <a href="contacto.html" class="btn btn-light btn-lg rounded-pill px-5">
@@ -315,7 +342,7 @@
         </div>
     </section>
 
-   <!-- Footer -->
+    <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4">
         <div class="container">
             <div class="row gy-4 align-items-start">
@@ -329,7 +356,9 @@
                 <!-- Columna principal - Información de la empresa -->
                 <div class="col-lg-5 col-md-6">
                     <h5 class="text-uppercase mb-3 fw-bold text-primary">MEDIGRAY</h5>
-                    <p class="text-white-50 mb-4">En MEDIGRAY nos dedicamos a desarrollar, producir y comercializar productos de la más alta calidad, que contribuyen a mejorar la salud y bienestar de las personas.</p>
+                    <p class="text-white-50 mb-4">En MEDIGRAY nos dedicamos a desarrollar, producir y comercializar
+                        productos de la más alta calidad, que contribuyen a mejorar la salud y bienestar de las
+                        personas.</p>
 
                     <!-- Información de contacto -->
                     <div class="contact-info">
@@ -352,12 +381,23 @@
                 <div class="col-lg-2 col-md-3 col-6">
                     <h5 class="text-uppercase mb-4 fw-bold text-primary">Navegación</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Inicio</a></li>
-                        <li class="mb-2"><a href="productos.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Productos</a></li>
-                        <li class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Nosotros</a></li>
-                        <li class="mb-2"><a href="Trabaje-Aquí.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Trabaje Aquí</a></li>
-                        <li class="mb-2"><a href="farmacovigilancia.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Farmacovigilancia</a></li>
-                        <li class="mb-2"><a href="contacto.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Contacto</a></li>
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Inicio</a></li>
+                        <li class="mb-2"><a href="productos.html"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Productos</a></li>
+                        <li class="mb-2"><a href="nosotros.html"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Nosotros</a></li>
+                        <li class="mb-2"><a href="Trabaje-Aquí.html"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Trabaje Aquí</a></li>
+                        <li class="mb-2"><a href="farmacovigilancia.html"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Farmacovigilancia</a></li>
+                        <li class="mb-2"><a href="contacto.html"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Contacto</a></li>
                     </ul>
                 </div>
 
@@ -365,22 +405,33 @@
                 <div class="col-lg-2 col-md-3 col-6">
                     <h5 class="text-uppercase mb-4 fw-bold text-primary">Productos</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="productos.html?cat=RESPIRATORIA" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=DOLOR" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Dolor</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=DERMATOLÓGICO" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>DERMATOLÓGICO</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=GASTRICO" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</a></li>
-                        <li class="mb-2"><a href="productos.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right me-1 small text-primary"></i>Ver todas</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=RESPIRATORIA"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=DOLOR"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Dolor</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=DERMATOLÓGICO"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>DERMATOLÓGICO</a></li>
+                        <li class="mb-2"><a href="productos.html?cat=GASTRICO"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</a></li>
+                        <li class="mb-2"><a href="productos.html"
+                                class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Ver todas</a></li>
                     </ul>
                 </div>
             </div>
-                
+
             <!-- Línea divisoria -->
             <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
 
             <!-- Copyright -->
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-white-50 mb-0">© <span id="currentYear"></span> Medigray. Todos los derechos reservados.</p>
+                    <p class="text-white-50 mb-0">© <span id="currentYear"></span> Medigray. Todos los derechos
+                        reservados.</p>
                 </div>
             </div>
         </div>
@@ -389,7 +440,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Efecto de scroll en navbar
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -397,9 +448,10 @@
                 navbar.classList.remove('scrolled');
             }
         });
-        
+
         // Año actual en el footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>

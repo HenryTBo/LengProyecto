@@ -4,6 +4,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
 $almacen = ConsultarAlmacenamientosModel();
 $estados = ConsultarEstadosModel();
 $productos = ConsultarProductosInventarioModel();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 ?>
 
 <!DOCTYPE html>

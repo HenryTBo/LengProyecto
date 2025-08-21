@@ -1,6 +1,10 @@
 <?php
 include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 function ConsultarProductosModel()
 {
     try {
@@ -8,7 +12,7 @@ function ConsultarProductosModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_LISTAR_PRODUCTOS";
+        $sql = "SELECT * FROM FIDE_LISTAR_PRODUCTOS_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -35,7 +39,7 @@ function ConsultarProductosAdminModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_LISTAR_PRODUCTOS_ADMIN";
+        $sql = "SELECT * FROM FIDE_LISTAR_PRODUCTOS_ADMIN_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -85,7 +89,7 @@ function ConsultarCategoriasModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_CATEGORIAS_LISTAR";
+        $sql = "SELECT * FROM FIDE_CATEGORIAS_LISTAR_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -112,7 +116,7 @@ function ConsultarPresentacionesModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_PRESENTACIONES_LISTAR";
+        $sql = "SELECT * FROM FIDE_PRESENTACIONES_LISTAR_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -187,7 +191,7 @@ function ConsultarInfoProductoModel($idProducto)
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
-        $sql = "SELECT * FROM VW_LISTAR_PRODUCTOS_ADMIN WHERE ID_PRODUCTO = :id";
+        $sql = "SELECT * FROM FIDE_LISTAR_PRODUCTOS_ADMIN_V WHERE ID_PRODUCTO = :id";
         $stid = oci_parse($conn, $sql);
         oci_bind_by_name($stid, ":id", $idProducto);
         oci_execute($stid);
@@ -271,7 +275,7 @@ function AgregarCarritoModel($idProducto)
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
-        $idUsuario = 1;
+        $idUsuario = $_SESSION["idUsuario"];
 
         $sql = 'BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_CARRITO_INSERTAR_SP(:pIdUsuario, :pIdProducto); END;';
         $stid = oci_parse($conn, $sql);
@@ -333,9 +337,12 @@ function ConsultarCarritoModel()
 {
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
-        $idUsuario = 1;
+        if (!isset($_SESSION["idUsuario"])) {
+            throw new Exception("Usuario no autenticado");
+        }
+        $idUsuario = $_SESSION["idUsuario"];
 
-        $sql = "SELECT * FROM VW_CARRITO_DETALLE WHERE IDUSUARIO = :idUsuario";
+        $sql = "SELECT * FROM FIDE_CARRITO_DETALLE_V WHERE IDUSUARIO = :idUsuario";
         $stid = oci_parse($conn, $sql);
         oci_bind_by_name($stid, ":idUsuario", $idUsuario);
         oci_execute($stid);
@@ -362,7 +369,7 @@ function ConsultarPedidosAdminModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_PEDIDOS_LISTAR";
+        $sql = "SELECT * FROM FIDE_PEDIDOS_LISTAR_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -406,7 +413,7 @@ function ConsultarInfoPedidoModel($idPedido)
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
-        $sql = "SELECT * FROM VW_PEDIDOS_LISTAR WHERE IDPEDIDO = :id";
+        $sql = "SELECT * FROM FIDE_PEDIDOS_LISTAR_V WHERE IDPEDIDO = :id";
         $stid = oci_parse($conn, $sql);
         oci_bind_by_name($stid, ":id", $idPedido);
         oci_execute($stid);
@@ -573,8 +580,17 @@ if (isset($_POST["Accion"]) && $_POST["Accion"] == "ProcesarPagoCarrito") {
 
 function RealizarPagoCarrito()
 {
-    $idUsuario = 1;
+    // Iniciar sesión si no está iniciada
 
+    // Verificar que haya un usuario autenticado
+    if (!isset($_SESSION["idUsuario"])) {
+        echo "Debe iniciar sesión primero.";
+        exit;
+    }
+
+    $idUsuario = $_SESSION["idUsuario"];
+
+    // Llamada al modelo
     $respuesta = RealizarPagoCarritoModel($idUsuario);
 
     if ($respuesta) {
@@ -583,6 +599,7 @@ function RealizarPagoCarrito()
         echo "El carrito no fue cancelado correctamente.";
     }
 }
+
 
 
 
@@ -669,7 +686,7 @@ function ConsultarAlmacenamientosModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_ALMACENAMIENTO_LISTAR";
+        $sql = "SELECT * FROM FIDE_ALMACENAMIENTO_LISTAR_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -764,7 +781,7 @@ function ConsultarProductosInventarioModel()
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
 
         // Consulta a la vista
-        $sql = "SELECT * FROM VW_PRODUCTOS_SIN_INVENTARIO";
+        $sql = "SELECT * FROM FIDE_PRODUCTOS_SIN_INVENTARIO_V";
         $stid = oci_parse($conn, $sql);
         oci_execute($stid);
 
@@ -787,11 +804,11 @@ function ConsultarProductosInventarioModel()
 if (isset($_POST["btnAgregarInventario"])) {
 
     // Datos del formulario
-    $idProducto      = $_POST["listaProductos"];
-    $cantidadStock   = $_POST["txtStock"];
-    $idAlmacen       = $_POST["listaAlmacenado"];
-    $idEstado        = $_POST["listaEstados"];
-    $observaciones   = $_POST["txtObservaciones"];
+    $idProducto = $_POST["listaProductos"];
+    $cantidadStock = $_POST["txtStock"];
+    $idAlmacen = $_POST["listaAlmacenado"];
+    $idEstado = $_POST["listaEstados"];
+    $observaciones = $_POST["txtObservaciones"];
 
     try {
         include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
@@ -833,5 +850,96 @@ if (isset($_POST["btnAgregarInventario"])) {
     }
 }
 
+if (isset($_POST["btnRegistrarUsuario"])) {
+    $nombre = $_POST["txtNombre"];
+    $email = $_POST["txtEmail"];
+    $telefono = $_POST["txtTelefono"];
+    $contrasena = $_POST["txtContrasena"];
+
+    // Conexión a Oracle
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    // Preparar el llamado al procedimiento
+    $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_USUARIOS_INSERTAR_SP(
+                    :p_nombre,
+                    :p_email,
+                    :p_telefono,
+                    :p_contrasena
+                ); END;";
+
+    $stid = oci_parse($conn, $sql);
+
+    // Vincular parámetros
+    oci_bind_by_name($stid, ":p_nombre", $nombre);
+    oci_bind_by_name($stid, ":p_email", $email);
+    oci_bind_by_name($stid, ":p_telefono", $telefono);
+    oci_bind_by_name($stid, ":p_contrasena", $contrasena);
+    // Ejecutar
+    $respuesta = oci_execute($stid);
+
+    if (!$respuesta) {
+        $e = oci_error($stid);
+        echo "Error Oracle: " . $e['message'];
+        exit;
+    }
+    if ($respuesta) {
+        // Redirigir a la lista o página de inventario
+        header("Location: ../medigray/inicio.php");
+        exit;
+    } else {
+        $_POST["txtMensaje"] = "El inventario no fue actualizado correctamente.";
+    }
+
+    oci_free_statement($stid);
+    oci_close($conn);
+}
+
+if (isset($_POST["btnIniciarSesion"])) {
+    $correo = $_POST["txtCorreo"];
+    $contrasenna = $_POST["txtContrasenna"];
+
+    $sql = "BEGIN :p_id := FIDE_VALIDAR_LOGIN_FN(:p_correo, :p_contrasena); END;";
+    $stid = oci_parse($conn, $sql);
+
+    oci_bind_by_name($stid, ":p_correo", $correo);
+    oci_bind_by_name($stid, ":p_contrasena", $contrasenna);
+    oci_bind_by_name($stid, ":p_id", $idUsuario);
+
+
+    oci_execute($stid);
+
+    if ($idUsuario && $idUsuario > 0) {
+        $_SESSION["idUsuario"] = $idUsuario;
+
+        // Obtener tipo de usuario
+        $sql2 = "BEGIN :p_tipo := FIDE_TRAER_TIPO_USUARIO_FN(:p_correo, :p_contrasena); END;";
+        $stid2 = oci_parse($conn, $sql2);
+
+        oci_bind_by_name($stid2, ":p_correo", $correo);
+        oci_bind_by_name($stid2, ":p_contrasena", $contrasenna);
+        oci_bind_by_name($stid2, ":p_tipo", $tipoUsuario, 32);
+
+        oci_execute($stid2);
+
+        $_SESSION["tipoUsuario"] = $tipoUsuario;
+
+        // Redirigir según tipo
+        if ($tipoUsuario == 11) {
+            header("Location: ../medigray/Home.php"); // Cliente
+        } else {
+            header("Location: ../medigray/AdminDashboard.php"); // Personal interno
+        }
+        exit;
+    }
+}
+
+if (isset($_POST["btnCerrarSesion"])) {
+    session_start();
+    session_unset();
+    session_destroy();
+
+    header("Location: ../medigray/Inicio.php");
+    exit;
+}
 
 ?>

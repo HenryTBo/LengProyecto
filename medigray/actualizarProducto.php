@@ -6,6 +6,11 @@ $resultado = ConsultarInfoProductoModel($idProducto);
 $categorias = ConsultarCategoriasModel();
 $presentaciones = ConsultarPresentacionesModel();
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 ?>
 
 <!DOCTYPE html>

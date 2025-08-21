@@ -2,6 +2,11 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarProductos.php';
 
 $productos = ConsultarInventarioAdminModel();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 ?>
 
 <!DOCTYPE html>

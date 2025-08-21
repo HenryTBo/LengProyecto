@@ -2,6 +2,11 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarProductos.php';
 
 $productos = ConsultarProductosModel();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 ?>
 
 
@@ -25,7 +30,7 @@ $productos = ConsultarProductosModel();
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="Home.php">
                     <img src="images/Logo_medigray.png" alt="Medigray Logo" style="height: 90px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -35,7 +40,7 @@ $productos = ConsultarProductosModel();
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
+                            <a class="nav-link active" aria-current="page" href="Home.php">
                                 <i class="bi bi-house-door me-1"></i>Inicio
                             </a>
                         </li>
@@ -51,20 +56,20 @@ $productos = ConsultarProductosModel();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Trabaje-Aquí.html">
-                                <i class="bi bi-briefcase me-1"></i>Trabaje Aquí
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="farmacovigilancia.html">
-                                <i class="bi bi-shield-check me-1"></i>Farmacovigilancia
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">
+                            <a class="nav-link" href="contacto.php">
                                 <i class="bi bi-envelope me-1"></i>Contacto
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="carrito.php">
+                                <i class="bi bi-cart me-1"></i>Carrito
+                            </a>
+                        </li>
+                        <form method="POST" action="" class="d-inline">
+                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </button>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -302,13 +307,14 @@ $productos = ConsultarProductosModel();
                     idProducto: idProducto
                 },
                 success: function (response) {
-                if (response === 'ok'){
+                    if (response === 'ok') {
                         window.location.reload();
-                } else 
-                    alert(response);
+                    } else
+                        alert(response);
                 }
             });
         }
     </script>
 </body>
+
 </html>

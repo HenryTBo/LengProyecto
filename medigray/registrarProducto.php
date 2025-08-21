@@ -4,6 +4,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
 $categorias = ConsultarCategoriasModel();
 $Presentaciones = ConsultarPresentacionesModel();
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 ?>
 
 <!DOCTYPE html>

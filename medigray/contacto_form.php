@@ -2,6 +2,11 @@
 // Inicializar variables para el formulario
 $mensaje = '';
 $error = '';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 ?>
 
 <!DOCTYPE html>

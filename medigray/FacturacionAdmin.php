@@ -2,6 +2,11 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarFacturacion.php';
 
 $facturas = ConsultarFacturacionAdminModel();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,54 +26,52 @@ $facturas = ConsultarFacturacionAdminModel();
 
 <body>
 
-    <!-- Navegación principal -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/Logo_medigray.png" alt="Medigray Logo" style="height: 90px;">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
-                                <i class="bi bi-house-door me-1"></i>Inicio
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Productos.php">
-                                <i class="bi bi-capsule me-1"></i>Productos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="nosotros.html">
-                                <i class="bi bi-info-circle me-1"></i>Nosotros
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Trabaje-Aquí.html">
-                                <i class="bi bi-briefcase me-1"></i>Trabaje Aquí
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="farmacovigilancia.html">
-                                <i class="bi bi-shield-check me-1"></i>Farmacovigilancia
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">
-                                <i class="bi bi-envelope me-1"></i>Contacto
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="AdminDashboard.php">Medigray Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar"
+                aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="adminNavbar">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="AdminDashboard.php">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="UsuariosAdmin.php">
+                            <i class="bi bi-people-fill me-1"></i>Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProductosAdmin.php">
+                            <i class="bi bi-capsule me-1"></i>Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="PedidosAdmin.php">
+                            <i class="bi bi-cart-fill me-1"></i>Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="FacturacionAdmin.php">
+                            <i class="bi bi-receipt me-1"></i>Facturación
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <form method="POST" action="">
+                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
+                                <i class="bi bi-box-arrow-right text-light" style="font-size: 1.3rem;"></i>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <section class="products-content py-5">
         <div class="container">
@@ -96,7 +99,6 @@ $facturas = ConsultarFacturacionAdminModel();
                                             <th>IVA</th>
                                             <th>Total</th>
                                             <th>Estado</th>
-                                            <th>Fecha Creación</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -108,12 +110,16 @@ $facturas = ConsultarFacturacionAdminModel();
                                                     <td><?= $row["PEDIDOS_ID_PEDIDO_FK"]; ?></td>
                                                     <td><?= $row["METODO_PAGO"]; ?></td>
                                                     <td><?= $row["FECHA_EMISION"]; ?></td>
-                                                    <td>₡<?= number_format($row["DESCUENTOS"], 2); ?></td>
-                                                    <td>₡<?= number_format($row["SUBTOTAL"], 2); ?></td>
-                                                    <td>₡<?= number_format($row["IVA"], 2); ?></td>
-                                                    <td>₡<?= number_format($row["TOTAL_FACTURADO"], 2); ?></td>
+                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["DESCUENTOS"]), 2); ?>
+                                                    </td>
+                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["SUBTOTAL"]), 2); ?>
+                                                    </td>
+                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["IVA"]), 2); ?>
+                                                    </td>
+                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["TOTAL_FACTURADO"]), 2); ?>
+                                                    </td>
+
                                                     <td><?= $row["ESTADO"]; ?></td>
-                                                    <td><?= $row["FECHA_CREACION"]; ?></td>
                                                     <td class="text-center">
                                                         <a class="btn btnAbrirModal" data-bs-toggle="modal"
                                                             data-bs-target="#EliminarFactura"
@@ -192,4 +198,5 @@ $facturas = ConsultarFacturacionAdminModel();
         });
     </script>
 </body>
+
 </html>

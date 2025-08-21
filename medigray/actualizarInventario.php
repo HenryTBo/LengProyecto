@@ -5,6 +5,9 @@ $idInventario = $_GET["q"];
 $resultado = ConsultarInfoInventarioModel($idInventario);
 $almacen = ConsultarAlmacenamientosModel();
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
