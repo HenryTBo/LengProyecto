@@ -2,13 +2,15 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarProductos.php';
 
 ?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Medigray</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -60,48 +62,48 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
                         <img src="images/inicio.jpg" class="image">
                     </div>
                 </div>
-                <!-- Formulario Register -->
                 <div class="col-lg-6">
                     <div class="card2 card border-0 px-4 py-5">
                         <div class="row mb-4 px-3">
-                            <h6 class="mb-0 mr-4 mt-2">Registrarse</h6>
+                            <h6 class="mb-0 mr-4 mt-2">Registro de Usuario</h6>
                         </div>
-                        <form action="" method="POST">
-                            <div class="form-group">
-                                <label for="txtNombre">Nombre Completo</label>
-                                <input type="text" class="form-control" id="txtNombre" name="txtNombre"
-                                    placeholder="Ingrese su nombre completo" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="txtEmail">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="txtEmail" name="txtEmail"
-                                    placeholder="usuario@gmail.com" required>
-                            </div>
+                        <?php
+                        if (isset($_POST["txtMensaje"])) {
+                            echo '<div class="alert alert-warning text-center">' . $_POST["txtMensaje"] . '</div>';
+                        }
+                        ?>
 
+                        <form method="POST" action="">
                             <div class="form-group">
-                                <label for="txtTelefono">Teléfono</label>
-                                <input type="tel" class="form-control" id="txtTelefono" name="txtTelefono"
-                                    placeholder="Ingrese su número de teléfono" required>
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" name="txtNombre" placeholder="Nombre completo"
+                                    required>
                             </div>
-
                             <div class="form-group">
-                                <label for="txtContrasena">Contraseña</label>
-                                <input type="password" class="form-control" id="txtContrasena" name="txtContrasena"
-                                    placeholder="Ingrese su contraseña" required>
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" name="txtEmail" placeholder="usuario@gmail.com"
+                                    required>
                             </div>
-
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input type="text" class="form-control" name="txtTelefono" placeholder="12345678"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" name="txtContrasena"
+                                    placeholder="Contraseña" required>
+                            </div>
                             <div class="form-group">
                                 <button type="submit" name="btnRegistrarUsuario"
-                                    class="btn btn-blue btn-block">Registrarse</button>
-                            </div>
-
-                            <div class="text-center">
-                                <small class="font-weight-bold">¿Ya tienes cuenta?
-                                    <a href="Inicio.php" class="text-danger">Iniciar Sesión</a>
-                                </small>
+                                    class="btn btn-blue btn-block">Registrar</button>
                             </div>
                         </form>
+
+                        <div class="row px-3 mt-3">
+                            <small>¿Ya tienes cuenta? <a href="inicio.php">Inicia sesión</a></small>
+                        </div>
                     </div>
                 </div>
             </div>

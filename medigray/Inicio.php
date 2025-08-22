@@ -88,8 +88,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
                         <form method="POST" action="">
                             <div class="form-group">
                                 <label>Correo Electronico</label>
-                                <input type="email" class="form-control" name="txtCorreo"
-                                    placeholder="Usuario@gmail.com" required>
+                                <input type="text" class="form-control" name="txtCorreo" placeholder="Usuario@gmail.com"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label>Contraseña</label>
@@ -101,6 +101,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
                                 <button type="submit" name="btnIniciarSesion"
                                     class="btn btn-blue btn-block">Login</button>
                             </div>
+
+                            <!-- Botón para registrarse -->
+                            <div class="form-group text-center mt-3">
+                                <a href="registrar.php" class="btn btn-outline-primary btn-block">Crear una cuenta</a>
+                            </div>
+
                         </form>
 
                     </div>

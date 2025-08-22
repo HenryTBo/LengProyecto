@@ -117,10 +117,9 @@ $idUsuario = $_SESSION['idUsuario'];
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Home.php">
+                            <a class="nav-link" href="Home.php">
                                 <i class="bi bi-house-door me-1"></i>Inicio
                             </a>
-                        </li>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Productos.php">
@@ -133,25 +132,42 @@ $idUsuario = $_SESSION['idUsuario'];
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.php">
+                            <a class="nav-link active" aria-current="page" href="contacto.php">
                                 <i class="bi bi-envelope me-1"></i>Contacto
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="carrito.php">
-                                <i class="bi bi-cart me-1"></i>Carrito
+
+                        <!-- Dropdown Mi Cuenta -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-person-circle me-1"></i>Mi Cuenta
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="direccion.php"><i
+                                            class="bi bi-house-door me-1"></i>Mis Direcciones</a></li>
+                                <li><a class="dropdown-item" href="carrito.php"><i
+                                            class="bi bi-cart me-1"></i>Carrito</a></li>
+                                <li><a class="dropdown-item" href="MisPedidos.php"><i
+                                            class="bi bi-box-seam me-1"></i>Mis Pedidos</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form method="POST" action="" class="m-0">
+                                        <button type="submit" name="btnCerrarSesion" class="dropdown-item">
+                                            <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
-                        <form method="POST" action="" class="d-inline">
-                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
-                                <i class="bi bi-box-arrow-right"></i>
-                            </button>
-                        </form>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
 
     <!-- Encabezado de contacto mejorado -->
     <section class="contact-hero py-5" style="background-color: #0066cc; color: white;">
@@ -336,21 +352,16 @@ $idUsuario = $_SESSION['idUsuario'];
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link"><i
                                     class="bi bi-chevron-right me-1 small text-primary"></i>Inicio</a></li>
-                        <li class="mb-2"><a href="productos.html"
+                        <li class="mb-2"><a href="productos.php"
                                 class="text-white-50 text-decoration-none hover-link"><i
                                     class="bi bi-chevron-right me-1 small text-primary"></i>Productos</a></li>
                         <li class="mb-2"><a href="nosotros.html"
                                 class="text-white-50 text-decoration-none hover-link"><i
                                     class="bi bi-chevron-right me-1 small text-primary"></i>Nosotros</a></li>
-                        <li class="mb-2"><a href="Trabaje-Aquí.html"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Trabaje Aquí</a></li>
-                        <li class="mb-2"><a href="farmacovigilancia.html"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Farmacovigilancia</a></li>
-                        <li class="mb-2"><a href="contacto.html"
-                                class="text-white-50 text-decoration-none hover-link"><i
+                        <li class="mb-2"><a href="contacto.php" class="text-white-50 text-decoration-none hover-link"><i
                                     class="bi bi-chevron-right me-1 small text-primary"></i>Contacto</a></li>
+                        <li class="mb-2"><a href="carrito.php" class="text-white-50 text-decoration-none hover-link"><i
+                                    class="bi bi-chevron-right me-1 small text-primary"></i>Carrito</a></li>
                     </ul>
                 </div>
 
@@ -358,21 +369,16 @@ $idUsuario = $_SESSION['idUsuario'];
                 <div class="col-lg-2 col-md-3 col-6">
                     <h5 class="text-uppercase mb-4 fw-bold text-primary">Productos</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="productos.html?cat=RESPIRATORIA"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=DOLOR"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Dolor</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=DERMATOLÓGICO"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>DERMATOLÓGICO</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=GASTRICO"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</a></li>
-                        <li class="mb-2"><a href="productos.html"
-                                class="text-white-50 text-decoration-none hover-link"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Ver todas</a></li>
+                        <li class="mb-2 text-white-50"><i
+                                class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</li>
+                        <li class="mb-2 text-white-50"><i class="bi bi-chevron-right me-1 small text-primary"></i>Dolor
+                        </li>
+                        <li class="mb-2 text-white-50"><i
+                                class="bi bi-chevron-right me-1 small text-primary"></i>Dermatológico</li>
+                        <li class="mb-2 text-white-50"><i
+                                class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</li>
+                        <li class="mb-2 text-white-50"><i class="bi bi-chevron-right me-1 small text-primary"></i>Ver
+                            todas</li>
                     </ul>
                 </div>
             </div>

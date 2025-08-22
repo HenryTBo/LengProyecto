@@ -44,7 +44,6 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <i class="bi bi-house-door me-1"></i>Inicio
                             </a>
                         </li>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Productos.php">
                                 <i class="bi bi-capsule me-1"></i>Productos
@@ -60,21 +59,38 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <i class="bi bi-envelope me-1"></i>Contacto
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="carrito.php">
-                                <i class="bi bi-cart me-1"></i>Carrito
+
+                        <!-- Dropdown Mi Cuenta -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-person-circle me-1"></i>Mi Cuenta
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="direccion.php"><i
+                                            class="bi bi-house-door me-1"></i>Mis Direcciones</a></li>
+                                <li><a class="dropdown-item" href="carrito.php"><i
+                                            class="bi bi-cart me-1"></i>Carrito</a></li>
+                                <li><a class="dropdown-item" href="MisPedidos.php"><i
+                                            class="bi bi-box-seam me-1"></i>Mis Pedidos</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form method="POST" action="" class="m-0">
+                                        <button type="submit" name="btnCerrarSesion" class="dropdown-item">
+                                            <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
-                        <form method="POST" action="" class="d-inline">
-                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
-                                <i class="bi bi-box-arrow-right"></i>
-                            </button>
-                        </form>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
 
     <section class="h-100 h-custom" style="background-color: #eee;">
         <div class="container py-5 h-100">
@@ -149,24 +165,29 @@ if (session_status() === PHP_SESSION_NONE) {
                                             <h5 class="mb-3">Resumen del pedido</h5>
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Subtotal</p>
-                                                <p class="mb-2">₡<?php echo $subtotal; ?></p>
+                                                <p class="mb-2">₡<?php echo number_format($subtotal, 2); ?></p>
                                             </div>
                                             <div class="d-flex justify-content-between mb-4">
                                                 <p class="mb-2">Impuesto</p>
-                                                <p class="mb-2">₡<?php echo $impuesto; ?></p>
+                                                <p class="mb-2">₡<?php echo number_format($impuesto, 2); ?></p>
                                             </div>
                                             <div class="d-flex justify-content-between mb-4">
                                                 <p class="mb-2 fw-bold">Total</p>
-                                                <p class="mb-2 fw-bold">₡<?php echo $total; ?></p>
+                                                <p class="mb-2 fw-bold">₡<?php echo number_format($total, 2); ?></p>
                                             </div>
 
-                                            <button type="button" class="btn btn-info btn-block btn-lg"
-                                                data-bs-toggle="modal" data-bs-target="#modalPedido">
-                                                <div class="d-flex justify-content-between">
-                                                    <span> Realizar Pedido <i
-                                                            class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                                </div>
-                                            </button>
+                                            <?php if ($total > 0): ?>
+                                                <button type="button" class="btn btn-info btn-block btn-lg"
+                                                    data-bs-toggle="modal" data-bs-target="#modalPedido">
+                                                    <div class="d-flex justify-content-between">
+                                                        <span> Realizar Pedido <i
+                                                                class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    </div>
+                                                </button>
+                                            <?php else: ?>
+                                                <p class="text-center text-white-50">Agrega productos al carrito para
+                                                    continuar.</p>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -175,6 +196,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="modalPedidoLabel" aria-hidden="true">

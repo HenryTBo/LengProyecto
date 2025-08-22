@@ -3,6 +3,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
 
 // Llamada al modelo que trae todos los contactos
 $contactos = ConsultarContactosAdminModel();
+
+$activePage = 'contactos';
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +16,8 @@ $contactos = ConsultarContactosAdminModel();
     <title>Contactos - Medigray</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="CSS/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -31,30 +33,56 @@ $contactos = ConsultarContactosAdminModel();
                 <div class="collapse navbar-collapse" id="adminNavbar">
                     <ul class="navbar-nav ms-auto align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" href="AdminDashboard.php">
+                            <a class="nav-link <?php if ($activePage == 'dashboard') {
+                                echo 'active';
+                            } ?>" href="AdminDashboard.php">
                                 <i class="bi bi-speedometer2 me-1"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="UsuariosAdmin.php">
+                            <a class="nav-link <?php if ($activePage == 'usuarios') {
+                                echo 'active';
+                            } ?>" href="UsuariosAdmin.php">
                                 <i class="bi bi-people-fill me-1"></i> Usuarios
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ProductosAdmin.php">
+                            <a class="nav-link <?php if ($activePage == 'productos') {
+                                echo 'active';
+                            } ?>" href="ProductosAdmin.php">
                                 <i class="bi bi-capsule me-1"></i> Productos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="PedidosAdmin.php">
+                            <a class="nav-link <?php if ($activePage == 'pedidos') {
+                                echo 'active';
+                            } ?>" href="PedidosAdmin.php">
                                 <i class="bi bi-cart-fill me-1"></i> Pedidos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="FacturasAdmin.php">
+                            <a class="nav-link <?php if ($activePage == 'facturas') {
+                                echo 'active';
+                            } ?>" href="FacturacionAdmin.php">
                                 <i class="bi bi-receipt me-1"></i> Facturas
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($activePage == 'contactos') {
+                                echo 'active';
+                            } ?>" href="ContactosAdmin.php">
+                                <i class="bi bi-envelope-fill me-1"></i> Contáctenos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($activePage == 'inventario') {
+                                echo 'active';
+                            } ?>" href="InventarioAdmin.php">
+                                <i class="bi bi-box-seam me-1"></i> Inventario
+                            </a>
+                        </li>
+
+                        <!-- Botón cerrar sesión -->
                         <li class="nav-item ms-3">
                             <form method="POST" action="">
                                 <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
@@ -70,7 +98,8 @@ $contactos = ConsultarContactosAdminModel();
 
     <section class="py-5">
         <div class="container">
-            <h2 class="mb-4">Listado de Contactos</h2>
+
+            <h3 class="mb-4">Gestión de Contacto</h3>
 
             <?php if (isset($_POST["txtMensaje"])): ?>
                 <div class="alert alert-warning text-center">

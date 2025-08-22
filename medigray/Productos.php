@@ -1,15 +1,9 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarProductos.php';
 
-$productos = ConsultarProductosModel();
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-
+// Carga todos los productos inicialmente
+$productos = BuscarProductosModel("");
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,8 +19,6 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 
 <body>
-
-    <!-- Navegación principal -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
@@ -40,13 +32,12 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Home.php">
+                            <a class="nav-link" href="Home.php">
                                 <i class="bi bi-house-door me-1"></i>Inicio
                             </a>
                         </li>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Productos.php">
+                            <a class="nav-link active" aria-current="page" href="Productos.php">
                                 <i class="bi bi-capsule me-1"></i>Productos
                             </a>
                         </li>
@@ -60,102 +51,89 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <i class="bi bi-envelope me-1"></i>Contacto
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="carrito.php">
-                                <i class="bi bi-cart me-1"></i>Carrito
+
+                        <!-- Dropdown Mi Cuenta -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-person-circle me-1"></i>Mi Cuenta
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="direccion.php"><i
+                                            class="bi bi-house-door me-1"></i>Mis Direcciones</a></li>
+                                <li><a class="dropdown-item" href="carrito.php"><i
+                                            class="bi bi-cart me-1"></i>Carrito</a></li>
+                                <li><a class="dropdown-item" href="MisPedidos.php"><i
+                                            class="bi bi-box-seam me-1"></i>Mis Pedidos</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form method="POST" action="" class="m-0">
+                                        <button type="submit" name="btnCerrarSesion" class="dropdown-item">
+                                            <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
-                        <form method="POST" action="" class="d-inline">
-                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
-                                <i class="bi bi-box-arrow-right"></i>
-                            </button>
-                        </form>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
+
     <section class="products-hero py-5 text-white">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-5 fw-bold mb-3">Nuestros Productos</h1>
-                    <p class="lead">Descubra nuestra amplia gama de soluciones farmacéuticas diseñadas para el cuidado
-                        de la salud y bienestar.</p>
-                </div>
-            </div>
+        <div class="container py-4 text-center">
+            <h1 class="display-5 fw-bold mb-3">Nuestros Productos</h1>
+            <p class="lead">Descubra nuestra amplia gama de soluciones farmacéuticas diseñadas para el cuidado de la
+                salud y bienestar.</p>
         </div>
     </section>
 
     <section class="products-content py-5">
         <div class="container">
-            <div class="row mb-4 align-items-center">
-                <!-- Título y breadcrumb -->
-            </div>
-
-            <div id="categoryButtons" class="mb-4 text-center category-filter-buttons">
-            </div>
-
             <div class="row g-4 mt-3">
                 <!-- Sidebar izquierda -->
                 <div class="col-lg-3">
-                    <!-- Buscar productos -->
                     <div class="sidebar-widget shadow-sm bg-white p-4 mb-4">
                         <h3 class="sidebar-title">Buscar Productos</h3>
-                        <div class="search-box">
-                            <div class="input-group">
-                                <input type="text" id="productSearchInput" class="form-control search-input"
-                                    placeholder="Buscar producto...">
-                                <button class="btn search-button" type="button" id="searchButton">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </div>
+                        <div class="input-group mb-2">
+                            <input type="text" id="productSearchInput" class="form-control"
+                                placeholder="Buscar producto...">
+                            <button class="btn btn-primary" type="button" id="searchButton"><i
+                                    class="bi bi-search"></i></button>
                         </div>
-                    </div>
-
-                    <!-- Información adicional -->
-                    <div class="sidebar-widget p-0 mb-4 shadow-sm overflow-hidden">
-                        <div class="bg-primary text-white p-4">
-                            <h3 class="h5 fw-bold mb-3">¿Necesita información adicional?</h3>
-                            <p class="mb-3">Contáctenos para obtener información detallada sobre cualquiera de nuestros
-                                productos.</p>
-                            <a href="contacto.html" class="btn btn-light rounded-pill fw-medium">
-                                <i class="bi bi-envelope me-2"></i>Contáctenos
-                            </a>
-                        </div>
+                        <button class="btn btn-secondary w-100" type="button" id="showAllButton">Mostrar todos</button>
                     </div>
                 </div>
 
-                <!-- Productos a la derecha -->
+                <!-- Productos -->
                 <div class="col-lg-9">
-                    <div class="row g-4">
+                    <div class="row g-4" id="productosContainer">
                         <?php if ($productos && count($productos) > 0): ?>
                             <?php foreach ($productos as $row): ?>
                                 <div class="col-md-6 col-lg-4 mb-4">
                                     <div class="card product-card shadow-sm h-100">
                                         <div class="product-img-container d-flex align-items-center justify-content-center bg-light"
                                             style="height: 150px;">
-                                            <img src="<?php echo $row['IMAGEN']; ?>" alt=""
-                                                style="display: block; margin-left: auto; margin-right: auto;" width="150"
-                                                height="125">
+                                            <img src="<?php echo $row['IMAGEN']; ?>" alt="" style="display: block; margin:auto;"
+                                                width="150" height="125">
                                         </div>
                                         <div class="card-body p-4 d-flex flex-column">
                                             <span class="product-category text-secondary fst-italic mb-1">
                                                 <?php echo str_replace('_', ' ', $row["NOMBRE_CATEGORIA"]); ?>
                                             </span>
-                                            <h3 class="product-title mt-1">
-                                                <?php echo $row["NOMBRE_PRODUCTO"]; ?>
-                                            </h3>
+                                            <h3 class="product-title mt-1"><?php echo $row["NOMBRE_PRODUCTO"]; ?></h3>
                                             <p class="product-description flex-grow-1 mb-2">
                                                 <?php echo $row["DESCRIPCION_PRODUCTO"]; ?>
                                             </p>
                                             <ul class="list-unstyled mb-3">
                                                 <li><strong>Precio:</strong>
                                                     $<?php echo number_format($row["PRECIO_UNITARIO"], 2); ?></li>
-                                                <li><strong>Presentación:</strong>
-                                                    <?php echo $row["TIPO_PRESENTACION"]; ?></li>
-                                                <li><strong>Presentación:</strong>
+                                                <li><strong>Presentación:</strong> <?php echo $row["TIPO_PRESENTACION"]; ?></li>
+                                                <li><strong>Descripción:</strong>
                                                     <?php echo $row["DESCRIPCION_PRESENTACION"]; ?></li>
                                             </ul>
                                             <div class="mt-auto text-center">
@@ -177,143 +155,37 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4">
-        <div class="container">
-            <div class="row gy-4">
-                <!-- Columna principal - Sobre Medigray -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="mb-4">
-                        <h5 class="text-uppercase mb-3 fw-bold text-primary">
-                            <img src="images/Logo_medigray.png" alt="Medigray Footer Logo" height="30"
-                                style="filter: brightness(0) invert(1); margin-right: 8px;">
-                            Medigray
-                        </h5>
-                        <p class="text-white-50">En MEDIGRAY nos dedicamos a desarrollar, producir y comercializar
-                            productos de la más alta calidad, que contribuyen a mejorar la salud y bienestar de las
-                            personas.</p>
-                    </div>
+    <!-- Footer aquí -->
 
-                    <!-- Dirección y contacto -->
-                    <div class="mb-4">
-                        <p class="text-white-50 mb-1"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>Desamparados,
-                            San José, Costa Rica</p>
-                        <p class="text-white-50 mb-1"><i class="bi bi-telephone-fill me-2 text-primary"></i>(+506)
-                            2270-7979</p>
-                        <p class="text-white-50 mb-1"><i
-                                class="bi bi-envelope-fill me-2 text-primary"></i>ventas@medigray.com</p>
-                    </div>
-
-                    <!-- Redes sociales -->
-                    <div class="mt-4 social-icons">
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle"
-                            aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle"
-                            aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle"
-                            aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 rounded-circle"
-                            aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-
-                <!-- Columna de enlaces rápidos -->
-                <div class="col-lg-2 col-md-6 col-6">
-                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Navegación</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Inicio</a></li>
-                        <li class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Nosotros</a></li>
-                        <li class="mb-2"><a href="farmacovigilancia.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Farmacovigilancia</a></li>
-                        <li class="mb-2"><a href="productos.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Productos</a></li>
-                        <li class="mb-2"><a href="trabaje-aqui.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Trabaje Aquí</a></li>
-                        <li class="mb-2"><a href="contacto.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Contacto</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna de Productos -->
-                <div class="col-lg-3 col-md-6 col-6">
-                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Productos</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="productos.html?cat=RESPIRATORIA"
-                                class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Respiratoria</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=DOLOR"
-                                class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Dolor</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=DERMATOLÓGICO"
-                                class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>DERMATOLÓGICO</a></li>
-                        <li class="mb-2"><a href="productos.html?cat=GASTRICO"
-                                class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Gástrico</a></li>
-                        <li class="mb-2"><a href="productos.html" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Ver todas las categorías</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Columna de Legal y soporte -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase mb-4 fw-bold text-primary">Legal & Soporte</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Términos y condiciones</a>
-                        </li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Política de privacidad</a>
-                        </li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Preguntas frecuentes</a>
-                        </li>
-                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none"><i
-                                    class="bi bi-chevron-right me-1 small text-primary"></i>Soporte al cliente</a></li>
-                    </ul>
-                </div>
-
-                <!-- Línea divisoria -->
-                <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
-
-                <!-- Copyright -->
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <p class="text-white-50 mb-0">&copy; <span id="currentYear"></span> Medigray. Todos los derechos
-                            reservados.</p>
-                    </div>
-                </div>
-            </div>
-    </footer>
-
-    <!-- Scripts de Bootstrap y personalizados -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="JS/script.js"></script>
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
     <script>
         function AgregarCarrito(idProducto) {
-            $.ajax({
-                url: "modulos/consultarProductos.php",
-                type: "POST",
-                dataType: 'text',
-                data: {
-                    Accion: "AgregarCarrito",
-                    idProducto: idProducto
-                },
-                success: function (response) {
-                    if (response === 'ok') {
-                        window.location.reload();
-                    } else
-                        alert(response);
-                }
+            $.post("modulos/consultarProductos.php", { Accion: "AgregarCarrito", idProducto: idProducto }, function (res) {
+                if (res === "ok") { window.location.reload(); } else { alert(res); }
             });
         }
+
+        // Buscar productos
+        $("#searchButton").click(function () {
+            let busqueda = $("#productSearchInput").val();
+            $.post("modulos/consultarProductos.php", { busqueda: busqueda }, function (res) {
+                $("#productosContainer").html(res);
+            });
+        });
+
+        // Mostrar todos los productos
+        $("#showAllButton").click(function () {
+            $("#productSearchInput").val(''); // Limpiar input
+            $.post("modulos/consultarProductos.php", { busqueda: '' }, function (res) {
+                $("#productosContainer").html(res);
+            });
+        });
+
+        // Enter en input
+        $("#productSearchInput").keypress(function (e) {
+            if (e.which == 13) { $("#searchButton").click(); }
+        });
     </script>
 </body>
 

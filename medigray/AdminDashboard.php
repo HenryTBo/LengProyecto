@@ -100,9 +100,19 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="ContactosAdmin.php" class="btn btn-primary btn-sm">Ver</a>
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <div class="card card-hover text-center p-3">
+                    <i class="bi bi-box-seam" style="font-size: 2rem;"></i>
+                    <h5 class="mt-2">Inventario</h5>
+                    <p>Gestión de stock y existencias</p>
+                    <a href="InventarioAdmin.php" class="btn btn-primary btn-sm">Ver</a>
+                </div>
+            </div>
+
         </div>
     </div>
-c
+    c
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

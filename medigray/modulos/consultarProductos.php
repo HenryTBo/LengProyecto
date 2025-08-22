@@ -32,6 +32,75 @@ function ConsultarProductosModel()
     }
 }
 
+
+if (isset($_POST["busqueda"])) {
+    $busqueda = trim($_POST["busqueda"]);
+    $productos = BuscarProductosModel($busqueda);
+
+    if ($productos && count($productos) > 0) {
+        foreach ($productos as $row) {
+            ?>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card product-card shadow-sm h-100">
+                    <div class="product-img-container d-flex align-items-center justify-content-center bg-light"
+                        style="height: 150px;">
+                        <img src="<?php echo $row['IMAGEN']; ?>" alt="" style="display: block; margin:auto;" width="150"
+                            height="125">
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column">
+                        <span
+                            class="product-category text-secondary fst-italic mb-1"><?php echo str_replace('_', ' ', $row["NOMBRE_CATEGORIA"]); ?></span>
+                        <h3 class="product-title mt-1"><?php echo $row["NOMBRE_PRODUCTO"]; ?></h3>
+                        <p class="product-description flex-grow-1 mb-2"><?php echo $row["DESCRIPCION_PRODUCTO"]; ?></p>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Precio:</strong> $<?php echo number_format($row["PRECIO_UNITARIO"], 2); ?></li>
+                            <li><strong>Presentación:</strong> <?php echo $row["TIPO_PRESENTACION"]; ?></li>
+                            <li><strong>Descripción:</strong> <?php echo $row["DESCRIPCION_PRESENTACION"]; ?></li>
+                        </ul>
+                        <div class="mt-auto text-center">
+                            <button class="btn btn-primary" onclick="AgregarCarrito(<?php echo $row['ID_PRODUCTO']; ?>)">
+                                <i class="bi bi-cart"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    } else {
+        echo "<h3 class='h4 mt-3'>No se encontraron productos</h3>";
+    }
+    exit;
+}
+function BuscarProductosModel($busqueda)
+{
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    if ($busqueda == '') {
+        $sql = "SELECT * FROM FIDE_LISTAR_PRODUCTOS_V";
+        $stid = oci_parse($conn, $sql);
+    } else {
+        $sql = "SELECT * FROM FIDE_LISTAR_PRODUCTOS_V
+                WHERE LOWER(NOMBRE_PRODUCTO) LIKE '%' || LOWER(:busqueda) || '%'";
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":busqueda", $busqueda);
+    }
+
+    oci_execute($stid);
+
+    $productos = [];
+    while ($row = oci_fetch_assoc($stid)) {
+        $productos[] = $row;
+    }
+
+    oci_free_statement($stid);
+    oci_close($conn);
+
+    return $productos;
+}
+
+
+
 function ConsultarProductosAdminModel()
 {
     try {
@@ -497,6 +566,33 @@ function ConsultarDetallePedidoModel($idPedido)
     }
 }
 
+function ConsultarPedidosUsuario($idUsuario)
+{
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_PEDIDOS_USUARIO_V WHERE USUARIOS_ID_USUARIO_FK = :idUsuario ORDER BY FECHA_PEDIDO DESC";
+
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":idUsuario", $idUsuario);
+        oci_execute($stid);
+
+        $pedidos = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $pedidos[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $pedidos;
+
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+
 if (isset($_POST["btnEliminarDetallePedido"])) {
     $idPedido = $_POST["idPedidoEliminar"];
     $idProducto = $_POST["idProductoEliminar"];
@@ -898,7 +994,7 @@ if (isset($_POST["btnIniciarSesion"])) {
     $correo = $_POST["txtCorreo"];
     $contrasenna = $_POST["txtContrasenna"];
 
-    $sql = "BEGIN :p_id := FIDE_VALIDAR_LOGIN_FN(:p_correo, :p_contrasena); END;";
+    $sql = "BEGIN :p_id := FIDE_PROYECTO_FINAL_PKG.FIDE_VALIDAR_LOGIN_FN(:p_correo, :p_contrasena); END;";
     $stid = oci_parse($conn, $sql);
 
     oci_bind_by_name($stid, ":p_correo", $correo);
@@ -912,7 +1008,7 @@ if (isset($_POST["btnIniciarSesion"])) {
         $_SESSION["idUsuario"] = $idUsuario;
 
         // Obtener tipo de usuario
-        $sql2 = "BEGIN :p_tipo := FIDE_TRAER_TIPO_USUARIO_FN(:p_correo, :p_contrasena); END;";
+        $sql2 = "BEGIN :p_tipo := FIDE_PROYECTO_FINAL_PKG.FIDE_TRAER_TIPO_USUARIO_FN(:p_correo, :p_contrasena); END;";
         $stid2 = oci_parse($conn, $sql2);
 
         oci_bind_by_name($stid2, ":p_correo", $correo);
@@ -940,6 +1036,173 @@ if (isset($_POST["btnCerrarSesion"])) {
 
     header("Location: ../medigray/Inicio.php");
     exit;
+}
+
+if (isset($_POST["btnGuardarDireccion"])) {
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    $idUsuario = $_SESSION["idUsuario"];
+    $pais = $_POST["paises"];
+    $provincia = $_POST["provincias"];
+    $canton = $_POST["cantones"];
+    $distrito = $_POST["distritos"];
+    $otrasSenas = $_POST["direccionExacta"];
+
+    $sql = "BEGIN FIDE_PROYECTO_FINAL_PKG.FIDE_DIRECCIONES_INSERTAR_SP(:idUsuario, :pais, :provincia, :canton, :distrito, :otrasSenas); END;";
+    $stid = oci_parse($conn, $sql);
+
+    oci_bind_by_name($stid, ":idUsuario", $idUsuario);
+    oci_bind_by_name($stid, ":pais", $pais);
+    oci_bind_by_name($stid, ":provincia", $provincia);
+    oci_bind_by_name($stid, ":canton", $canton);
+    oci_bind_by_name($stid, ":distrito", $distrito);
+    oci_bind_by_name($stid, ":otrasSenas", $otrasSenas);
+
+    $respuesta = oci_execute($stid);
+
+    if ($respuesta) {
+        $_POST["txtMensaje"] = 'Su direccion se guardo';
+    } else {
+        $_POST["txtMensaje"] = 'No se pudo guardar la dirección.';
+    }
+
+    oci_free_statement($stid);
+    oci_close($conn);
+}
+
+function ConsultarPaises() {
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_PAISES_V";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        $paises = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $paises[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $paises;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+function ConsultarProvincias() {
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_PROVINCIAS_V";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        $provincias = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $provincias[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $provincias;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+function ConsultarCantones() {
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_CANTONES_V";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        $cantones = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $cantones[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $cantones;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+function ConsultarDistritos() {
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_DISTRITOS_V";
+        $stid = oci_parse($conn, $sql);
+        oci_execute($stid);
+
+        $distritos = [];
+        while ($row = oci_fetch_assoc($stid)) {
+            $distritos[] = $row;
+        }
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $distritos;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+function ConsultarDireccionUsuario($idUsuario) {
+    try {
+        include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+        $sql = "SELECT * FROM FIDE_VISTA_DIRECCION_USUARIO_V WHERE USUARIOS_ID_USUARIO_FK = :idUsuario";
+        $stid = oci_parse($conn, $sql);
+        oci_bind_by_name($stid, ":idUsuario", $idUsuario);
+        oci_execute($stid);
+
+        $direccion = oci_fetch_assoc($stid);
+
+        oci_free_statement($stid);
+        oci_close($conn);
+
+        return $direccion ?: null;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
+function UsuarioTieneDireccion($idUsuario) {
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/config/conexion.php';
+
+    $sql = "SELECT FIDE_PROYECTO_FINAL_PKG.FIDE_FN_USUARIO_TIENE_DIRECCION(:idUsuario) AS TIENE_DIRECCION FROM DUAL";
+    $stid = oci_parse($conn, $sql);
+    oci_bind_by_name($stid, ":idUsuario", $idUsuario);
+    oci_execute($stid);
+
+    $row = oci_fetch_assoc($stid);
+    oci_free_statement($stid);
+    oci_close($conn);
+
+    return $row['TIENE_DIRECCION'] == 1;
+}
+
+if (isset($_POST["Accion"]) && $_POST["Accion"] === "VerificarDireccion") {
+    include $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consultarUsuarios.php';
+    $idUsuario = $_SESSION["idUsuario"];
+
+    if (UsuarioTieneDireccion($idUsuario)) {
+        echo "SI";
+    } else {
+        echo "NO";
+    }
+    exit; // importante para que no siga ejecutando nada más
 }
 
 ?>

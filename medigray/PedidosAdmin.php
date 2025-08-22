@@ -6,6 +6,8 @@ $productos = ConsultarPedidosAdminModel();
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+$activePage = 'pedidos';
 ?>
 
 <!DOCTYPE html>
@@ -36,30 +38,56 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="collapse navbar-collapse" id="adminNavbar">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="AdminDashboard.php">
+                        <a class="nav-link <?php if ($activePage == 'dashboard') {
+                            echo 'active';
+                        } ?>" href="AdminDashboard.php">
                             <i class="bi bi-speedometer2 me-1"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="UsuariosAdmin.php">
+                        <a class="nav-link <?php if ($activePage == 'usuarios') {
+                            echo 'active';
+                        } ?>" href="UsuariosAdmin.php">
                             <i class="bi bi-people-fill me-1"></i> Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ProductosAdmin.php">
+                        <a class="nav-link <?php if ($activePage == 'productos') {
+                            echo 'active';
+                        } ?>" href="ProductosAdmin.php">
                             <i class="bi bi-capsule me-1"></i> Productos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="PedidosAdmin.php">
+                        <a class="nav-link <?php if ($activePage == 'pedidos') {
+                            echo 'active';
+                        } ?>" href="PedidosAdmin.php">
                             <i class="bi bi-cart-fill me-1"></i> Pedidos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="FacturasAdmin.php">
+                        <a class="nav-link <?php if ($activePage == 'facturas') {
+                            echo 'active';
+                        } ?>" href="FacturacionAdmin.php">
                             <i class="bi bi-receipt me-1"></i> Facturas
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'contactos') {
+                            echo 'active';
+                        } ?>" href="ContactosAdmin.php">
+                            <i class="bi bi-envelope-fill me-1"></i> Contáctenos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'inventario') {
+                            echo 'active';
+                        } ?>" href="InventarioAdmin.php">
+                            <i class="bi bi-box-seam me-1"></i> Inventario
+                        </a>
+                    </li>
+
+                    <!-- Botón cerrar sesión -->
                     <li class="nav-item ms-3">
                         <form method="POST" action="">
                             <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
@@ -72,11 +100,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </nav>
 
+
     <section class="products-content py-5">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-12">
-
+                    <h3 class="mb-4">Gestión de Pedidos</h3>
                     <?php if (isset($_POST["txtMensaje"])): ?>
                         <div class="alert alert-warning text-center">
                             <?= $_POST["txtMensaje"] ?>

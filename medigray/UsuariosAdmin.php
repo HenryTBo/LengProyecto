@@ -6,6 +6,8 @@ $usuarios = ConsultarUsuariosAdminModel(); // Debe devolver todos los usuarios c
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+$activePage = 'usuarios';
 ?>
 
 <!DOCTYPE html>
@@ -31,22 +33,80 @@ if (session_status() === PHP_SESSION_NONE) {
                 aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="adminNavbar">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="AdminDashboard.php"><i
-                                class="bi bi-speedometer2 me-1"></i> Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="UsuariosAdmin.php"><i
-                                class="bi bi-people-fill me-1"></i> Usuarios</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'dashboard') {
+                            echo 'active';
+                        } ?>" href="AdminDashboard.php">
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'usuarios') {
+                            echo 'active';
+                        } ?>" href="UsuariosAdmin.php">
+                            <i class="bi bi-people-fill me-1"></i> Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'productos') {
+                            echo 'active';
+                        } ?>" href="ProductosAdmin.php">
+                            <i class="bi bi-capsule me-1"></i> Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'pedidos') {
+                            echo 'active';
+                        } ?>" href="PedidosAdmin.php">
+                            <i class="bi bi-cart-fill me-1"></i> Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'facturas') {
+                            echo 'active';
+                        } ?>" href="FacturacionAdmin.php">
+                            <i class="bi bi-receipt me-1"></i> Facturas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'contactos') {
+                            echo 'active';
+                        } ?>" href="ContactosAdmin.php">
+                            <i class="bi bi-envelope-fill me-1"></i> Contáctenos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($activePage == 'inventario') {
+                            echo 'active';
+                        } ?>"
+                            href="InventarioAdmin.php">
+                            <i class="bi bi-box-seam me-1"></i> Inventario
+                        </a>
+                    </li>
+
+                    <!-- Botón cerrar sesión -->
+                    <li class="nav-item ms-3">
+                        <form method="POST" action="">
+                            <button type="submit" name="btnCerrarSesion" class="btn btn-link p-0">
+                                <i class="bi bi-box-arrow-right text-light" style="font-size: 1.3rem;"></i>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="users-content py-5" style="margin-top:70px;">
+
+    <section class="users-content py-5">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-12">
-
+                    <h3 class="mb-4">Gestión de Usuarios</h3>
                     <?php if (isset($_POST["txtMensaje"])): ?>
                         <div class="alert alert-warning text-center">
                             <?= $_POST["txtMensaje"] ?>
