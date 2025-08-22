@@ -3,10 +3,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/LengProyecto/medigray/modulos/consult
 
 $facturas = ConsultarFacturacionAdminModel();
 
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -14,18 +14,15 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facturación - Medigray</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
-
+    <!-- Navbar Admin -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="AdminDashboard.php">Medigray Dashboard</a>
@@ -38,27 +35,27 @@ if (session_status() === PHP_SESSION_NONE) {
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link active" href="AdminDashboard.php">
-                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="UsuariosAdmin.php">
-                            <i class="bi bi-people-fill me-1"></i>Usuarios
+                            <i class="bi bi-people-fill me-1"></i> Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ProductosAdmin.php">
-                            <i class="bi bi-capsule me-1"></i>Productos
+                            <i class="bi bi-capsule me-1"></i> Productos
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="PedidosAdmin.php">
-                            <i class="bi bi-cart-fill me-1"></i>Pedidos
+                            <i class="bi bi-cart-fill me-1"></i> Pedidos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="FacturacionAdmin.php">
-                            <i class="bi bi-receipt me-1"></i>Facturación
+                        <a class="nav-link" href="FacturasAdmin.php">
+                            <i class="bi bi-receipt me-1"></i> Facturas
                         </a>
                     </li>
                     <li class="nav-item ms-3">
@@ -72,115 +69,106 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
         </div>
     </nav>
+    <div class="container py-5 mt-4">
+        <h3 class="mb-4">Gestión de Facturación</h3>
 
-    <section class="products-content py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <a href="generarFactura.php" class="btn btn-success">
+                        <i class="bi bi-file-earmark-plus"></i> Generar Factura
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table id="tablaDatos" class="table table-striped table-bordered align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID FacturaS</th>
+                                <th>ID Pedido</th>
+                                <th>Método Pago</th>
+                                <th>Fecha Emisión</th>
+                                <th>Descuento</th>
+                                <th>Subtotal</th>
+                                <th>IVA</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($facturas && count($facturas) > 0): ?>
+                                <?php foreach ($facturas as $row): ?>
+                                    <tr>
+                                        <td><?= $row["FACTURACION_ID_FACTURA_PK"]; ?></td>
+                                        <td><?= $row["PEDIDOS_ID_PEDIDO_FK"]; ?></td>
+                                        <td><?= $row["METODO_PAGO"]; ?></td>
+                                        <td><?= $row["FECHA_EMISION"]; ?></td>
+                                        <td>₡<?= number_format((float) str_replace(',', '.', $row["DESCUENTOS"]), 2); ?></td>
+                                        <td>₡<?= number_format((float) str_replace(',', '.', $row["SUBTOTAL"]), 2); ?></td>
+                                        <td>₡<?= number_format((float) str_replace(',', '.', $row["IVA"]), 2); ?></td>
+                                        <td>₡<?= number_format((float) str_replace(',', '.', $row["TOTAL_FACTURADO"]), 2); ?>
+                                        </td>
+                                        <td><?= $row["ESTADO"]; ?></td>
 
-                    <?php if (isset($_POST["txtMensaje"])): ?>
-                        <div class="alert alert-warning text-center">
-                            <?= $_POST["txtMensaje"] ?>
-                        </div>
-                    <?php endif; ?>
+                                        <!-- Acciones (sin restricciones) -->
+                                        <td class="text-center">
+                                            <!-- Editar -->
+                                            <a class="btn btn-info btn-accion"
+                                                href="ActualizarFactura.php?q=<?= $row["FACTURACION_ID_FACTURA_PK"]; ?>"
+                                                title="Editar">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
 
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="tablaDatos" class="table table-striped table-bordered align-middle">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>ID Factura</th>
-                                            <th>ID Pedido</th>
-                                            <th>Método Pago</th>
-                                            <th>Fecha Emisión</th>
-                                            <th>Descuento</th>
-                                            <th>Subtotal</th>
-                                            <th>IVA</th>
-                                            <th>Total</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if ($facturas && count($facturas) > 0): ?>
-                                            <?php foreach ($facturas as $row): ?>
-                                                <tr>
-                                                    <td><?= $row["FACTURACION_ID_FACTURA_PK"]; ?></td>
-                                                    <td><?= $row["PEDIDOS_ID_PEDIDO_FK"]; ?></td>
-                                                    <td><?= $row["METODO_PAGO"]; ?></td>
-                                                    <td><?= $row["FECHA_EMISION"]; ?></td>
-                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["DESCUENTOS"]), 2); ?>
-                                                    </td>
-                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["SUBTOTAL"]), 2); ?>
-                                                    </td>
-                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["IVA"]), 2); ?>
-                                                    </td>
-                                                    <td>₡<?= number_format((float) str_replace(',', '.', $row["TOTAL_FACTURADO"]), 2); ?>
-                                                    </td>
-
-                                                    <td><?= $row["ESTADO"]; ?></td>
-                                                    <td class="text-center">
-                                                        <a class="btn btnAbrirModal" data-bs-toggle="modal"
-                                                            data-bs-target="#EliminarFactura"
-                                                            data-id="<?= $row["FACTURACION_ID_FACTURA_PK"]; ?>"
-                                                            data-nombre="Factura #<?= $row["FACTURACION_ID_FACTURA_PK"]; ?>">
-                                                            <i class="fa fa-trash fs-4"></i>
-                                                        </a>
-                                                        <a class="btn"
-                                                            href="ActualizarFactura.php?q=<?= $row["FACTURACION_ID_FACTURA_PK"]; ?>">
-                                                            <i class="fa fa-edit fs-4"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="11" class="text-center">No se encontraron facturas</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
+                                            <!-- Cancelar -->
+                                            <button type="button" class="btn btn-danger btnCancelarFactura"
+                                                data-id="<?= $row["FACTURACION_ID_FACTURA_PK"]; ?>" data-bs-toggle="modal"
+                                                data-bs-target="#modalCancelarFactura" title="Cancelar Factura">
+                                                <i class="bi bi-x-circle"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="10" class="text-center">No se encontraron facturas</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Eliminar Factura -->
-        <div class="modal fade" id="EliminarFactura" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Confirmación</h5>
+    <div class="modal fade" id="modalCancelarFactura" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="modulos/consultarFacturacion.php" method="POST">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">Cancelar Factura</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                    <form action="modulos/consultarFacturacion.php" method="POST">
-                        <div class="modal-body text-center">
-                            <input type="hidden" id="idFacturaEliminar" name="idFacturaEliminar">
-                            <p id="lblNombre" class="mb-0 font-weight-bold text-secondary"></p>
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                            <button type="submit" name="btnEliminarFactura" class="btn btn-primary px-4">
-                                <i class="fa fa-check mr-1"></i> Procesar
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="idFacturaCancelar" id="idFacturaCancelar">
+                        <p>¿Está seguro que desea <strong>cancelar</strong> la factura #<span id="numFactura"></span>?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" name="btnCancelarFactura" class="btn btn-danger">Sí, Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Scripts de Bootstrap y personalizados -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.min.js"></script>
-    <script src="JS/script.js"></script>
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
     <script>
         $(function () {
             new DataTable('#tablaDatos', {
@@ -188,13 +176,13 @@ if (session_status() === PHP_SESSION_NONE) {
                     url: 'https://cdn.datatables.net/plug-ins/2.3.2/i18n/es-ES.json',
                 },
             });
+        });
 
-            $('.btnAbrirModal').on('click', function () {
-                const id = $(this).data('id');
-                const nombre = $(this).data('nombre');
-                $('#idFacturaEliminar').val(id);
-                $('#lblNombre').text("¿Desea eliminar la " + nombre + "?");
-            });
+        // Llenar modal cancelar factura
+        $('.btnCancelarFactura').click(function () {
+            const id = $(this).data('id');
+            $('#idFacturaCancelar').val(id);
+            $('#numFactura').text(id);
         });
     </script>
 </body>

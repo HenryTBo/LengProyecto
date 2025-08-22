@@ -56,7 +56,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.php">
+                            <a class="nav-link" href="Contacto.php">
                                 <i class="bi bi-envelope me-1"></i>Contacto
                             </a>
                         </li>

@@ -63,7 +63,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <i class="bi bi-people-fill" style="font-size: 2rem;"></i>
                     <h5 class="mt-2">Usuarios</h5>
                     <p>Gestión de usuarios</p>
-                    <a href="#" class="btn btn-primary btn-sm">Ver</a>
+                    <a href="UsuariosAdmin.php" class="btn btn-primary btn-sm">Ver</a>
                 </div>
             </div>
             <div class="col-md-3">
@@ -90,8 +90,19 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="FacturacionAdmin.php" class="btn btn-primary btn-sm">Ver</a>
                 </div>
             </div>
+
+            <!-- Nueva tarjeta: Contáctenos -->
+            <div class="col-md-3">
+                <div class="card card-hover text-center p-3">
+                    <i class="bi bi-envelope-fill" style="font-size: 2rem;"></i>
+                    <h5 class="mt-2">Contáctenos</h5>
+                    <p>Ver mensajes recibidos</p>
+                    <a href="ContactosAdmin.php" class="btn btn-primary btn-sm">Ver</a>
+                </div>
+            </div>
         </div>
     </div>
+c
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
